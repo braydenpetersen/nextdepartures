@@ -3,13 +3,24 @@ import math
 from datetime import datetime
 import os
 from dotenv import load_dotenv
+from geopy.geocoders import Nominatim
 
 # Load environment variables from .env file
 load_dotenv()
 
 API_KEY = os.environ.get("API_KEY")
-LAT = os.environ.get("LAT")
-LON = os.environ.get("LON")
+MAX_DISTANCE = os.environ.get("RADIUS")
+
+# calling the Nominatim tool and create Nominatim class
+loc = Nominatim(user_agent="Geopy Library")
+# entering the location name
+getLoc = loc.geocode(input("Enter location: "))
+# printing address
+print(getLoc.address)
+
+LAT = getLoc.latitude
+LON = getLoc.longitude
+
 currentTime = datetime.now().timestamp()
 localTime = datetime.now()
 
@@ -18,7 +29,7 @@ print(f"\nDepartures for {localTime}")
 payload = {
     'lat' : LAT,
     'lon' : LON,
-    'max_distance' : 30
+    'max_distance' : MAX_DISTANCE
 }
 
 header = {"apiKey" : API_KEY}
