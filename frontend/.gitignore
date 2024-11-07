@@ -20,3 +20,6 @@ build/
 
 # swc
 .swc/
+
+# DS Store files
+.DS_Store
