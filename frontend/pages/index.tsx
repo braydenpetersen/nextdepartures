@@ -1,27 +1,22 @@
 import React, { useEffect, useState } from "react";
 
 function index() {
-    const [message, setMessage] = useState("Loading..."); // default message
-    const [people, setPeople] = useState([]); // default people array
+    // const [message, setMessage] = useState("Loading..."); // default message
+    // const [people, setPeople] = useState([]); // default people array
+    const [departures, setDepartures] = useState([]); // default departures array
 
     useEffect(() => {
-        fetch("http://localhost:8080/api/test")
+        fetch("http://localhost:8080/api/departures")
             .then((response) => response.json())
             .then((data) => {
-                setMessage(data.message);
-                setPeople(data.people);
-                console.log(data.people);
+                setDepartures(data.departures);
             });
     }, []);
 
     return (
         <div>
-            <h1>{message}</h1>
-            <ul>
-                {people.map((person, index) => (
-                    <li key={index}>{person}</li>
-                ))}
-            </ul>
+            <h1>Departures</h1>
+            <pre>{JSON.stringify(departures, null, 2)}</pre>
         </div>
     );
 }
