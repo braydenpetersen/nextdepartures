@@ -19,4 +19,7 @@ Inspired by the recent redesign of departure boards at Toronto Union Station, th
 * **Transit Realtime API**
 * **Requests**
 
+## Design
+* **Figma**
+
 work in progress! :)
