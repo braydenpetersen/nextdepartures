@@ -5,6 +5,7 @@ import os
 import requests
 import math
 from datetime import datetime
+import json
 
 # app instance
 app = Flask(__name__)
@@ -12,14 +13,15 @@ CORS(app)
 
 load_dotenv() # get environment variables
 
-API_KEY = os.getenv('API_KEY') # get the API_KEY from the .env file
-LAT = os.getenv('LAT') # get the LAT from the .env file
-LON = os.getenv('LON') # get the LON from the .env file
-MAX_DISTANCE = os.getenv('MAX_DISTANCE') # get the MAX_DISTANCE
+# get the environment variables
+API_KEY = os.getenv('API_KEY')
+LAT = os.getenv('LAT') 
+LON = os.getenv('LON')
+MAX_DISTANCE = os.getenv('MAX_DISTANCE')
 
-def get_current_time():
-    return datetime.now().timestamp()
-
+def load_stop_code_mapping():
+    with open('static/stop_code_to_platform.json', 'r') as f:
+        return json.load(f)
 
 # api/test
 @app.route('/api/test', methods=['GET'])
@@ -30,7 +32,7 @@ def test():
 
 # api/departures
 @app.route('/api/departures', methods=['GET'])
-def departures():
+def get_departures():
 
     payload = {
         'lat': LAT,
@@ -44,9 +46,57 @@ def departures():
 
     # get the data from the API
     response = requests.get('https://external.transitapp.com/v3/public/nearby_routes', headers=headers, params=payload)
+    data = response.json()
 
-    # return the data
-    return jsonify(response.json())
+    departures_list = []
+
+    stop_code_to_platform = load_stop_code_mapping()
+    
+    # Iterate over the routes
+    for route in data.get('routes', []):
+
+        routeNumber = route['route_short_name']
+        routeColor = route['route_color']
+        routeTextColor = route['route_text_color']
+        routeNetwork = route['route_network_name']
+
+        # Iterate over the itineraries within a route
+        for itinerary in route.get("itineraries", []):
+
+            headsign = itinerary['direction_headsign']
+            stop_code = itinerary['closest_stop']['stop_code']
+
+            platform = stop_code_to_platform.get(stop_code, "?")
+
+            is_first_departure = True
+
+            # Iterate over the departure schedule items within an itinerary
+            for departure in itinerary.get("schedule_items", []):
+                departureTime = datetime.fromtimestamp(departure['departure_time']).strftime('%H:%M')
+
+                # assign branch code if first departure
+                branch_code = itinerary['branch_code'] if is_first_departure else ""
+
+                departure_item = {
+                    'routeNumber': routeNumber,
+                    'routeColor': routeColor,
+                    'routeTextColor': routeTextColor,
+                    'routeNetwork': routeNetwork,
+                    'headsign': headsign,
+                    'stop_code': stop_code,
+                    'departureTime': departureTime,
+                    'branch_code': branch_code,
+                    'platform': platform
+                }
+
+                is_first_departure = False
+
+                departures_list.append(departure_item)
+
+    departures_list.sort(key=lambda x: datetime.strptime(x['departureTime'], '%H:%M'))
+
+    return jsonify(departures_list)
+            
 
 if __name__ == '__main__':
     app.run(debug=True, port=8080) # run the server in debug mode
