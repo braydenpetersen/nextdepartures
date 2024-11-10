@@ -2,10 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
     --black: #000;
     --white: #fff;
     --dark-grey: #1E1C1C;
     --light-grey: #DBDBDB;
     --yellow: #D9D499;
+    --light-green: #9FD30A;
+}
+
+body {
+    font-family: 'Overpass', sans-serif;
+    background-color: var(--black);
+    color: var(--white);
+}
+
+h1 {
+    font-size: 60px;
+    letter-spacing: -1.2px;
+}
+
+p {
+    font-size: 35px;
+}
+
+body {
+    margin-left: 20px;
+    margin-right: 20px;
+    font-weight: 700;
 }

@@ -72,7 +72,7 @@ def get_departures():
 
             # Iterate over the departure schedule items within an itinerary
             for departure in itinerary.get("schedule_items", []):
-                departureTime = datetime.fromtimestamp(departure['departure_time']).strftime('%H:%M')
+                time = datetime.fromtimestamp(departure['departure_time']).strftime('%H:%M')
                 current_time = datetime.now()
                 departure_datetime = datetime.fromtimestamp(departure['departure_time'])
                 time_until_departure = (departure_datetime - current_time).total_seconds() // 60
@@ -87,7 +87,7 @@ def get_departures():
                     'routeNetwork': routeNetwork,
                     'headsign': headsign,
                     'stop_code': stop_code,
-                    'departureTime': departureTime,
+                    'time': time,
                     'branch_code': branch_code,
                     'platform': platform,
                     'countdown': math.floor(time_until_departure)
@@ -97,7 +97,7 @@ def get_departures():
 
                 departures_list.append(departure_item)
 
-    departures_list.sort(key=lambda x: datetime.strptime(x['departureTime'], '%H:%M'))
+    departures_list.sort(key=lambda x: datetime.strptime(x['time'], '%H:%M'))
 
     return jsonify(departures_list)
             

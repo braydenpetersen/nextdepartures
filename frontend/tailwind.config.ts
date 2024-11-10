@@ -7,11 +7,15 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-      },
+    colors: {
+      "black": "var(--black)",
+      "white": "var(--white)",
+      "yellow": "var(--yellow)",
+      "dark-grey": "var(--dark-grey)",
+      "light-grey": "var(--light-grey)",
+    },
+    fontFamily: {
+      sans: ['Overpass', 'sans-serif'],
     },
   },
   plugins: [],
