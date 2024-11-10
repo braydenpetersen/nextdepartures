@@ -73,6 +73,9 @@ def get_departures():
             # Iterate over the departure schedule items within an itinerary
             for departure in itinerary.get("schedule_items", []):
                 departureTime = datetime.fromtimestamp(departure['departure_time']).strftime('%H:%M')
+                current_time = datetime.now()
+                departure_datetime = datetime.fromtimestamp(departure['departure_time'])
+                time_until_departure = (departure_datetime - current_time).total_seconds() // 60
 
                 # assign branch code if first departure
                 branch_code = itinerary['branch_code'] if is_first_departure else ""
@@ -86,7 +89,8 @@ def get_departures():
                     'stop_code': stop_code,
                     'departureTime': departureTime,
                     'branch_code': branch_code,
-                    'platform': platform
+                    'platform': platform,
+                    'countdown': math.floor(time_until_departure)
                 }
 
                 is_first_departure = False
