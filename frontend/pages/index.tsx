@@ -7,6 +7,7 @@ function index() {
         branch_code: string;
         headsign: string;
         platform: string;
+        countdown: string;
     }
 
     const [departures, setDepartures] = useState<Departure[]>([]); // default departures structure
@@ -26,7 +27,7 @@ function index() {
             <ul>
                 {departures.map((departure, index) => (
                     <li key={index}>
-                        {departure.departureTime} [{departure.routeNumber}{departure.branch_code}] to {departure.headsign} --- Platform {departure.platform}
+                        {departure.departureTime} {departure.countdown}min [{departure.routeNumber}{departure.branch_code}] to {departure.headsign} --- Platform {departure.platform}
                     </li>
                 ))}
             </ul>
