@@ -77,3 +77,18 @@ tr {
     color: var(--light-grey);
     font-weight: 400;
 }
+
+.title {
+    padding: 50px 0;
+    line-height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.title-fr {
+    font-weight: 400;
+}
+
+.clock {
+    color: var(--light-grey);
+}

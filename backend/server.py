@@ -23,14 +23,17 @@ def load_stop_code_mapping():
     with open('static/stop_code_to_platform.json', 'r') as f:
         return json.load(f)
     
-def check_ring_road(platform, routeNumber):
-    if (routeNumber == '30' and platform == '5') or \
+def check_ring_road(platform, routeNumber, routeNetwork):
+    if (routeNumber == '30' and (platform == '5' or routeNetwork == 'GO Transit')) or \
        (routeNumber == '19' and platform == '4') or \
        (routeNumber == '9' and platform == '6'):
         return True
     if routeNumber not in ['30', '19', '9']:
         return True
     return False
+
+def remove_station(headsign):
+    return headsign.replace("Station", "").strip()
 
 # api/test
 @app.route('/api/test', methods=['GET'])
@@ -72,7 +75,7 @@ def get_departures():
         # Iterate over the itineraries within a route
         for itinerary in route.get("itineraries", []):
 
-            headsign = itinerary['direction_headsign']
+            headsign = remove_station(itinerary['direction_headsign'])
             stop_code = itinerary['closest_stop']['stop_code']
 
             platform = stop_code_to_platform.get(stop_code, "?")
@@ -95,10 +98,10 @@ def get_departures():
                 countdown = max(0, math.floor(time_until_departure))
 
                 # # special case for Routes 30 and 9, only one stop code is valid (same buses)
-                if routeNumber == '30':
+                if routeNumber == '30' and routeNetwork == "GRT":
                     headsign = 'Ring Road'
                 
-                if check_ring_road(platform, routeNumber):
+                if check_ring_road(platform, routeNumber, routeNetwork):
                     departure_item = {
                         'routeNumber': routeNumber,
                         'routeColor': routeColor,

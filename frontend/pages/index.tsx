@@ -25,8 +25,15 @@ function index() {
 
     return (
         <div>
-            <div className="flex">
-                <h1>Departures</h1>
+            <div className="title">
+                <div>
+                    <h1>
+                        Departures <span className="title-fr">| Départs</span>
+                    </h1>
+                </div>
+                <div className="clock">
+                    <h1>timer</h1>
+                </div>
             </div>
             <div style={{ display: "flex", width: "100%" }}>
                 <table style={{ flex: 1 }}>
@@ -42,9 +49,7 @@ function index() {
                             </th>
                             <th style={{ textAlign: "left" }}>
                                 <div>To</div>
-                                <div className="header-fr">
-                                    À
-                                </div>
+                                <div className="header-fr">À</div>
                             </th>
                             <th style={{ textAlign: "right" }}>
                                 <div>Platform</div>
@@ -59,13 +64,17 @@ function index() {
 
                                 <td
                                     style={{
-                                        textAlign: "left"
+                                        textAlign: "left",
                                     }}
                                 >
-                                    <div className="route" style={{
-                                        color: departure.routeTextColor,
-                                        backgroundColor: departure.routeColor,
-                                    }} >
+                                    <div
+                                        className="route"
+                                        style={{
+                                            color: departure.routeTextColor,
+                                            backgroundColor:
+                                                departure.routeColor,
+                                        }}
+                                    >
                                         {departure.routeNumber}
                                         {departure.branch_code}
                                     </div>
