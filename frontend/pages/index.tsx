@@ -23,6 +23,30 @@ function index() {
             });
     }, []);
 
+    const [ctime, setCtime] = useState(
+        new Date().toLocaleTimeString("en-GB", {
+            timeZone: "America/Toronto",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+        })
+    );
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCtime(
+                new Date().toLocaleTimeString("en-GB", {
+                    timeZone: "America/Toronto",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    second: "2-digit",
+                })
+            );
+        }, 1000);
+
+        return () => clearInterval(timer);
+    }, []);
+
     return (
         <div>
             <div className="title">
@@ -32,7 +56,9 @@ function index() {
                     </h1>
                 </div>
                 <div className="clock">
-                    <h1>timer</h1>
+                    <h1 style={{ fontVariantNumeric: "tabular-nums" }}>
+                        {ctime}
+                    </h1>
                 </div>
             </div>
             <div style={{ display: "flex", width: "100%" }}>
