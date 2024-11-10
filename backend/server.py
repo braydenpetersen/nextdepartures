@@ -22,6 +22,15 @@ MAX_DISTANCE = os.getenv('MAX_DISTANCE')
 def load_stop_code_mapping():
     with open('static/stop_code_to_platform.json', 'r') as f:
         return json.load(f)
+    
+def check_ring_road(platform, routeNumber):
+    if (routeNumber == '30' and platform == '5') or \
+       (routeNumber == '19' and platform == '4') or \
+       (routeNumber == '9' and platform == '6'):
+        return True
+    if routeNumber not in ['30', '19', '9']:
+        return True
+    return False
 
 # api/test
 @app.route('/api/test', methods=['GET'])
@@ -85,22 +94,27 @@ def get_departures():
 
                 countdown = max(0, math.floor(time_until_departure))
 
-                departure_item = {
-                    'routeNumber': routeNumber,
-                    'routeColor': routeColor,
-                    'routeTextColor': routeTextColor,
-                    'routeNetwork': routeNetwork,
-                    'headsign': headsign,
-                    'stop_code': stop_code,
-                    'time': time,
-                    'branch_code': branch_code,
-                    'platform': platform,
-                    'countdown': countdown
-                }
+                # # special case for Routes 30 and 9, only one stop code is valid (same buses)
+                if routeNumber == '30':
+                    headsign = 'Ring Road'
+                
+                if check_ring_road(platform, routeNumber):
+                    departure_item = {
+                        'routeNumber': routeNumber,
+                        'routeColor': routeColor,
+                        'routeTextColor': routeTextColor,
+                        'routeNetwork': routeNetwork,
+                        'headsign': headsign,
+                        'stop_code': stop_code,
+                        'time': time,
+                        'branch_code': branch_code,
+                        'platform': platform,
+                        'countdown': countdown
+                    }
 
-                is_first_departure = False
+                    is_first_departure = False
 
-                departures_list.append(departure_item)
+                    departures_list.append(departure_item)
 
     departures_list.sort(key=lambda x: x['countdown'])
 

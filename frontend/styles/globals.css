@@ -38,14 +38,13 @@ th {
     font-size: 35px;
     line-height: 1;
     margin: 0;
-    padding: 0;
+    padding: 3vh 0;
 }
 
 thead {
-    padding: 10px;
+    padding: 10vh;
     letter-spacing: -0.35px;
     background-color: var(--dark-grey);
-    height: 10vh;
 }
 
 tr {
