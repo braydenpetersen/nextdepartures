@@ -31,60 +31,51 @@ function index() {
             <div style={{ display: "flex", width: "100%" }}>
                 <table style={{ flex: 1 }}>
                     <thead>
-                        <tr style={{ backgroundColor: "grey" }}>
+                        <tr>
                             <th style={{ textAlign: "left" }}>
                                 <div>Scheduled</div>
-                                <div style={{ fontWeight: 400 }}>Programmé</div>
+                                <div className="header-fr">Programmé</div>
                             </th>
                             <th style={{ textAlign: "left" }}>
                                 <div>Route</div>
-                                <div style={{ fontWeight: 400 }}>Ligne</div>
+                                <div className="header-fr">Ligne</div>
                             </th>
                             <th style={{ textAlign: "left" }}>
-                                <div>Destination</div>
-                                <div style={{ fontWeight: 400 }}>
-                                    Destination
+                                <div>To</div>
+                                <div className="header-fr">
+                                    À
                                 </div>
                             </th>
                             <th style={{ textAlign: "right" }}>
                                 <div>Platform</div>
-                                <div style={{ fontWeight: 400 }}>Quai</div>
+                                <div className="header-fr">Quai</div>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         {departures.map((departure, index) => (
                             <tr key={index}>
-                                <td
-                                    style={{
-                                        textAlign: "left",
-                                        color: "yellow",
-                                    }}
-                                >
-                                    {departure.time}
-                                </td>
+                                <td className="time">{departure.time}</td>
 
                                 <td
                                     style={{
-                                        textAlign: "left",
-                                        color: `$(departure.routeTextColor)`,
-                                        backgroundColor: `$(departure.routeColor)`,
+                                        textAlign: "left"
                                     }}
                                 >
-                                    {departure.routeNumber}
-                                    {departure.branch_code}
+                                    <div className="route" style={{
+                                        color: departure.routeTextColor,
+                                        backgroundColor: departure.routeColor,
+                                    }} >
+                                        {departure.routeNumber}
+                                        {departure.branch_code}
+                                    </div>
                                 </td>
 
                                 <td style={{ textAlign: "left" }}>
                                     {departure.headsign}
                                 </td>
 
-                                <td
-                                    style={{
-                                        textAlign: "right",
-                                        color: "lightgreen",
-                                    }}
-                                >
+                                <td className="platform">
                                     {departure.platform}
                                 </td>
                             </tr>

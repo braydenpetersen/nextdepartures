@@ -56,8 +56,8 @@ def get_departures():
     for route in data.get('routes', []):
 
         routeNumber = route['route_short_name']
-        routeColor = route['route_color']
-        routeTextColor = route['route_text_color']
+        routeColor = f"#{route['route_color']}"
+        routeTextColor = f"#{route['route_text_color']}"
         routeNetwork = route['route_network_name']
 
         # Iterate over the itineraries within a route
@@ -77,8 +77,13 @@ def get_departures():
                 departure_datetime = datetime.fromtimestamp(departure['departure_time'])
                 time_until_departure = (departure_datetime - current_time).total_seconds() // 60
 
+                if time_until_departure < 10:
+                    time = f"{int(time_until_departure)} min"
+
                 # assign branch code if first departure
                 branch_code = itinerary['branch_code'] if is_first_departure else ""
+
+                countdown = max(0, math.floor(time_until_departure))
 
                 departure_item = {
                     'routeNumber': routeNumber,
@@ -90,14 +95,14 @@ def get_departures():
                     'time': time,
                     'branch_code': branch_code,
                     'platform': platform,
-                    'countdown': math.floor(time_until_departure)
+                    'countdown': countdown
                 }
 
                 is_first_departure = False
 
                 departures_list.append(departure_item)
 
-    departures_list.sort(key=lambda x: datetime.strptime(x['time'], '%H:%M'))
+    departures_list.sort(key=lambda x: x['countdown'])
 
     return jsonify(departures_list)
             
