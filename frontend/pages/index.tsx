@@ -23,16 +23,18 @@ function index() {
             });
     }, []);
 
-    const [ctime, setCtime] = useState(
-        new Date().toLocaleTimeString("en-GB", {
-            timeZone: "America/Toronto",
-            hour: "2-digit",
-            minute: "2-digit",
-            second: "2-digit",
-        })
-    );
+    const [ctime, setCtime] = useState("");
 
     useEffect(() => {
+        setCtime(
+            new Date().toLocaleTimeString("en-GB", {
+                timeZone: "America/Toronto",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+            })
+        );
+
         const timer = setInterval(() => {
             setCtime(
                 new Date().toLocaleTimeString("en-GB", {
