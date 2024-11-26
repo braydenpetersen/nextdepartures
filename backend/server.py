@@ -125,4 +125,4 @@ def get_departures():
             
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8080) # run the server in debug mode
+    app.run(debug=True, port=8080, host="0.0.0.0") # run the server in debug mode
