@@ -13,15 +13,21 @@ function index() {
     }
 
     const [departures, setDepartures] = useState<Departure[]>([]); // default departures structure
-
     useEffect(() => {
-        fetch("http://localhost:8080/api/departures")
-            .then((response) => response.json())
-            .then((data) => {
-                setDepartures(data);
-                console.log(data);
-            });
+        const fetchDepartures = () => {
+            fetch("http://localhost:8080/api/departures")
+                .then((response) => response.json())
+                .then((data) => {
+                    setDepartures(data);
+                    console.log(data);
+                });
+        };
+
+        fetchDepartures();
+        const interval = setInterval(fetchDepartures, 30000);
+        return () => clearInterval(interval);
     }, []);
+
 
     const [ctime, setCtime] = useState("");
 

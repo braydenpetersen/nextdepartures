@@ -78,7 +78,7 @@ def get_departures():
             headsign = remove_station(itinerary['direction_headsign'])
             stop_code = itinerary['closest_stop']['stop_code']
 
-            platform = stop_code_to_platform.get(stop_code, "?")
+            platform = stop_code_to_platform.get(stop_code, "-")
 
             is_first_departure = True
 
