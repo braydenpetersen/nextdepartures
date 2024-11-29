@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-function index() {
+function Index() {
     interface Departure {
         time: string;
         routeNumber: string;
@@ -130,4 +130,4 @@ function index() {
     );
 }
 
-export default index;
+export default Index;
