@@ -47,8 +47,13 @@ thead {
     background-color: var(--dark-grey);
 }
 
+table {
+    border-collapse: collapse;
+}
+
 tr {
     border-top: 6px dotted var(--light-grey);
+    border-collapse: collapse;
 }
 
 .time {

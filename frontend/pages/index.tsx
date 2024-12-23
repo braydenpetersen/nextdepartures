@@ -28,7 +28,6 @@ function Index() {
         return () => clearInterval(interval);
     }, []);
 
-
     const [ctime, setCtime] = useState("");
 
     useEffect(() => {
@@ -60,7 +59,8 @@ function Index() {
             <div className="title">
                 <div>
                     <h1>
-                        Departures <span className="title-fr">| Départs</span>
+                        Departures{" "}
+                        <span className="title-fr">| Départs</span>
                     </h1>
                 </div>
                 <div className="clock">
@@ -82,8 +82,8 @@ function Index() {
                                 <div className="header-fr">Ligne</div>
                             </th>
                             <th style={{ textAlign: "left" }}>
-                                <div>To</div>
-                                <div className="header-fr">À</div>
+                                <div>Direction</div>
+                                <div className="header-fr">Direction</div>
                             </th>
                             <th style={{ textAlign: "right" }}>
                                 <div>Platform</div>
