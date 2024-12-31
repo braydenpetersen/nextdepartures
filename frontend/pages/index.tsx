@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const apiUrl = process.env.BACKEND_API_URL;
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 function Index() {
     interface Departure {
@@ -61,7 +61,7 @@ function Index() {
             <div className="title">
                 <div>
                     <h1>
-                        Departures{" "}
+                    Departures{" "}
                         <span className="title-fr">| Départs</span>
                     </h1>
                 </div>
