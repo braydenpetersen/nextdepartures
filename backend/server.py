@@ -4,9 +4,10 @@ from flask_cors import CORS
 from dotenv import load_dotenv
 import os
 import requests
-import math
-from datetime import datetime
+from datetime import datetime, timezone
+from zoneinfo import ZoneInfo
 import json
+
 
 # app instance
 app = Flask(__name__)
@@ -16,7 +17,7 @@ load_dotenv() # get environment variables
 
 # get the environment variables
 API_KEY = os.getenv('METROLINX_API_KEY')
-STOP_CODE = os.getenv('METROLINX_STOP_CODE')
+STOP_CODE = "02799" # GO TRANSIT STOP CODE for University of Waterloo Station
 
 def get_GOtransit_departures():
     payload = {
@@ -51,10 +52,13 @@ def get_GOtransit_departures():
         if countdown < 0:
             continue # Skip if the trip has already left
 
+        if countdown < 10:
+            time = f"{int(countdown)} min"
+
         routeColor, routeTextColor = get_route_colors(routeNumber, "GO")
 
         extracted_data.append({
-            'stop_code': line.get('StopCode'),
+            'stopCode': line.get('StopCode'),
             'routeNumber': routeNumber,
             'headsign': headsign,
             'platform': line.get('ScheduledPlatform'),
@@ -68,7 +72,7 @@ def get_GOtransit_departures():
     return extracted_data
 
 def get_route_colors(route_number, route_network):
-    file_path = 'static/GO-GTFS/routes.txt' if route_network == 'GO' else 'GRT-GTFS/routes.txt'
+    file_path = 'static/GO-GTFS/routes.txt' if route_network == 'GO' else 'static/GRT_GTFS/routes.txt'
     with open(file_path, 'r') as file:
         csv_reader = csv.DictReader(file)
         for row in csv_reader:
@@ -78,75 +82,84 @@ def get_route_colors(route_number, route_network):
                 return route_color, route_text_color
     return None, None
 
-# def get_GRT_departures():
-#     url = "https://grtivr-prod.regionofwaterloo.9802690.ca/vms/graphql"
-#     query = """
-#     query GetFilteredStopsAndDepartures {
-#       stops(filter: {idIn: ["6004", "6120", "1260", "1262", "1223", "1264", "1078"]}) {
-#         id
-#         platformCode
-#         arrivals {
-#           trip {
-#             headsign
-#           }
-#           route {
-#             shortName
-#             longName
-#           }
-#           departure
-#         }
-#       }
-#     }
-#     """
-#     headers = {
-#         "Content-Type": "application/json"
-#     }
-#     response = requests.post(url, json={"query": query}, headers=headers)
+def get_GRT_departures():
+    url = "https://grtivr-prod.regionofwaterloo.9802690.ca/vms/graphql"
+    query = """
+    query GetFilteredStopsAndDepartures {
+      stops(filter: {idIn: ["6004", "6120", "1260", "1262", "1223", "1264", "1078"]}) {
+        id
+        platformCode
+        arrivals {
+          trip {
+            headsign
+          }
+          route {
+            shortName
+            longName
+          }
+          departure
+        }
+      }
+    }
+    """
+    headers = {
+        "Content-Type": "application/json"
+    }
+    response = requests.post(url, json={"query": query}, headers=headers)
     
-#     extracted_data = []
+    extracted_data = []
 
-#     for stop in response.json().get('data', {}).get('stops', []):
-#       for arrival in stop.get('arrivals', []):
-#         trip = arrival.get('trip', {})
-#         route = arrival.get('route', {})
+    for stop in response.json().get('data', {}).get('stops', []):
+      for arrival in stop.get('arrivals', []):
+        trip = arrival.get('trip', {})
+        route = arrival.get('route', {})
 
-#         routeNumber = route.get('shortName', '')
-
-#         headsign = trip.get('headsign', '')
+        routeNumber = route.get('shortName', '')
+        headsign = remove_station(trip.get('headsign', '') or route.get('longName', ''))
         
-#         if headsign:
-#             # Extract branchCode from non-numerical values before the dash in DirectionName
-#             branchCode = ''.join(filter(lambda x: not x.isdigit(), headsign.split('-', 1)[0])).strip()
-#         else:
-#             branchCode = ''
+        if '-' in headsign:
+            # Extract branchCode from non-numerical values before the dash in DirectionName
+            branchCode = ''.join(filter(lambda x: not x.isdigit(), headsign.split('-', 1)[0])).strip()
+            headsign = headsign.split('-', 1)[1].strip()
+        else:
+            branchCode = ''
 
-#         # Convert departure time to UNIX timestamp
-#         departure_time_str = arrival.get('departure')
-#         departure_time = datetime.strptime(departure_time_str, '%Y-%m-%dT%H:%M:%S%z')
-#         time = departure_time.strftime('%H:%M')
-#         departure_time_unix = int(departure_time.timestamp())
+        # Convert departure time to UNIX timestamp
+        departure_time_str = arrival.get('departure')
+        departure_time = datetime.strptime(departure_time_str, '%Y-%m-%dT%H:%M:%S%z')
 
-#         # Compute countdown in minutes
-#         current_time_unix = int(datetime.now().timestamp())
-#         countdown = (departure_time_unix - current_time_unix) // 60
-#         if countdown < 0:
-#             continue # Skip if the trip has already left
+        # Convert to EST
+        est = ZoneInfo('America/New_York')
+        departure_time = departure_time.astimezone(est)
+       
         
-#         routeColor, routeTextColor = get_route_colors(routeNumber, "GRT")
+        time = departure_time.strftime('%H:%M')
+        departure_time_unix = int(departure_time.timestamp())
 
-#         extracted_data.append({
-#           'stop_code': stop.get('id'),
-#           'routeNumber': routeNumber,
-#           'headsign': headsign,
-#           'platform': stop.get('platformCode'),
-#           'routeNetwork': 'GRT',
-#           'time': time,
-#           'countdown': countdown,  # Assuming countdown is not available in the response
-#           'branchCode': branchCode,  # Assuming branchCode is not available in the response
-#           'routeColor': routeColor,  # Assuming routeColor is not available in the response
-#           'routeTextColor': routeTextColor  # Assuming routeTextColor is not available in the response
-#         })
-#     return extracted_data
+        # Compute countdown in minutes
+        current_time_unix = int(datetime.now().timestamp())
+        countdown = (departure_time_unix - current_time_unix) // 60
+        if countdown < 0:
+            continue # Skip if the trip has already left
+
+        if countdown < 10:
+            time = f"{int(countdown)} min"
+        
+        routeColor, routeTextColor = get_route_colors(routeNumber, "GRT")
+
+        extracted_data.append({
+          'stopCode': stop.get('id'),
+          'routeNumber': routeNumber,
+          'headsign': headsign,
+          'platform': stop.get('platformCode'),
+          'routeNetwork': 'GRT',
+          'time': time,
+          'countdown': countdown,  # Assuming countdown is not available in the response
+          'branchCode': branchCode,  # Assuming branchCode is not available in the response
+          'routeColor': routeColor,  # Assuming routeColor is not available in the response
+          'routeTextColor': routeTextColor  # Assuming routeTextColor is not available in the response
+        })
+    return extracted_data
 
 
 def load_stop_code_mapping():
@@ -173,6 +186,7 @@ def get_departures():
     # grt_data = get_GRT_data()
 
     departures_list.extend(go_transit_data)
+    departures_list.extend(get_GRT_departures())
 
     departures_list.sort(key=lambda x: x['countdown'])
 

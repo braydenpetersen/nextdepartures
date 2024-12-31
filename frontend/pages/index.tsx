@@ -4,7 +4,7 @@ function Index() {
     interface Departure {
         time: string;
         routeNumber: string;
-        branch_code: string;
+        branchCode: string;
         headsign: string;
         platform: string;
         countdown: string;
@@ -110,7 +110,7 @@ function Index() {
                                         }}
                                     >
                                         {departure.routeNumber}
-                                        {departure.branch_code}
+                                        {departure.branchCode}
                                     </div>
                                 </td>
 
