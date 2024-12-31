@@ -1,7 +1,6 @@
 import csv
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from dotenv import load_dotenv
 import os
 import requests
 from datetime import datetime, timezone
@@ -13,10 +12,8 @@ import json
 app = Flask(__name__)
 CORS(app)
 
-load_dotenv() # get environment variables
-
 # get the environment variables
-API_KEY = os.getenv('METROLINX_API_KEY')
+API_KEY = os.environ.get('METROLINX_API_KEY')
 STOP_CODE = "02799" # GO TRANSIT STOP CODE for University of Waterloo Station
 
 def get_GOtransit_departures():

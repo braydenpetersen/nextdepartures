@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 
+const apiUrl = process.env.BACKEND_API_URL;
+
 function Index() {
     interface Departure {
         time: string;
@@ -15,7 +17,7 @@ function Index() {
     const [departures, setDepartures] = useState<Departure[]>([]); // default departures structure
     useEffect(() => {
         const fetchDepartures = () => {
-            fetch("http://localhost:8080/api/departures")
+            fetch(`${apiUrl}`)
                 .then((response) => response.json())
                 .then((data) => {
                     setDepartures(data);
