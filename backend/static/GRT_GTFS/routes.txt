@@ -1,0 +1,58 @@
+route_id,route_short_name,route_long_name,route_desc,route_type,route_url
+1,1,Queen-River,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+10,10,Pioneer,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+110,110,College Express,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+12,12,Westmount,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+13,13,Laurelwood,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+14,14,Bathurst,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+16,16,Strasburg-Belmont,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+19,19,Hazel,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+20,20,Victoria-Frederick,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+201,201,iXpress Fischer-Hallman,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+202,202,iXpress University,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+203,203,iXpress Maple Grove,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+204,204,iXpress Highland-Victoria,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+205,205,iXpress Ottawa,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+206,206,iXpress Coronation,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+21,21,Elmira,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+22,22,Laurentian West,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+23,23,Idlewood,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+26,26,Trillium,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+27,27,Morrison,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+28,28,Franklin North,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+29,29,Keats-University,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+3,3,Ottawa South,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+30,30,Ring Road,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+301,301,ION light rail,,2,https://www.grt.ca/en/schedules-maps/schedules.aspx
+302,302,ION bus,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+31,31,Columbia,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+33,33,Huron,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+34,34,Bingemans,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+35,35,Greenbrook,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+36,36,Thomas Slee,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+4,4,Glasgow-Margaret,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+5,5,Erb,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+50,50,Dundas-Myers,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+51,51,Hespeler,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+53,53,Franklin,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+55,55,Grand Ridge,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+56,56,Langs,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+57,57,Blair,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+58,58,Elgin North,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+6,6,Bridge-Courtland,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+60,60,Burnett,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+61,61,Preston,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+62,62,Speedsville,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+63,63,Champlain,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+65,65,Saginaw,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+67,67,Eagle-Pinebush,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+7,7,King,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+76,76,Doon Mills,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+77,77,Wilmot,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+78,78,Fountain,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+8,8,Weber,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+9,9,Lakeshore,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+91,91,Late Night Loop,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx
+9801,9801,GCI Special,,3,
+9851,9851,GCI Special,,3,
+9952,9952,GCI - AST Special,,3,
