@@ -171,6 +171,7 @@ def remove_station(headsign):
 def test():
     return jsonify({
         'message': 'Hello from the server!',
+        'debug': API_KEY
     })
 
 # api/departures
@@ -188,7 +189,6 @@ def get_departures():
     departures_list.sort(key=lambda x: x['countdown'])
 
     return jsonify(departures_list)
-            
 
 if __name__ == '__main__':
     app.run(debug=True, port=8080, host="0.0.0.0") # run the server in debug mode
