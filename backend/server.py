@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import os
 import requests
-from datetime import datetime, timezone
+from datetime import datetime
 from zoneinfo import ZoneInfo
 import json
 
@@ -21,6 +21,9 @@ def get_GOtransit_departures():
         'StopCode': STOP_CODE,
         'key': API_KEY
     }
+
+    print(f"Payload: {payload}")
+
     # get the data from the API
     response = requests.get('https://api.openmetrolinx.com/OpenDataAPI/api/V1/Stop/NextService/', params=payload)
     data = response.json()
@@ -171,7 +174,7 @@ def remove_station(headsign):
 def test():
     return jsonify({
         'message': 'Hello from the server!',
-        'debug': API_KEY
+        'test': 'test'
     })
 
 # api/departures
