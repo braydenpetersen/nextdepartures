@@ -172,10 +172,7 @@ def remove_station(headsign):
 # api/test
 @app.route('/api/test', methods=['GET'])
 def test():
-    return jsonify({
-        'message': 'Hello from the server!',
-        'test': 'test'
-    })
+    return get_GOtransit_departures()
 
 # api/departures
 @app.route('/api/departures', methods=['GET'])
