@@ -1,0 +1,19 @@
+{
+    "builds": [
+      {
+        "src": "server.py",
+        "use": "@vercel/python",
+        "config": {
+          "runtime": "python3.9",
+          "buildCommand": "source venv/bin/activate && pip install -r requirements.txt"
+        }
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "server.py"
+      }
+    ]
+  }
+  
