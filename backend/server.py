@@ -6,19 +6,18 @@ import requests
 from datetime import datetime
 from zoneinfo import ZoneInfo
 import json
-
+from dotenv import load_dotenv
 
 # app instance
 app = Flask(__name__)
 CORS(app)
 
-
+# get the environment variables
+load_dotenv()
+API_KEY = os.environ.get('API_KEY')
+STOP_CODE = "02799" # GO TRANSIT STOP CODE for University of Waterloo Station
 
 def get_GOtransit_departures():
-
-    # get the environment variables
-    API_KEY = os.environ.get('METROLINX_API_KEY')
-    STOP_CODE = "02799" # GO TRANSIT STOP CODE for University of Waterloo Station
 
     payload = {
         'StopCode': STOP_CODE,

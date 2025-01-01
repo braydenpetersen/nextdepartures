@@ -105,3 +105,5 @@ dmypy.json
 
 # DS Store files
 .DS_Store
+.vercel
+.env*.local
