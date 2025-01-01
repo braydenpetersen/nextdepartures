@@ -8,14 +8,15 @@ from zoneinfo import ZoneInfo
 import json
 from dotenv import load_dotenv
 
-# app instance
-app = Flask(__name__)
-CORS(app)
-
 # get the environment variables
 load_dotenv()
 API_KEY = os.environ.get('API_KEY')
 STOP_CODE = "02799" # GO TRANSIT STOP CODE for University of Waterloo Station
+
+# app instance
+app = Flask(__name__)
+CORS(app)
+app.config['API_KEY'] = os.getenv('API_KEY')
 
 def get_GOtransit_departures():
 
