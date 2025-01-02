@@ -27,6 +27,8 @@ def get_GOtransit_departures():
     response = requests.get('https://api.openmetrolinx.com/OpenDataAPI/api/V1/Stop/NextService/', params=payload)
     data = response.json()
 
+    est_tz = ZoneInfo('America/New_York')
+
     extracted_data = []
     next_service = data.get('NextService', {})
     if not next_service:
@@ -47,7 +49,8 @@ def get_GOtransit_departures():
         departure_time_unix = int(departure_time.timestamp())
         
         # Compute countdown in minutes
-        current_time_unix = int(datetime.now(ZoneInfo('America/New_York')).timestamp())
+        current_time_est = datetime.now(est_tz)
+        current_time_unix = int(current_time_est.timestamp())
         countdown = (departure_time_unix - current_time_unix) // 60
 
         if countdown < 0:
@@ -111,6 +114,8 @@ def get_GRT_departures():
     
     extracted_data = []
 
+    est_tz = ZoneInfo('America/New_York')
+
     for stop in response.json().get('data', {}).get('stops', []):
       for arrival in stop.get('arrivals', []):
         trip = arrival.get('trip', {})
@@ -131,15 +136,16 @@ def get_GRT_departures():
         departure_time = datetime.strptime(departure_time_str, '%Y-%m-%dT%H:%M:%S%z')
 
         # Convert to EST
-        est = ZoneInfo('America/New_York')
-        departure_time = departure_time.astimezone(est)
+        
+        departure_time = departure_time.astimezone(est_tz)
        
         
         time = departure_time.strftime('%H:%M')
         departure_time_unix = int(departure_time.timestamp())
 
         # Compute countdown in minutes
-        current_time_unix = int(datetime.now(ZoneInfo('America/New_York')).timestamp())
+        current_time_est = datetime.now(est_tz)
+        current_time_unix = int(current_time_est.timestamp())
         countdown = (departure_time_unix - current_time_unix) // 60
         if countdown < 0:
             continue # Skip if the trip has already left
