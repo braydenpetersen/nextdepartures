@@ -109,9 +109,6 @@ function Index() {
                                         {/* {departure.routeNetwork === "GO" && (
                                             <GOTransitLogo className="inline-block text-8xl ml-2 align-middle" />
                                         )} */}
-                                        {isGrtIon(departure) && (
-                                            <TrainIcon className="inline-block ml-2 align-middle" />
-                                        )}
                                     </div>
                                 </td>
 
@@ -138,6 +135,9 @@ function Index() {
                                 </td>
 
                                 <td style={{ textAlign: "left" }}>
+                                    {isGrtIon(departure) && (
+                                        <TrainIcon className="inline-block ml-2 align-middle pr-5" />
+                                    )}
                                     {departure.headsign}
                                 </td>
 
