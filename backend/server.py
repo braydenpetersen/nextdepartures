@@ -172,10 +172,19 @@ def load_stop_code_mapping():
 def remove_station(headsign):
     return headsign.replace("Station", "").strip()
 
+def test_metrolinx_api():
+    payload = {
+        'StopCode': STOP_CODE,
+        'key': API_KEY
+    }
+
+    response = requests.get('https://api.openmetrolinx.com/OpenDataAPI/api/V1/Stop/NextService/', params=payload)
+    return response.json()
+
 # api/test
 @app.route('/api/test', methods=['GET'])
 def test():
-    return get_GOtransit_departures()
+    return test_metrolinx_api()
 
 # api/departures
 @app.route('/api/departures', methods=['GET'])
