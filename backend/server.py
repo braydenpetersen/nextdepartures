@@ -44,16 +44,24 @@ def get_GOtransit_departures():
 
         # Convert ComputedDepartureTime to UNIX timestamp
         departure_time_str = line.get('ComputedDepartureTime')
+        print(f"[DEBUG] ComputedDepartureTime string: {departure_time_str}")  # Debug message
         departure_time = datetime.strptime(departure_time_str, '%Y-%m-%d %H:%M:%S')
+        print(f"[DEBUG] Parsed departure_time: {departure_time}")  # Debug message
         time = departure_time.strftime('%H:%M')
+        print(f"[DEBUG] Formatted time: {time}")  # Debug message
         departure_time_unix = int(departure_time.timestamp())
+        print(f"[DEBUG] Departure time UNIX timestamp: {departure_time_unix}")  # Debug message
         
         # Compute countdown in minutes
         current_time_est = datetime.now(est_tz)
+        print(f"[DEBUG] Current time EST: {current_time_est}")  # Debug message
         current_time_unix = int(current_time_est.timestamp())
+        print(f"[DEBUG] Current time UNIX timestamp: {current_time_unix}")  # Debug message
         countdown = (departure_time_unix - current_time_unix) // 60
+        print(f"[DEBUG] Countdown in minutes: {countdown}")  # Debug message
 
         if countdown < 0:
+            print(f"[DEBUG] Skipping trip as it has already left")  # Debug message
             continue # Skip if the trip has already left
 
         if countdown < 10:
