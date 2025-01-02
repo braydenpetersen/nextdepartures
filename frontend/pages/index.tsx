@@ -105,10 +105,13 @@ function Index() {
                             <tr key={index}>
                                 <td className="time">
                                     <div className="flex items-center space-x-4">
-                                        {departure.routeNetwork === "GO" && (
-                                            <GOTransitLogo className="inline-block text-8xl ml-2 align-middle" />
-                                        )}
                                         <span>{departure.time}</span>
+                                        {/* {departure.routeNetwork === "GO" && (
+                                            <GOTransitLogo className="inline-block text-8xl ml-2 align-middle" />
+                                        )} */}
+                                        {isGrtIon(departure) && (
+                                            <TrainIcon className="inline-block ml-2 align-middle" />
+                                        )}
                                     </div>
                                 </td>
 
@@ -135,14 +138,7 @@ function Index() {
                                 </td>
 
                                 <td style={{ textAlign: "left" }}>
-                                    {isGrtIon(departure) ? (
-                                        <div className="flex items-center">
-                                            <TrainIcon className="mr-2" />{" "}
-                                            {departure.headsign}
-                                        </div>
-                                    ) : (
-                                        departure.headsign
-                                    )}
+                                    {departure.headsign}
                                 </td>
 
                                 <td className="platform">
