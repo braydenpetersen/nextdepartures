@@ -39,8 +39,12 @@ def get_GOtransit_departures():
         direction_name = line.get('DirectionName', '')
         headsign = direction_name.split('-', 1)[1].strip() if '-' in direction_name else ''
         
-        # Extract branchCode from non-numerical values before the dash in DirectionName
-        branchCode = ''.join(filter(lambda x: not x.isdigit(), direction_name.split('-', 1)[0])).strip()
+        if any(char.isdigit() for char in direction_name):
+            # Extract branchCode from non-numerical values before the dash in DirectionName
+            branchCode = ''.join(filter(lambda x: not x.isdigit(), direction_name.split('-', 1)[0])).strip()
+        else:
+            branchCode = ''
+
 
         # Convert ComputedDepartureTime to UNIX timestamp
         departure_time_str = line.get('ComputedDepartureTime')

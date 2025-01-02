@@ -1,3 +1,4 @@
+import { GrtIonLogo, TrainIcon, GOTransitLogo } from "../components/svg";
 import React, { useEffect, useState } from "react";
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -12,6 +13,7 @@ function Index() {
         countdown: string;
         routeColor: string;
         routeTextColor: string;
+        routeNetwork: string;
     }
 
     const [departures, setDepartures] = useState<Departure[]>([]); // default departures structure
@@ -56,13 +58,18 @@ function Index() {
         return () => clearInterval(timer);
     }, []);
 
+    const isGrtIon = (departure: Departure) => {
+        return (
+            departure.routeNetwork === "GRT" && departure.routeNumber === "301"
+        );
+    };
+
     return (
         <div>
             <div className="title">
                 <div>
                     <h1>
-                    Departures{" "}
-                        <span className="title-fr">| Départs</span>
+                        Departures <span className="title-fr">| Départs</span>
                     </h1>
                 </div>
                 <div className="clock">
@@ -96,28 +103,46 @@ function Index() {
                     <tbody>
                         {departures.map((departure, index) => (
                             <tr key={index}>
-                                <td className="time">{departure.time}</td>
+                                <td className="time">
+                                    <div className="flex items-center space-x-4">
+                                        {departure.routeNetwork === "GO" && (
+                                            <GOTransitLogo className="inline-block text-8xl ml-2 align-middle" />
+                                        )}
+                                        <span>{departure.time}</span>
+                                    </div>
+                                </td>
 
                                 <td
                                     style={{
                                         textAlign: "left",
                                     }}
                                 >
-                                    <div
-                                        className="route"
-                                        style={{
-                                            color: departure.routeTextColor,
-                                            backgroundColor:
-                                                departure.routeColor,
-                                        }}
-                                    >
-                                        {departure.routeNumber}
-                                        {departure.branchCode}
-                                    </div>
+                                    {isGrtIon(departure) ? (
+                                        <GrtIonLogo className="text-8xl" />
+                                    ) : (
+                                        <div
+                                            className="route"
+                                            style={{
+                                                color: departure.routeTextColor,
+                                                backgroundColor:
+                                                    departure.routeColor,
+                                            }}
+                                        >
+                                            {departure.routeNumber}
+                                            {departure.branchCode}
+                                        </div>
+                                    )}
                                 </td>
 
                                 <td style={{ textAlign: "left" }}>
-                                    {departure.headsign}
+                                    {isGrtIon(departure) ? (
+                                        <div className="flex items-center">
+                                            <TrainIcon className="mr-2" />{" "}
+                                            {departure.headsign}
+                                        </div>
+                                    ) : (
+                                        departure.headsign
+                                    )}
                                 </td>
 
                                 <td className="platform">
