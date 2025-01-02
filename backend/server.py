@@ -7,7 +7,6 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 import json
 from dotenv import load_dotenv
-
 # get the environment variables
 load_dotenv()
 API_KEY = os.environ.get('API_KEY')
@@ -19,25 +18,18 @@ CORS(app)
 app.config['API_KEY'] = os.getenv('API_KEY')
 
 def get_GOtransit_departures():
-    print("[DEBUG] Starting get_GOtransit_departures")  # Debug message
-
     payload = {
         'StopCode': STOP_CODE,
         'key': API_KEY
     }
 
-    print(f"[DEBUG] Payload: {payload}")  # Debug message
-
     # get the data from the API
     response = requests.get('https://api.openmetrolinx.com/OpenDataAPI/api/V1/Stop/NextService/', params=payload)
     data = response.json()
 
-    print(f"[DEBUG] API Response: {data}")  # Debug message
-
     extracted_data = []
     next_service = data.get('NextService', {})
     if not next_service:
-        print("[DEBUG] No next service found")  # Debug message
         return extracted_data
 
     for line in next_service.get('Lines', []):
@@ -48,30 +40,17 @@ def get_GOtransit_departures():
         # Extract branchCode from non-numerical values before the dash in DirectionName
         branchCode = ''.join(filter(lambda x: not x.isdigit(), direction_name.split('-', 1)[0])).strip()
 
-        print(f"[DEBUG] Processing line: {line}")  # Debug message
-
         # Convert ComputedDepartureTime to UNIX timestamp
         departure_time_str = line.get('ComputedDepartureTime')
-        print(f"[DEBUG] ComputedDepartureTime: {departure_time_str}")  # Debug message
-
         departure_time = datetime.strptime(departure_time_str, '%Y-%m-%d %H:%M:%S')
-        print(f"[DEBUG] Parsed departure time: {departure_time}")  # Debug message
-
         time = departure_time.strftime('%H:%M')
-        print(f"[DEBUG] Formatted time: {time}")  # Debug message
-
         departure_time_unix = int(departure_time.timestamp())
-        print(f"[DEBUG] Departure time (unix): {departure_time_unix}")  # Debug message
         
         # Compute countdown in minutes
-        current_time_unix = int(datetime.now().timestamp())
-        print(f"[DEBUG] Current time (unix): {current_time_unix}")  # Debug message
-
+        current_time_unix = int(datetime.now(ZoneInfo('America/New_York')).timestamp())
         countdown = (departure_time_unix - current_time_unix) // 60
-        print(f"[DEBUG] Countdown: {countdown} minutes")  # Debug message
 
         if countdown < 0:
-            print("[DEBUG] Trip has already left, skipping")  # Debug message
             continue # Skip if the trip has already left
 
         if countdown < 10:
@@ -92,9 +71,6 @@ def get_GOtransit_departures():
             'routeTextColor': routeTextColor
         })
 
-        print(f"[DEBUG] Extracted data: {extracted_data[-1]}")  # Debug message
-
-    print("[DEBUG] Finished get_GOtransit_departures")  # Debug message
     return extracted_data
 
 def get_route_colors(route_number, route_network):
@@ -163,7 +139,7 @@ def get_GRT_departures():
         departure_time_unix = int(departure_time.timestamp())
 
         # Compute countdown in minutes
-        current_time_unix = int(datetime.now().timestamp())
+        current_time_unix = int(datetime.now(ZoneInfo('America/New_York')).timestamp())
         countdown = (departure_time_unix - current_time_unix) // 60
         if countdown < 0:
             continue # Skip if the trip has already left
