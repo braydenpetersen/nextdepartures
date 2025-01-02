@@ -1,4 +1,4 @@
-import { GrtIonLogo, TrainIcon, GOTransitLogo } from "../components/svg";
+import { GrtIonLogo, TrainIcon } from "../components/svg";
 import React, { useEffect, useState } from "react";
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
