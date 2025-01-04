@@ -1,5 +1,7 @@
 import { GrtIonLogo, TrainIcon } from "../components/svg";
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
@@ -16,10 +18,20 @@ function Index() {
         routeNetwork: string;
     }
 
+    const router = useRouter();
+    const { stopCode } = router.query;
+    let apiQuery = "";
+
     const [departures, setDepartures] = useState<Departure[]>([]); // default departures structure
     useEffect(() => {
         const fetchDepartures = () => {
-            fetch(`${apiUrl}`)
+            if (stopCode) {
+                apiQuery = `${apiUrl}?stopCode=${stopCode}`;
+            } else {
+                apiQuery = `${apiUrl}?stopCode=02799`;
+            }
+
+            fetch(`${apiQuery}`)
                 .then((response) => response.json())
                 .then((data) => {
                     setDepartures(data);
@@ -30,7 +42,7 @@ function Index() {
         fetchDepartures();
         const interval = setInterval(fetchDepartures, 30000);
         return () => clearInterval(interval);
-    }, []);
+    }, [stopCode]);
 
     const [ctime, setCtime] = useState("");
 

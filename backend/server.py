@@ -10,14 +10,13 @@ from dotenv import load_dotenv
 # get the environment variables
 load_dotenv()
 API_KEY = os.environ.get('API_KEY')
-STOP_CODE = os.environ.get('STOP_CODE') # 02799 for University of Waterloo Station (GO)
 
 # app instance
 app = Flask(__name__)
 CORS(app)
 app.config['API_KEY'] = os.getenv('API_KEY')
 
-def get_GOtransit_departures():
+def get_GOtransit_departures(STOP_CODE):
     payload = {
         'StopCode': STOP_CODE,
         'key': API_KEY
@@ -200,11 +199,15 @@ def test():
 @app.route('/api/departures', methods=['GET'])
 def get_departures():
 
+    STOP_CODE = request.args.get('stopCode', '02799')
+
+    print(STOP_CODE)
+
     departures_list = []
 
     # grt_data = get_GRT_data()
 
-    departures_list.extend(get_GOtransit_departures())
+    departures_list.extend(get_GOtransit_departures(STOP_CODE))
     if STOP_CODE == '02799':
         departures_list.extend(get_GRT_departures())
 
