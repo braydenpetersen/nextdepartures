@@ -2,7 +2,6 @@ import { GrtIonLogo, TrainIcon } from "../components/svg";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 function Index() {
@@ -24,14 +23,13 @@ function Index() {
 
     const [departures, setDepartures] = useState<Departure[]>([]); // default departures structure
     useEffect(() => {
-        const fetchDepartures = () => {
-            if (stopCode) {
-                apiQuery = `${apiUrl}?stopCode=${stopCode}`;
-            } else {
-                apiQuery = `${apiUrl}?stopCode=02799`;
-            }
+        if (!router.isReady) return;
 
-            fetch(`${apiQuery}`)
+        const fetchDepartures = () => {
+            const stopCode = router.query.stopCode || "02799";
+            const apiQuery = `${apiUrl}?stopCode=${stopCode}`;
+
+            fetch(apiQuery)
                 .then((response) => response.json())
                 .then((data) => {
                     setDepartures(data);
@@ -41,8 +39,9 @@ function Index() {
 
         fetchDepartures();
         const interval = setInterval(fetchDepartures, 30000);
+
         return () => clearInterval(interval);
-    }, [stopCode]);
+    }, [router.isReady, router.query.stopCode]);
 
     const [ctime, setCtime] = useState("");
 
@@ -78,7 +77,10 @@ function Index() {
 
     return (
         <div>
-            <div className="flex justify-between items-center py-12" style={{ lineHeight: "100%" }}>
+            <div
+                className="flex justify-between items-center py-12"
+                style={{ lineHeight: "100%" }}
+            >
                 <div>
                     <h1>
                         Departures <span className="title-fr">| Départs</span>
@@ -115,7 +117,7 @@ function Index() {
                     <tbody>
                         {departures.map((departure, index) => (
                             <tr key={index} className="border-collapse">
-                                <td className="time" >
+                                <td className="time">
                                     <div className="flex items-center space-x-4 text-[var(--yellow)]">
                                         <span>{departure.time}</span>
                                         {/* {departure.routeNetwork === "GO" && (
@@ -144,7 +146,7 @@ function Index() {
 
                                 <td className="text-left">
                                     {isGrtIon(departure) && (
-                                        <TrainIcon className="inline-block ml-2 align-middle pr-5"/>
+                                        <TrainIcon className="inline-block ml-2 align-middle pr-5" />
                                     )}
                                     {departure.headsign}
                                 </td>
