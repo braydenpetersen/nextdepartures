@@ -66,7 +66,7 @@ function Index() {
 
     return (
         <div>
-            <div className="title">
+            <div className="flex justify-between items-center py-12" style={{ lineHeight: "100%" }}>
                 <div>
                     <h1>
                         Departures <span className="title-fr">| Départs</span>
@@ -78,23 +78,23 @@ function Index() {
                     </h1>
                 </div>
             </div>
-            <div style={{ display: "flex", width: "100%" }}>
-                <table style={{ flex: 1 }}>
+            <div className="flex w-full">
+                <table className="flex-1">
                     <thead>
                         <tr>
-                            <th style={{ textAlign: "left" }}>
+                            <th className="text-left">
                                 <div>Scheduled</div>
                                 <div className="header-fr">Programmé</div>
                             </th>
-                            <th style={{ textAlign: "left" }}>
+                            <th className="text-left">
                                 <div>Route</div>
                                 <div className="header-fr">Ligne</div>
                             </th>
-                            <th style={{ textAlign: "left" }}>
+                            <th className="text-left">
                                 <div>Direction</div>
                                 <div className="header-fr">Direction</div>
                             </th>
-                            <th style={{ textAlign: "right" }}>
+                            <th className="text-right">
                                 <div>Platform</div>
                                 <div className="header-fr">Quai</div>
                             </th>
@@ -102,9 +102,9 @@ function Index() {
                     </thead>
                     <tbody>
                         {departures.map((departure, index) => (
-                            <tr key={index}>
-                                <td className="time">
-                                    <div className="flex items-center space-x-4">
+                            <tr key={index} className="border-collapse">
+                                <td className="time" >
+                                    <div className="flex items-center space-x-4 text-[var(--yellow)]">
                                         <span>{departure.time}</span>
                                         {/* {departure.routeNetwork === "GO" && (
                                             <GOTransitLogo className="inline-block text-8xl ml-2 align-middle" />
@@ -112,11 +112,7 @@ function Index() {
                                     </div>
                                 </td>
 
-                                <td
-                                    style={{
-                                        textAlign: "left",
-                                    }}
-                                >
+                                <td className="text-left">
                                     {isGrtIon(departure) ? (
                                         <GrtIonLogo className="text-8xl" />
                                     ) : (
@@ -134,9 +130,9 @@ function Index() {
                                     )}
                                 </td>
 
-                                <td style={{ textAlign: "left" }}>
+                                <td className="text-left">
                                     {isGrtIon(departure) && (
-                                        <TrainIcon className="inline-block ml-2 align-middle pr-5" />
+                                        <TrainIcon className="inline-block ml-2 align-middle pr-5"/>
                                     )}
                                     {departure.headsign}
                                 </td>

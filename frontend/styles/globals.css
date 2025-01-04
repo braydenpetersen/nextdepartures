@@ -47,7 +47,7 @@ thead {
     background-color: var(--dark-grey);
 }
 
-table {
+.rowStyle {
     border-collapse: collapse;
 }
 
@@ -56,10 +56,6 @@ tr {
     border-collapse: collapse;
 }
 
-.time {
-    color: var(--yellow);
-    text-align: left;
-}
 
 .platform {
     color: var(--light-green);
@@ -81,13 +77,6 @@ tr {
 .header-fr {
     color: var(--light-grey);
     font-weight: 400;
-}
-
-.title {
-    padding: 50px 0;
-    line-height: 100%;
-    display: flex;
-    justify-content: space-between;
 }
 
 .title-fr {

@@ -205,11 +205,10 @@ def get_departures():
     # grt_data = get_GRT_data()
 
     departures_list.extend(get_GOtransit_departures())
-    print(f"[DEBUG] Departures list before sorting: {departures_list}")  # Debug message
-    departures_list.extend(get_GRT_departures())
+    if STOP_CODE == '02799':
+        departures_list.extend(get_GRT_departures())
 
     departures_list.sort(key=lambda x: x['countdown'])
-    print(f"[DEBUG] Departures list after sorting: {departures_list}")  # Debug message
 
     return jsonify(departures_list)
 
