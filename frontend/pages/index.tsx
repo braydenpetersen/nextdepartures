@@ -18,8 +18,6 @@ function Index() {
     }
 
     const router = useRouter();
-    const { stopCode } = router.query;
-    let apiQuery = "";
 
     const [departures, setDepartures] = useState<Departure[]>([]); // default departures structure
     useEffect(() => {
@@ -76,48 +74,63 @@ function Index() {
     };
 
     return (
-        <div>
+        <div className="mx-2 font-bold tracking-tight">
             <div
-                className="flex justify-between items-center py-12"
+                className="flex justify-between items-center py-10"
                 style={{ lineHeight: "100%" }}
             >
                 <div>
-                    <h1>
-                        Departures <span className="title-fr">| Départs</span>
+                    <h1 className="text-[40px] tracking-tight h-full">
+                        Departures
+                        <span className="font-normal"> | Départs</span>
                     </h1>
                 </div>
-                <div className="clock">
-                    <h1 style={{ fontVariantNumeric: "tabular-nums" }}>
+                <div className="text-[var(--light-grey)]">
+                    <h1
+                        className="text-[40px] tracking-tight h-full"
+                        style={{ fontVariantNumeric: "tabular-nums" }}
+                    >
                         {ctime}
                     </h1>
                 </div>
             </div>
             <div className="flex w-full">
                 <table className="flex-1">
-                    <thead>
-                        <tr>
-                            <th className="text-left">
+                    <thead className="py-[10vh] tracking-tight bg-[var(--dark-grey)]">
+                        <tr className="text-left text-[25px] leading-none my-0">
+                            <th className="text-left leading-none my-0 py-[20px]">
                                 <div>Scheduled</div>
-                                <div className="header-fr">Programmé</div>
+                                <div className="text-[var(--light-grey)] font-normal">
+                                    Programmé
+                                </div>
                             </th>
-                            <th className="text-left">
+                            <th className="text-left leading-none my-0">
                                 <div>Route</div>
-                                <div className="header-fr">Ligne</div>
+                                <div className="text-[var(--light-grey)] font-normal">
+                                    Ligne
+                                </div>
                             </th>
-                            <th className="text-left">
+                            <th className="text-left leading-none my-0">
                                 <div>Direction</div>
-                                <div className="header-fr">Direction</div>
+                                <div className="text-[var(--light-grey)] font-normal">
+                                    Direction
+                                </div>
                             </th>
-                            <th className="text-right">
+                            <th className="text-right leading-none my-0">
                                 <div>Platform</div>
-                                <div className="header-fr">Quai</div>
+                                <div className="text-[var(--light-grey)] font-normal">
+                                    Quai
+                                </div>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         {departures.map((departure, index) => (
-                            <tr key={index} className="border-collapse">
-                                <td className="time">
+                            <tr
+                                key={index}
+                                className="border-t-[4px] border-dotted border-[var(--light-grey)] border-collapse"
+                            >
+                                <td className="text-[40px]">
                                     <div className="flex items-center space-x-4 text-[var(--yellow)]">
                                         <span>{departure.time}</span>
                                         {/* {departure.routeNetwork === "GO" && (
@@ -128,10 +141,10 @@ function Index() {
 
                                 <td className="text-left">
                                     {isGrtIon(departure) ? (
-                                        <GrtIonLogo className="text-8xl" />
+                                        <GrtIonLogo className="text-[60px] inline-block align-middle" />
                                     ) : (
                                         <div
-                                            className="route"
+                                            className="text-[30px] text-center font-lining rounded-[10px] flex-shrink-0 justify-center w-fit px-[10px] min-w-[70px]"
                                             style={{
                                                 color: departure.routeTextColor,
                                                 backgroundColor:
@@ -144,14 +157,14 @@ function Index() {
                                     )}
                                 </td>
 
-                                <td className="text-left">
+                                <td className="text-left text-[40px]">
                                     {isGrtIon(departure) && (
                                         <TrainIcon className="inline-block ml-2 align-middle pr-5" />
                                     )}
                                     {departure.headsign}
                                 </td>
 
-                                <td className="platform">
+                                <td className="text-[40px] text-[var(--light-green)] text-right">
                                     {departure.platform}
                                 </td>
                             </tr>
