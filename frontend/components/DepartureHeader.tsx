@@ -3,23 +3,7 @@ import React from 'react';
 export const DepartureHeader: React.FC = () => {
   return (
     <div
-      className="h-16 sm:h-20 items-center tracking-tight bg-[var(--dark-grey)] grid gap-2 sm:gap-4"
-      style={{
-        gridTemplateColumns: `
-                    var(--col-platform-width) 
-                    var(--col-route-width) 
-                    var(--col-direction-width) 
-                    var(--col-scheduled-width)
-                `,
-        '@media (min-width: 640px)': {
-          gridTemplateColumns: `
-                        var(--col-platform-width-desktop) 
-                        var(--col-route-width-desktop) 
-                        var(--col-direction-width-desktop) 
-                        var(--col-scheduled-width-desktop)
-                    `,
-        },
-      }}
+      className="h-16 sm:h-20 items-center tracking-tight bg-[var(--dark-grey)] grid gap-2 sm:gap-4 grid-cols-[var(--col-platform-width)_var(--col-route-width)_var(--col-direction-width)_var(--col-scheduled-width)] sm:grid-cols-[var(--col-platform-width-desktop)_var(--col-route-width-desktop)_var(--col-direction-width-desktop)_var(--col-scheduled-width-desktop)]"
     >
       <div className="text-left text-[18px] sm:text-[25px] leading-none my-0">
         <div>Pltfm.</div>
