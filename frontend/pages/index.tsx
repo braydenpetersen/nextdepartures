@@ -1,4 +1,4 @@
-import { GrtIonLogo, TrainIcon } from "../components/svg";
+import { GrtIonLogo } from "../components/svg";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
@@ -158,9 +158,6 @@ function Index() {
                                 </td>
 
                                 <td className="text-left text-[40px]">
-                                    {isGrtIon(departure) && (
-                                        <TrainIcon className="inline-block ml-2 align-middle pr-5" />
-                                    )}
                                     {departure.headsign}
                                 </td>
 

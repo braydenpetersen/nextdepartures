@@ -128,10 +128,14 @@ def get_GRT_departures():
         routeNumber = route.get('shortName', '')
         headsign = remove_station(trip.get('headsign', '') or route.get('longName', ''))
         
-        if '-' in headsign:
-            # Extract branchCode from non-numerical values before the dash in DirectionName
-            branchCode = ''.join(filter(lambda x: not x.isdigit(), headsign.split('-', 1)[0])).strip()
-            headsign = headsign.split('-', 1)[1].strip()
+        if any(char.isdigit() for char in headsign):
+            if '-' in headsign:
+                before_dash = headsign.split('-', 1)[0].rstrip()  # Remove trailing spaces
+                # Find the last letter before the dash (ignoring spaces)
+                branchCode = before_dash[-1] if before_dash and before_dash[-1].isalpha() else ''
+                headsign = headsign.split('-', 1)[1].strip()
+            else:
+                branchCode = ''
         else:
             branchCode = ''
 
@@ -181,7 +185,7 @@ def load_stop_code_mapping():
 def remove_station(headsign):
     return headsign.replace("Station", "").strip()
 
-def test_metrolinx_api():
+def test_metrolinx_api(STOP_CODE):
     payload = {
         'StopCode': STOP_CODE,
         'key': API_KEY
@@ -216,5 +220,4 @@ def get_departures():
     return jsonify(departures_list)
 
 if __name__ == '__main__':
-    print(f"Debug API Key: {API_KEY}")
     app.run(debug=True, port=8080, host="0.0.0.0") # run the server in debug mode
