@@ -128,12 +128,13 @@ def get_GRT_departures():
         routeNumber = route.get('shortName', '')
         headsign = remove_station(trip.get('headsign', '') or route.get('longName', ''))
         
-        if any(char.isdigit() for char in headsign):
-            if '-' in headsign:
-                before_dash = headsign.split('-', 1)[0].rstrip()  # Remove trailing spaces
-                # Find the last letter before the dash (ignoring spaces)
-                branchCode = before_dash[-1] if before_dash and before_dash[-1].isalpha() else ''
-                headsign = headsign.split('-', 1)[1].strip()
+        if '-' in headsign:
+            parts = headsign.split('-', 1)
+            before_dash = parts[0].strip()
+            # Only extract branch code if it's a single letter before the dash
+            if len(before_dash) == 1 and before_dash.isalpha():
+                branchCode = before_dash
+                headsign = parts[1].strip()
             else:
                 branchCode = ''
         else:
@@ -158,8 +159,8 @@ def get_GRT_departures():
         if countdown < 0:
             continue # Skip if the trip has already left
 
-        if countdown < 10:
-            time = f"{int(countdown)} min"
+        if countdown < 60:
+            time = f"{int(countdown)}"
         
         routeColor, routeTextColor = get_route_colors(routeNumber, "GRT")
 
@@ -202,7 +203,6 @@ def test():
 # api/departures
 @app.route('/api/departures', methods=['GET'])
 def get_departures():
-
     STOP_CODE = request.args.get('stopCode', '02799')
 
     print(STOP_CODE)
@@ -215,9 +215,38 @@ def get_departures():
     if STOP_CODE == '02799':
         departures_list.extend(get_GRT_departures())
 
-    departures_list.sort(key=lambda x: x['countdown'])
+    # Group departures by route line
+    grouped_departures = {}
+    for departure in departures_list:
+        # Create a key that includes all grouping criteria
+        key = f"{departure['routeNetwork']}-{departure['routeNumber']}-{departure['headsign']}-{departure['branchCode']}"
+        if key not in grouped_departures:
+            grouped_departures[key] = {
+                'routeNetwork': departure['routeNetwork'],
+                'routeNumber': departure['routeNumber'],
+                'headsign': departure['headsign'],
+                'branchCode': departure['branchCode'],
+                'platform': departure['platform'],
+                'routeColor': departure['routeColor'],
+                'routeTextColor': departure['routeTextColor'],
+                'stopCode': departure['stopCode'],
+                'departures': []
+            }
+        # Add only the time and countdown to the departures list
+        grouped_departures[key]['departures'].append({
+            'time': departure['time'],
+            'countdown': departure['countdown']
+        })
 
-    return jsonify(departures_list)
+    # Sort departures within each group by countdown
+    for group in grouped_departures.values():
+        group['departures'].sort(key=lambda x: x['countdown'])
+
+    # Convert to list and sort groups by the first departure's countdown
+    result = list(grouped_departures.values())
+    result.sort(key=lambda x: x['departures'][0]['countdown'] if x['departures'] else float('inf'))
+
+    return jsonify(result)
 
 if __name__ == '__main__':
     app.run(debug=True, port=8080, host="0.0.0.0") # run the server in debug mode

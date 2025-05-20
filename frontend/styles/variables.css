@@ -1,0 +1,27 @@
+:root {
+  /* Column widths for mobile */
+  --col-platform-width: 60px;
+  --col-route-width: 60px;
+  --col-direction-width: 1fr;
+  --col-scheduled-width: 200px;
+
+  /* Column widths for desktop */
+  --col-platform-width-desktop: 80px;
+  --col-route-width-desktop: 80px;
+  --col-direction-width-desktop: 1fr;
+  --col-scheduled-width-desktop: 400px;
+}
+
+.departure-grid {
+  grid-template-columns: var(--col-platform-width) var(--col-route-width) var(
+      --col-direction-width
+    ) var(--col-scheduled-width);
+}
+
+@media (min-width: 640px) {
+  .departure-grid {
+    grid-template-columns: var(--col-platform-width-desktop) var(
+        --col-route-width-desktop
+      ) var(--col-direction-width-desktop) var(--col-scheduled-width-desktop);
+  }
+}
