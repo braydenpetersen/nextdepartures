@@ -215,13 +215,20 @@ def get_departures():
     if STOP_CODE == '02799':
         departures_list.extend(get_GRT_departures())
 
-    # Group departures by route line
-    grouped_departures = {}
+    # First group by network
+    network_groups = {}
     for departure in departures_list:
-        # Create a key that includes all grouping criteria
-        key = f"{departure['routeNetwork']}-{departure['routeNumber']}-{departure['headsign']}-{departure['branchCode']}"
-        if key not in grouped_departures:
-            grouped_departures[key] = {
+        network = departure['routeNetwork']
+        if network not in network_groups:
+            network_groups[network] = {
+                'network': network,
+                'routes': {}
+            }
+        
+        # Create a key that includes all grouping criteria for routes
+        route_key = f"{departure['routeNumber']}-{departure['headsign']}-{departure['branchCode']}"
+        if route_key not in network_groups[network]['routes']:
+            network_groups[network]['routes'][route_key] = {
                 'routeNetwork': departure['routeNetwork'],
                 'routeNumber': departure['routeNumber'],
                 'headsign': departure['headsign'],
@@ -232,19 +239,33 @@ def get_departures():
                 'stopCode': departure['stopCode'],
                 'departures': []
             }
-        # Add only the time and countdown to the departures list
-        grouped_departures[key]['departures'].append({
-            'time': departure['time'],
-            'countdown': departure['countdown']
-        })
+        
+        # Only add departures that are less than 4 hours away
+        if departure['countdown'] <= 240:  # 4 hours = 240 minutes
+            # Add the time and countdown to the departures list
+            time = "Now" if departure['countdown'] <= 1 else departure['time']
+            network_groups[network]['routes'][route_key]['departures'].append({
+                'time': time,
+                'countdown': departure['countdown']
+            })
 
-    # Sort departures within each group by countdown
-    for group in grouped_departures.values():
-        group['departures'].sort(key=lambda x: x['countdown'])
+    # Sort departures within each route group by countdown
+    for network in network_groups.values():
+        for route in network['routes'].values():
+            route['departures'].sort(key=lambda x: x['countdown'])
+            # Only keep the first two departures
+            route['departures'] = route['departures'][:3]
 
-    # Convert to list and sort groups by the first departure's countdown
-    result = list(grouped_departures.values())
-    result.sort(key=lambda x: x['departures'][0]['countdown'] if x['departures'] else float('inf'))
+    # Convert to list and sort networks by the first departure's countdown
+    result = []
+    for network in network_groups.values():
+        routes_list = list(network['routes'].values())
+        routes_list.sort(key=lambda x: x['departures'][0]['countdown'] if x['departures'] else float('inf'))
+        network['routes'] = routes_list
+        result.append(network)
+
+    # Sort networks alphabetically
+    result.sort(key=lambda x: x['network'])
 
     return jsonify(result)
 

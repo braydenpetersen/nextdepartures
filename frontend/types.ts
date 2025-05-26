@@ -14,3 +14,8 @@ export interface RouteGroup {
   stopCode: string;
   departures: DepartureTime[];
 }
+
+export interface NetworkGroup {
+  network: string;
+  routes: RouteGroup[];
+}

@@ -3,21 +3,21 @@ import React from 'react';
 export const DepartureHeader: React.FC = () => {
   return (
     <div
-      className="h-16 sm:h-20 items-center tracking-tight bg-[var(--dark-grey)] grid gap-2 sm:gap-4 grid-cols-[var(--col-platform-width)_var(--col-route-width)_var(--col-direction-width)_var(--col-scheduled-width)] sm:grid-cols-[var(--col-platform-width-desktop)_var(--col-route-width-desktop)_var(--col-direction-width-desktop)_var(--col-scheduled-width-desktop)]"
+      className="h-16 sm:h-20 items-center tracking-tight bg-[var(--dark-grey)] grid gap-2 sm:gap-4 departure-grid"
     >
-      <div className="text-left text-[18px] sm:text-[25px] leading-none my-0">
+      <div className="text-left leading-none my-0 text-header md:text-header-tablet lg:text-header-desktop">
         <div>Pltfm.</div>
         <div className="text-[var(--light-grey)] font-normal">Quai</div>
       </div>
-      <div className="text-left text-[18px] sm:text-[25px] leading-none my-0">
+      <div className="text-left leading-none my-0 text-header md:text-header-tablet lg:text-header-desktop">
         <div>Route</div>
         <div className="text-[var(--light-grey)] font-normal">Ligne</div>
       </div>
-      <div className="text-left text-[18px] sm:text-[25px] leading-none my-0">
+      <div className="text-left leading-none my-0 text-header md:text-header-tablet lg:text-header-desktop">
         <div>Direction</div>
         <div className="text-[var(--light-grey)] font-normal">Direction</div>
       </div>
-      <div className="text-right text-[18px] sm:text-[25px] leading-none my-0">
+      <div className="text-right leading-none my-0 text-header md:text-header-tablet lg:text-header-desktop">
         <div>Scheduled</div>
         <div className="text-[var(--light-grey)] font-normal">Programmé</div>
       </div>
