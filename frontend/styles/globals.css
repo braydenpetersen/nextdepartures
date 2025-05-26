@@ -2,18 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-
 :root {
-    --black: #000;
-    --white: #fff;
-    --dark-grey: #1E1C1C;
-    --light-grey: #DBDBDB;
-    --yellow: #D9D499;
-    --light-green: #9FD30A;
+  --black: #000;
+  --white: #fff;
+  --dark-grey: #1e1c1c;
+  --light-grey: #dbdbdb;
+  --yellow: #d9d499;
+  --light-green: #9fd30a;
 }
 
 body {
-    font-family: 'Overpass', sans-serif;
-    background-color: var(--black);
-    color: var(--white);
+  font-family: 'Overpass', sans-serif;
+  background-color: var(--black);
+  color: var(--white);
 }

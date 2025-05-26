@@ -1,0 +1,95 @@
+:root {
+  /* Breakpoints */
+  --breakpoint-tablet: 480px;
+  --breakpoint-desktop: 640px;
+
+  /* Font sizes */
+  --text-xs: 16px;
+  --text-sm: 18px;
+  --text-base: 20px;
+  --text-lg: 25px;
+  --text-xl: 28px;
+  --text-2xl: 32px;
+  --text-3xl: 38px;
+
+  /* Column widths for mobile */
+  --col-platform-width: 40px;
+  --col-route-width: 60px;
+  --col-direction-width: 1fr;
+  --col-scheduled-width: 200px;
+
+  /* Column widths for tablet */
+  --col-platform-width-tablet: 50px;
+  --col-route-width-tablet: 100px;
+  --col-direction-width-tablet: 1fr;
+  --col-scheduled-width-tablet: 180px;
+
+  /* Column widths for desktop */
+  --col-platform-width-desktop: 50px;
+  --col-route-width-desktop: 100px;
+  --col-direction-width-desktop: 1fr;
+  --col-scheduled-width-desktop: 200px;
+}
+
+.departure-grid {
+  display: grid;
+  grid-template-columns: var(--col-platform-width) var(--col-route-width) var(
+      --col-direction-width
+    ) var(--col-scheduled-width);
+  width: 100%;
+}
+
+/* Tablet breakpoint */
+@media (min-width: 480px) {
+  .departure-grid {
+    grid-template-columns: var(--col-platform-width-tablet) var(
+        --col-route-width-tablet
+      ) var(--col-direction-width-tablet) var(--col-scheduled-width-tablet);
+  }
+}
+
+/* Desktop breakpoint */
+@media (min-width: 700px) {
+  .departure-grid {
+    grid-template-columns: var(--col-platform-width-desktop) var(
+        --col-route-width-desktop
+      ) var(--col-direction-width-desktop) var(--col-scheduled-width-desktop);
+  }
+}
+
+/* Text size classes */
+.text-header {
+  font-size: var(--text-sm);
+}
+
+.text-header-tablet {
+  font-size: var(--text-base);
+}
+
+.text-header-desktop {
+  font-size: var(--text-lg);
+}
+
+.text-departure {
+  font-size: var(--text-xl);
+}
+
+.text-departure-tablet {
+  font-size: var(--text-2xl);
+}
+
+.text-departure-desktop {
+  font-size: var(--text-3xl);
+}
+
+.text-min-label {
+  font-size: var(--text-xs);
+}
+
+.text-min-label-tablet {
+  font-size: var(--text-sm);
+}
+
+.text-min-label-desktop {
+  font-size: var(--text-base);
+}

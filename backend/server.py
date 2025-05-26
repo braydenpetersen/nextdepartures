@@ -129,9 +129,14 @@ def get_GRT_departures():
         headsign = remove_station(trip.get('headsign', '') or route.get('longName', ''))
         
         if '-' in headsign:
-            # Extract branchCode from non-numerical values before the dash in DirectionName
-            branchCode = ''.join(filter(lambda x: not x.isdigit(), headsign.split('-', 1)[0])).strip()
-            headsign = headsign.split('-', 1)[1].strip()
+            parts = headsign.split('-', 1)
+            before_dash = parts[0].strip()
+            # Only extract branch code if it's a single letter before the dash
+            if len(before_dash) == 1 and before_dash.isalpha():
+                branchCode = before_dash
+                headsign = parts[1].strip()
+            else:
+                branchCode = ''
         else:
             branchCode = ''
 
@@ -154,8 +159,8 @@ def get_GRT_departures():
         if countdown < 0:
             continue # Skip if the trip has already left
 
-        if countdown < 10:
-            time = f"{int(countdown)} min"
+        if countdown < 60:
+            time = f"{int(countdown)}"
         
         routeColor, routeTextColor = get_route_colors(routeNumber, "GRT")
 
@@ -181,7 +186,7 @@ def load_stop_code_mapping():
 def remove_station(headsign):
     return headsign.replace("Station", "").strip()
 
-def test_metrolinx_api():
+def test_metrolinx_api(STOP_CODE):
     payload = {
         'StopCode': STOP_CODE,
         'key': API_KEY
@@ -198,7 +203,6 @@ def test():
 # api/departures
 @app.route('/api/departures', methods=['GET'])
 def get_departures():
-
     STOP_CODE = request.args.get('stopCode', '02799')
 
     print(STOP_CODE)
@@ -211,10 +215,59 @@ def get_departures():
     if STOP_CODE == '02799':
         departures_list.extend(get_GRT_departures())
 
-    departures_list.sort(key=lambda x: x['countdown'])
+    # First group by network
+    network_groups = {}
+    for departure in departures_list:
+        network = departure['routeNetwork']
+        if network not in network_groups:
+            network_groups[network] = {
+                'network': network,
+                'routes': {}
+            }
+        
+        # Create a key that includes all grouping criteria for routes
+        route_key = f"{departure['routeNumber']}-{departure['headsign']}-{departure['branchCode']}"
+        if route_key not in network_groups[network]['routes']:
+            network_groups[network]['routes'][route_key] = {
+                'routeNetwork': departure['routeNetwork'],
+                'routeNumber': departure['routeNumber'],
+                'headsign': departure['headsign'],
+                'branchCode': departure['branchCode'],
+                'platform': departure['platform'],
+                'routeColor': departure['routeColor'],
+                'routeTextColor': departure['routeTextColor'],
+                'stopCode': departure['stopCode'],
+                'departures': []
+            }
+        
+        # Only add departures that are less than 4 hours away
+        if departure['countdown'] <= 240:  # 4 hours = 240 minutes
+            # Add the time and countdown to the departures list
+            time = "Now" if departure['countdown'] <= 1 else departure['time']
+            network_groups[network]['routes'][route_key]['departures'].append({
+                'time': time,
+                'countdown': departure['countdown']
+            })
 
-    return jsonify(departures_list)
+    # Sort departures within each route group by countdown
+    for network in network_groups.values():
+        for route in network['routes'].values():
+            route['departures'].sort(key=lambda x: x['countdown'])
+            # Only keep the first two departures
+            route['departures'] = route['departures'][:3]
+
+    # Convert to list and sort networks by the first departure's countdown
+    result = []
+    for network in network_groups.values():
+        routes_list = list(network['routes'].values())
+        routes_list.sort(key=lambda x: x['departures'][0]['countdown'] if x['departures'] else float('inf'))
+        network['routes'] = routes_list
+        result.append(network)
+
+    # Sort networks alphabetically
+    result.sort(key=lambda x: x['network'])
+
+    return jsonify(result)
 
 if __name__ == '__main__':
-    print(f"Debug API Key: {API_KEY}")
     app.run(debug=True, port=8080, host="0.0.0.0") # run the server in debug mode
