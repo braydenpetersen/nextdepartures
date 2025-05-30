@@ -15,12 +15,10 @@ export const DepartureRow: React.FC<DepartureRowProps> = ({
   isGrtIon,
 }) => {
   const formatDepartureTime = (departure: { time: string; countdown: number }) => {
-    if (departure.countdown <= 1) {
+    if (departure.countdown <= 0) {
       return { text: 'Due', isNow: true };
-    } else if (departure.countdown <= 120) {
+    } else {
       return { text: `${departure.countdown}`, isNow: false };
-    } else if (departure.countdown <= 300) {
-      return { text: departure.time, isNow: false };
     }
     return { text: '', isNow: false };
   };

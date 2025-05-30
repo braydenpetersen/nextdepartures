@@ -5,9 +5,6 @@ import { DepartureHeader } from '../components/DepartureHeader';
 import { NetworkGroup } from '../types';
 import GoTransitLogo from '../components/svg/gotransit_logo.svg';
 import GrtLogo from '../components/svg/grt_logo_white.svg';
-
-const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-
 interface DepartureTime {
   time: string;
   countdown: number;
@@ -37,7 +34,7 @@ function Index() {
 
     const fetchDepartures = () => {
       const stopCode = router.query.stopCode || '02799';
-      const apiQuery = `${apiUrl}?stopCode=${stopCode}`;
+      const apiQuery = `/api/departures?stopCode=${stopCode}`;
 
       if (isInitialLoad.current) {
         setIsLoading(true);

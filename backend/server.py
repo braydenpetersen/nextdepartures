@@ -1,5 +1,5 @@
 import csv
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, abort
 from flask_cors import CORS
 import os
 import requests
@@ -7,19 +7,33 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 import json
 from dotenv import load_dotenv
+from functools import wraps
+
+
 # get the environment variables
 load_dotenv()
 API_KEY = os.environ.get('API_KEY')
+GO_API_KEY = os.environ.get('GO_API_KEY')
 
 # app instance
 app = Flask(__name__)
-CORS(app)
-app.config['API_KEY'] = os.getenv('API_KEY')
+CORS(app, origins=["http://localhost:3000", "https://transit.braydenpetersen.com"])
+
+def requires_api_key(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        api_key = request.headers.get('X-API-Key')
+        if not api_key:
+            return jsonify({'error': 'API key is required'}), 401
+        if api_key != API_KEY:
+            return jsonify({'error': 'Invalid API key'}), 401
+        return f(*args, **kwargs)
+    return decorated_function
 
 def get_GOtransit_departures(STOP_CODE):
     payload = {
         'StopCode': STOP_CODE,
-        'key': API_KEY
+        'key': GO_API_KEY
     }
 
     # get the data from the API
@@ -57,7 +71,7 @@ def get_GOtransit_departures(STOP_CODE):
         current_time_unix = int(current_time_est.timestamp())
         countdown = (departure_time_unix - current_time_unix) // 60
 
-        if countdown < 0:
+        if countdown < -1:
             continue # Skip if the trip has already left
 
         if countdown < 10:
@@ -156,11 +170,8 @@ def get_GRT_departures():
         current_time_est = datetime.now(est_tz)
         current_time_unix = int(current_time_est.timestamp())
         countdown = (departure_time_unix - current_time_unix) // 60
-        if countdown < 0:
+        if countdown < -1:
             continue # Skip if the trip has already left
-
-        if countdown < 60:
-            time = f"{int(countdown)}"
         
         routeColor, routeTextColor = get_route_colors(routeNumber, "GRT")
 
@@ -189,19 +200,15 @@ def remove_station(headsign):
 def test_metrolinx_api(STOP_CODE):
     payload = {
         'StopCode': STOP_CODE,
-        'key': API_KEY
+        'key': GO_API_KEY
     }
 
     response = requests.get('https://api.openmetrolinx.com/OpenDataAPI/api/V1/Stop/NextService/', params=payload)
     return response.json()
 
-# api/test
-@app.route('/api/test', methods=['GET'])
-def test():
-    return test_metrolinx_api()
-
 # api/departures
 @app.route('/api/departures', methods=['GET'])
+@requires_api_key
 def get_departures():
     STOP_CODE = request.args.get('stopCode', '02799')
 
@@ -240,8 +247,6 @@ def get_departures():
                 'departures': []
             }
         
-        # Only add departures that are less than 4 hours away
-        if departure['countdown'] <= 240:  # 4 hours = 240 minutes
             # Add the time and countdown to the departures list
             time = "Now" if departure['countdown'] <= 1 else departure['time']
             network_groups[network]['routes'][route_key]['departures'].append({
