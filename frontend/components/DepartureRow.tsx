@@ -20,7 +20,6 @@ export const DepartureRow: React.FC<DepartureRowProps> = ({
     } else {
       return { text: `${departure.countdown}`, isNow: false };
     }
-    return { text: '', isNow: false };
   };
 
   const formattedDepartures = routeGroup.departures

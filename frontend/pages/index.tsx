@@ -2,25 +2,9 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 import { DepartureRow } from '../components/DepartureRow';
 import { DepartureHeader } from '../components/DepartureHeader';
-import { NetworkGroup } from '../types';
+import { NetworkGroup, RouteGroup } from '../types';
 import GoTransitLogo from '../components/svg/gotransit_logo.svg';
 import GrtLogo from '../components/svg/grt_logo_white.svg';
-interface DepartureTime {
-  time: string;
-  countdown: number;
-}
-
-interface RouteGroup {
-  branchCode: string;
-  headsign: string;
-  platform: string;
-  routeColor: string;
-  routeNetwork: string;
-  routeNumber: string;
-  routeTextColor: string;
-  stopCode: string;
-  departures: DepartureTime[];
-}
 
 function Index() {
   const router = useRouter();
@@ -41,12 +25,20 @@ function Index() {
       }
 
       fetch(apiQuery)
-        .then(response => response.json())
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.json();
+        })
         .then(data => {
           setDepartures(data);
           setIsLoading(false);
           isInitialLoad.current = false;
-          console.log(data);
+        })
+        .catch(error => {
+          console.error('Error fetching departures:', error);
+          setIsLoading(false);
         });
     };
 
