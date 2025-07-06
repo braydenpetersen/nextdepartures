@@ -53,6 +53,3 @@ route_id,route_short_name,route_long_name,route_desc,route_type,route_url,route_
 8,8,Weber,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx,3872FF,FFFFFF
 9,9,Lakeshore,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx,3872FF,FFFFFF
 91,91,Late Night Loop,,3,https://www.grt.ca/en/schedules-maps/schedules.aspx,3872FF,FFFFFF
-9801,9801,GCI Special,,3,,3872FF,FFFFFF
-9851,9851,GCI Special,,3,,3872FF,FFFFFF
-9952,9952,GCI - AST Special,,3,,3872FF,FFFFFF

@@ -92,7 +92,7 @@ function Index() {
   };
 
   return (
-    <div className="mx-3 sm:mx-6 font-bold tracking-tight">
+    <div className="mx-3 font-bold tracking-tight">
       {isLoading && isInitialLoad.current ? (
         <div className="h-32 sm:h-40 flex items-center justify-center text-[var(--light-grey)] text-xl sm:text-2xl">
           Loading departures...

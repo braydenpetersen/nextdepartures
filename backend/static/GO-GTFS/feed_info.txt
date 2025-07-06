@@ -1,2 +1,2 @@
 ﻿feed_publisher_name,feed_publisher_url,feed_lang,feed_start_date,feed_end_date,feed_version
-Metrolinx,https://www.metrolinx.com,en,20241218,20250404,20241218114818
+Metrolinx,https://www.metrolinx.com,en,20250702,20250829,20250702174852

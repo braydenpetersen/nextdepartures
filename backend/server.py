@@ -30,6 +30,13 @@ def requires_api_key(f):
         return f(*args, **kwargs)
     return decorated_function
 
+def map_go_route_number(route_number):
+    """Map GO Transit route numbers to their correct identifiers."""
+    mapping = {
+        'GT': 'KI'  # Georgetown -> Kitchener
+    }
+    return mapping.get(route_number, route_number)
+
 def get_GOtransit_departures(STOP_CODE):
     payload = {
         'StopCode': STOP_CODE,
@@ -49,6 +56,8 @@ def get_GOtransit_departures(STOP_CODE):
 
     for line in next_service.get('Lines', []):
         routeNumber = line.get('LineCode', '').strip()
+        # Map the route number to correct identifier
+        routeNumber = map_go_route_number(routeNumber)
         direction_name = line.get('DirectionName', '')
         headsign = direction_name.split('-', 1)[1].strip() if '-' in direction_name else ''
         
@@ -99,7 +108,16 @@ def get_route_colors(route_number, route_network):
     with open(file_path, 'r') as file:
         csv_reader = csv.DictReader(file)
         for row in csv_reader:
-            if row['route_short_name'] == str(route_number):
+            # For GO routes, match either the route_short_name or the route ID suffix
+            if route_network == 'GO':
+                # Check if route_id exists in the row before trying to use it
+                route_id_match = 'route_id' in row and row['route_id'].endswith(f'-{route_number}')
+                if row['route_short_name'] == str(route_number) or route_id_match:
+                    route_color = f"#{row['route_color']}"
+                    route_text_color = f"#{row['route_text_color']}"
+                    return route_color, route_text_color
+            # For GRT routes, match only the route_short_name
+            elif route_network == 'GRT' and row['route_short_name'] == str(route_number):
                 route_color = f"#{row['route_color']}"
                 route_text_color = f"#{row['route_text_color']}"
                 return route_color, route_text_color
