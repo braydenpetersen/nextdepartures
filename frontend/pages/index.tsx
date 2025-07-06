@@ -92,7 +92,7 @@ function Index() {
   };
 
   return (
-    <div className="mx-4 sm:mx-6 font-bold tracking-tight">
+    <div className="mx-3 sm:mx-6 font-bold tracking-tight">
       <div className="flex w-full">
         <div className="flex-1">
           {isLoading && isInitialLoad.current ? (
@@ -106,23 +106,25 @@ function Index() {
                 return (
                   <div key={networkGroup.network} className="mb-8">
                     <div
-                      className="flex justify-between items-center w-full"
+                      className="flex justify-between items-center w-full h-[52px]"
                       style={{ lineHeight: '100%' }}
                     >
                       <div className="flex items-center gap-4">
                         {Logo && (
-                          <div className="w-[60px] h-[70px] items-center">
-                            <Logo className="w-[60px] h-full" />
+                          <div className="flex items-center justify-center w-[45px] h-[52px]">
+                            <Logo className="w-[45px] h-full -mt-1" />
                           </div>
                         )}
-                        <h2 className="text-xl tracking-tight h-full">
-                          Departures
-                          <span className="font-normal"> | Départs</span>
-                        </h2>
+                        <div className="flex items-center h-full">
+                          <h2 className="text-xl tracking-tight">
+                            Departures
+                            <span className="font-normal"> | Départs</span>
+                          </h2>
+                        </div>
                       </div>
-                      <div className="text-[var(--light-grey)]">
+                      <div className="flex items-center h-full text-[var(--light-grey)]">
                         <h2
-                          className="text-xl tracking-tight h-full"
+                          className="text-xl tracking-tight"
                           style={{ fontVariantNumeric: 'tabular-nums' }}
                         >
                           {ctime}
