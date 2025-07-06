@@ -22,6 +22,11 @@ CORS(app, origins=["http://localhost:3000", "https://transit.braydenpetersen.com
 def requires_api_key(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
+        # Check if API_KEY is properly loaded
+        if not API_KEY:
+            print("ERROR: API_KEY environment variable not set!")
+            return jsonify({'error': 'Server configuration error'}), 500
+            
         api_key = request.headers.get('X-API-Key')
         if not api_key:
             return jsonify({'error': 'API key is required'}), 401
