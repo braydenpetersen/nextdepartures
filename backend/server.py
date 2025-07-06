@@ -22,16 +22,22 @@ CORS(app, origins=["http://localhost:3000", "https://transit.braydenpetersen.com
 def requires_api_key(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        # Check if API_KEY is properly loaded
-        if not API_KEY:
-            print("ERROR: API_KEY environment variable not set!")
-            return jsonify({'error': 'Server configuration error'}), 500
-            
+        print(f"DEBUG: Decorator called for {request.url}")
+        print(f"DEBUG: Request method: {request.method}")
+        print(f"DEBUG: All headers: {dict(request.headers)}")
+        
         api_key = request.headers.get('X-API-Key')
+        print(f"DEBUG: API_KEY from env: '{API_KEY}'")
+        print(f"DEBUG: api_key from headers: '{api_key}'")
+        
         if not api_key:
+            print("DEBUG: Returning 401 - No API key")
             return jsonify({'error': 'API key is required'}), 401
         if api_key != API_KEY:
+            print("DEBUG: Returning 401 - Invalid API key")
             return jsonify({'error': 'Invalid API key'}), 401
+        
+        print("DEBUG: API key validation passed - this should NOT happen!")
         return f(*args, **kwargs)
     return decorated_function
 
@@ -212,6 +218,9 @@ def test_metrolinx_api(STOP_CODE):
 @app.route('/api/departures', methods=['GET'])
 @requires_api_key
 def get_departures():
+    # This should never execute if the decorator is working
+    print("DEBUG: Inside get_departures() - decorator validation passed!")
+    
     STOP_CODE = request.args.get('stopCode', '02799')
 
     print(STOP_CODE)
