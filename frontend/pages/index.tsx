@@ -92,7 +92,7 @@ function Index() {
   };
 
   return (
-    <div className="mx-2 font-bold tracking-tight">
+    <div className="mx-4 sm:mx-6 font-bold tracking-tight">
       <div className="flex w-full">
         <div className="flex-1">
           {isLoading && isInitialLoad.current ? (
@@ -111,18 +111,18 @@ function Index() {
                     >
                       <div className="flex items-center gap-4">
                         {Logo && (
-                          <div className="w-[100px] h-[90px] sm:w-[100px] sm:h-[120px] items-center">
-                            <Logo className="w-[100px] h-full" />
+                          <div className="w-[60px] h-[70px] items-center">
+                            <Logo className="w-[60px] h-full" />
                           </div>
                         )}
-                        <h2 className="text-[30px] sm:text-[40px] tracking-tight h-full">
+                        <h2 className="text-xl tracking-tight h-full">
                           Departures
                           <span className="font-normal"> | Départs</span>
                         </h2>
                       </div>
                       <div className="text-[var(--light-grey)]">
                         <h2
-                          className="text-[30px] sm:text-[40px] tracking-tight h-full"
+                          className="text-xl tracking-tight h-full"
                           style={{ fontVariantNumeric: 'tabular-nums' }}
                         >
                           {ctime}

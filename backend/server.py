@@ -140,7 +140,7 @@ def get_GRT_departures():
         route = arrival.get('route', {})
 
         routeNumber = route.get('shortName', '')
-        headsign = remove_station(trip.get('headsign', '') or route.get('longName', ''))
+        headsign = trip.get('headsign', '') or route.get('longName', '')
         
         if '-' in headsign:
             parts = headsign.split('-', 1)
@@ -194,9 +194,6 @@ def load_stop_code_mapping():
     with open('static/stop_code_to_platform.json', 'r') as f:
         return json.load(f)
 
-def remove_station(headsign):
-    return headsign.replace("Station", "").strip()
-
 def test_metrolinx_api(STOP_CODE):
     payload = {
         'StopCode': STOP_CODE,
@@ -247,19 +244,19 @@ def get_departures():
                 'departures': []
             }
         
-            # Add the time and countdown to the departures list
-            time = "Now" if departure['countdown'] <= 1 else departure['time']
-            network_groups[network]['routes'][route_key]['departures'].append({
-                'time': time,
-                'countdown': departure['countdown']
-            })
+        # Add the time and countdown to the departures list
+        time = "Now" if departure['countdown'] <= 1 else departure['time']
+        network_groups[network]['routes'][route_key]['departures'].append({
+            'time': time,
+            'countdown': departure['countdown']
+        })
 
     # Sort departures within each route group by countdown
     for network in network_groups.values():
         for route in network['routes'].values():
             route['departures'].sort(key=lambda x: x['countdown'])
             # Only keep the first two departures
-            route['departures'] = route['departures'][:3]
+            route['departures'] = route['departures'][:2]
 
     # Convert to list and sort networks by the first departure's countdown
     result = []
