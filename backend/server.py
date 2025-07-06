@@ -22,22 +22,37 @@ CORS(app, origins=["http://localhost:3000", "https://transit.braydenpetersen.com
 def requires_api_key(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        print(f"DEBUG: Decorator called for {request.url}")
-        print(f"DEBUG: Request method: {request.method}")
-        print(f"DEBUG: All headers: {dict(request.headers)}")
+        print("=== DEBUG START ===")
+        print(f"Function being decorated: {f.__name__}")
+        print(f"Request URL: {request.url}")
+        print(f"Request method: {request.method}")
         
+        # Check if API_KEY is loaded
+        print(f"API_KEY from environment: '{API_KEY}'")
+        print(f"API_KEY type: {type(API_KEY)}")
+        print(f"API_KEY is None: {API_KEY is None}")
+        print(f"API_KEY is empty string: {API_KEY == ''}")
+        
+        # Check headers
         api_key = request.headers.get('X-API-Key')
-        print(f"DEBUG: API_KEY from env: '{API_KEY}'")
-        print(f"DEBUG: api_key from headers: '{api_key}'")
+        print(f"api_key from headers: '{api_key}'")
+        print(f"api_key type: {type(api_key)}")
+        print(f"api_key is None: {api_key is None}")
+        
+        # Test the conditions step by step
+        print(f"not api_key: {not api_key}")
+        print(f"api_key != API_KEY: {api_key != API_KEY}")
         
         if not api_key:
-            print("DEBUG: Returning 401 - No API key")
+            print("SHOULD RETURN 401 - No API key")
             return jsonify({'error': 'API key is required'}), 401
+        
         if api_key != API_KEY:
-            print("DEBUG: Returning 401 - Invalid API key")
+            print("SHOULD RETURN 401 - Invalid API key")
             return jsonify({'error': 'Invalid API key'}), 401
         
-        print("DEBUG: API key validation passed - this should NOT happen!")
+        print("VALIDATION PASSED - This should not happen with curl!")
+        print("=== DEBUG END ===")
         return f(*args, **kwargs)
     return decorated_function
 
@@ -213,6 +228,12 @@ def test_metrolinx_api(STOP_CODE):
 
     response = requests.get('https://api.openmetrolinx.com/OpenDataAPI/api/V1/Stop/NextService/', params=payload)
     return response.json()
+
+# test endpoint to check if the decorator is working
+@app.route('/api/test', methods=['GET'])
+@requires_api_key
+def test_endpoint():
+    return jsonify({'message': 'This should be protected'})
 
 # api/departures
 @app.route('/api/departures', methods=['GET'])
