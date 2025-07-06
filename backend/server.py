@@ -17,7 +17,7 @@ GO_API_KEY = os.environ.get('GO_API_KEY')
 
 # app instance
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:3000", "https://transit.braydenpetersen.com"])
+CORS(app, origins=["http://localhost:3000", "https://transit.braydenpetersen.com"], methods=["GET"], allow_headers=["X-API-Key", "Content-Type"])
 
 def requires_api_key(f):
     @wraps(f)
