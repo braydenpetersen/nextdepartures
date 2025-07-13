@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { DepartureRow } from '../components/DepartureRow';
 import { DepartureHeader } from '../components/DepartureHeader';
 import { StationSearch } from '../components/StationSearch';
-import { NetworkGroup, RouteGroup } from '../types';
+import { NetworkGroup, RouteGroup, Station } from '../types';
 import GoTransitLogo from '../components/svg/gotransit_logo.svg';
 import GrtLogo from '../components/svg/grt_logo_white.svg';
 
@@ -14,6 +14,7 @@ function Index() {
 
   const [departures, setDepartures] = useState<NetworkGroup[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [stationName, setStationName] = useState<string>('');
 
   useEffect(() => {
     if (!router.isReady) return;
@@ -55,6 +56,47 @@ function Index() {
     const interval = setInterval(fetchDepartures, 30000);
 
     return () => clearInterval(interval);
+  }, [router.isReady, router.query.station]);
+
+  // Fetch station name when station ID changes
+  useEffect(() => {
+    if (!router.isReady || !router.query.station) {
+      setStationName('');
+      return;
+    }
+
+    const stationId = router.query.station as string;
+    
+    // Try to extract readable name from station ID as immediate fallback
+    const fallbackName = stationId
+      .replace('stn-', '')
+      .replace(/-/g, ' ')
+      .replace(/\b\w/g, l => l.toUpperCase());
+    setStationName(fallbackName);
+
+    // Fetch station info to get the proper station name
+    fetch(`/api/stations?q=${encodeURIComponent(fallbackName)}&limit=10`)
+      .then(response => response.json())
+      .then(data => {
+        if (data.stations && data.stations.length > 0) {
+          // Look for exact station ID match first
+          const exactMatch = data.stations.find((station: Station) => station.station_id === stationId);
+          if (exactMatch) {
+            setStationName(exactMatch.station_name);
+          } else if (data.stations[0]) {
+            setStationName(data.stations[0].station_name);
+          }
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching station name:', error);
+        // Fallback name
+        const fallbackName = (router.query.station as string)
+          .replace('stn-', '')
+          .replace(/-/g, ' ')
+          .replace(/\b\w/g, l => l.toUpperCase());
+        setStationName(fallbackName);
+      });
   }, [router.isReady, router.query.station]);
 
   const [ctime, setCtime] = useState('');
@@ -128,19 +170,30 @@ function Index() {
   // Generate dynamic OG image URL for station
   const generateOGImageUrl = (stationId: string) => {
     const baseUrl = process.env.NODE_ENV === 'production' 
-      ? 'https://api.braydenpetersen.com' 
-      : 'http://localhost:8080';
-    return `${baseUrl}/api/og-image?station=${encodeURIComponent(stationId)}`;
+      ? 'https://transit.braydenpetersen.com' 
+      : 'http://localhost:3000';
+    const url = `${baseUrl}/api/og-image?station=${encodeURIComponent(stationId)}`;
+    console.log('Generated OG image URL:', url); // Debug log
+    return url;
   };
 
   // Show departure board if station is provided
   return (
     <>
       <Head>
-        <title>Live Departure Board - Real-time Transit Departures</title>
+        <title>
+          {stationName 
+            ? `${stationName} - Live Departures` 
+            : 'Live Departure Board - Real-time Transit Departures'
+          }
+        </title>
         {router.query.station && (
           <>
+            <meta property="og:title" content={stationName ? `${stationName} - Live Departures` : 'Live Departure Board'} />
+            <meta property="og:description" content={`Real-time transit departures ${stationName ? `for ${stationName}` : 'for University of Waterloo and surrounding areas'}`} />
             <meta property="og:image" content={generateOGImageUrl(router.query.station as string)} />
+            <meta property="twitter:title" content={stationName ? `${stationName} - Live Departures` : 'Live Departure Board'} />
+            <meta property="twitter:description" content={`Real-time transit departures ${stationName ? `for ${stationName}` : 'for University of Waterloo and surrounding areas'}`} />
             <meta property="twitter:image" content={generateOGImageUrl(router.query.station as string)} />
           </>
         )}
