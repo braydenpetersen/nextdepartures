@@ -1,13 +1,14 @@
 import csv
-from flask import Flask, request, jsonify, abort
+import json
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 import os
 import requests
 from datetime import datetime
 from zoneinfo import ZoneInfo
-import json
 from dotenv import load_dotenv
 from functools import wraps
+from difflib import SequenceMatcher
 
 
 # get the environment variables
@@ -104,7 +105,7 @@ def get_GOtransit_departures(STOP_CODE):
     return extracted_data
 
 def get_route_colors(route_number, route_network):
-    file_path = 'static/GO-GTFS/routes.txt' if route_network == 'GO' else 'static/GRT_GTFS/routes.txt'
+    file_path = '../data/GTFS/GO-GTFS/routes.txt' if route_network == 'GO' else '../data/GTFS/GRT_GTFS/routes.txt'
     with open(file_path, 'r') as file:
         csv_reader = csv.DictReader(file)
         for row in csv_reader:
@@ -123,25 +124,32 @@ def get_route_colors(route_number, route_network):
                 return route_color, route_text_color
     return None, None
 
-def get_GRT_departures():
+def get_GRT_departures(stop_codes=None):
+    if stop_codes is None:
+        stop_codes = ["6004", "6120", "1260", "1262", "1223", "1264", "1078"]  # Default to UW stops
+    
+    # Convert stop codes to strings and format for GraphQL
+    stop_ids = [f'"{str(code)}"' for code in stop_codes]
+    stop_ids_str = ", ".join(stop_ids)
+    
     url = "https://grtivr-prod.regionofwaterloo.9802690.ca/vms/graphql"
-    query = """
-    query GetFilteredStopsAndDepartures {
-      stops(filter: {idIn: ["6004", "6120", "1260", "1262", "1223", "1264", "1078"]}) {
+    query = f"""
+    query GetFilteredStopsAndDepartures {{
+      stops(filter: {{idIn: [{stop_ids_str}]}}) {{
         id
         platformCode
-        arrivals {
-          trip {
+        arrivals {{
+          trip {{
             headsign
-          }
-          route {
+          }}
+          route {{
             shortName
             longName
-          }
+          }}
           departure
-        }
-      }
-    }
+        }}
+      }}
+    }}
     """
     headers = {
         "Content-Type": "application/json"
@@ -208,10 +216,6 @@ def get_GRT_departures():
     return extracted_data
 
 
-def load_stop_code_mapping():
-    with open('static/stop_code_to_platform.json', 'r') as f:
-        return json.load(f)
-
 def test_metrolinx_api(STOP_CODE):
     payload = {
         'StopCode': STOP_CODE,
@@ -231,15 +235,41 @@ def test_endpoint():
 @app.route('/api/departures', methods=['GET'])
 @requires_api_key
 def get_departures():
-    STOP_CODE = request.args.get('stopCode', '02799')
-
+    # Get comma-separated stops with agency prefixes: GRT_1078,GO_02799,GO_02800
+    stops_param = request.args.get('stops', '')
+    
+    if not stops_param:
+        return jsonify({'error': 'stops parameter is required (e.g., ?stops=GRT_1078,GO_02799)'}), 400
+    
     departures_list = []
-
-    # grt_data = get_GRT_data()
-
-    departures_list.extend(get_GOtransit_departures(STOP_CODE))
-    if STOP_CODE == '02799':
-        departures_list.extend(get_GRT_departures())
+    stop_codes = [stop.strip() for stop in stops_param.split(',') if stop.strip()]
+    
+    # Collect GRT stop codes to batch the request
+    grt_codes = []
+    
+    for stop_code in stop_codes:
+        if '_' not in stop_code:
+            continue
+            
+        agency, code = stop_code.split('_', 1)
+        
+        try:
+            if agency.upper() == 'GO':
+                departures_list.extend(get_GOtransit_departures(code))
+            elif agency.upper() == 'GRT':
+                grt_codes.append(code)
+            else:
+                continue
+        except Exception as e:
+            print(f"Error getting departures for {stop_code}: {e}")
+            continue
+    
+    # Get GRT departures for all GRT stops in one request
+    if grt_codes:
+        try:
+            departures_list.extend(get_GRT_departures(grt_codes))
+        except Exception as e:
+            print(f"Error getting GRT departures: {e}")
 
     # First group by network
     network_groups = {}
@@ -292,6 +322,98 @@ def get_departures():
     result.sort(key=lambda x: x['network'])
 
     return jsonify(result)
+
+def load_consolidated_stations():
+    """Load the consolidated stations from JSON file."""
+    try:
+        with open('static/consolidated_stations.json', 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return []
+
+def station_name_similarity(query: str, station_name: str) -> float:
+    """Calculate similarity between search query and station name."""
+    query_lower = query.lower().strip()
+    station_lower = station_name.lower().strip()
+    
+    # Exact match
+    if query_lower == station_lower:
+        return 1.0
+    
+    # Check if query is contained in station name
+    if query_lower in station_lower:
+        return 0.9
+    
+    # Fuzzy matching
+    return SequenceMatcher(None, query_lower, station_lower).ratio()
+
+@app.route('/api/stations/search', methods=['GET'])
+@requires_api_key
+def search_stations():
+    """
+    Search for stations by name.
+    Query params:
+    - q: search query (required)
+    - agencies: comma-separated list of agencies to filter (optional)
+    - limit: max number of results (default: 10)
+    """
+    query = request.args.get('q', '').strip()
+    if not query:
+        return jsonify({'error': 'Search query (q) is required'}), 400
+    
+    agencies_param = request.args.get('agencies', '')
+    wanted_agencies = set()
+    if agencies_param:
+        wanted_agencies = set(agency.strip().upper() for agency in agencies_param.split(','))
+    
+    limit = int(request.args.get('limit', 10))
+    
+    # Load consolidated stations
+    stations = load_consolidated_stations()
+    
+    # Filter and score stations
+    scored_stations = []
+    for station in stations:
+        # Calculate similarity score
+        score = station_name_similarity(query, station['station_name'])
+        
+        # Skip if score is too low
+        if score < 0.3:
+            continue
+        
+        # Filter by agencies if specified
+        if wanted_agencies:
+            station_agencies = set(stop['agency'] for stop in station['stops'])
+            if not station_agencies.intersection(wanted_agencies):
+                continue
+        
+        # Filter stops by agencies if specified
+        filtered_stops = station['stops']
+        if wanted_agencies:
+            filtered_stops = [stop for stop in station['stops'] if stop['agency'] in wanted_agencies]
+        
+        scored_stations.append({
+            'station_id': station['station_id'],
+            'station_name': station['station_name'], 
+            'station_lat': station['station_lat'],
+            'station_lon': station['station_lon'],
+            'stops': filtered_stops,
+            'score': score
+        })
+    
+    # Sort by score (descending) and limit results
+    scored_stations.sort(key=lambda x: x['score'], reverse=True)
+    results = scored_stations[:limit]
+    
+    # Remove score from final results
+    for result in results:
+        del result['score']
+    
+    return jsonify({
+        'query': query,
+        'total_results': len(results),
+        'stations': results
+    })
 
 if __name__ == '__main__':
     app.run(debug=True, port=8080, host="0.0.0.0") # run the server in debug mode

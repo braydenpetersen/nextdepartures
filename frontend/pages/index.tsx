@@ -17,8 +17,8 @@ function Index() {
     if (!router.isReady) return;
 
     const fetchDepartures = () => {
-      const stopCode = router.query.stopCode || '02799';
-      const apiQuery = `/api/departures?stopCode=${stopCode}`;
+      const stops = router.query.stops || 'GO_02799';
+      const apiQuery = `/api/departures?stops=${stops}`;
 
       if (isInitialLoad.current) {
         setIsLoading(true);
@@ -46,7 +46,7 @@ function Index() {
     const interval = setInterval(fetchDepartures, 30000);
 
     return () => clearInterval(interval);
-  }, [router.isReady, router.query.stopCode]);
+  }, [router.isReady, router.query.stops]);
 
   const [ctime, setCtime] = useState('');
 

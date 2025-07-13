@@ -37,15 +37,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
-    const { stopCode = '02799' } = req.query;
+    const { stops } = req.query;
 
-    // Validate stopCode if needed
-    if (typeof stopCode !== 'string') {
-        return res.status(400).json({ error: 'Invalid stopCode parameter' });
+    // Only accept new stops format: ?stops=GO_02799,GRT_1078
+    if (!stops || typeof stops !== 'string') {
+        return res.status(400).json({ error: 'stops parameter is required (e.g., ?stops=GO_02799,GRT_1078)' });
     }
 
     try {
-        const response = await fetch(`${BACKEND_API_URL}/api/departures?stopCode=${stopCode}`, {
+        const response = await fetch(`${BACKEND_API_URL}/api/departures?stops=${encodeURIComponent(stops)}`, {
             method: 'GET',
             headers: {
                 'X-API-Key': API_KEY,
