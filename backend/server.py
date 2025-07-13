@@ -105,7 +105,7 @@ def get_GOtransit_departures(STOP_CODE):
     return extracted_data
 
 def get_route_colors(route_number, route_network):
-    file_path = '../data/GTFS/GO-GTFS/routes.txt' if route_network == 'GO' else '../data/GTFS/GRT_GTFS/routes.txt'
+    file_path = 'data/GTFS/GO-GTFS/routes.txt' if route_network == 'GO' else 'data/GTFS/GRT_GTFS/routes.txt'
     with open(file_path, 'r') as file:
         csv_reader = csv.DictReader(file)
         for row in csv_reader:
