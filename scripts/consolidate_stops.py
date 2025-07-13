@@ -217,26 +217,43 @@ def consolidate_cluster(cluster: List[Dict], min_name_similarity: float = 0.6) -
         # Choose the best name with smarter logic
         def score_name(stop_name):
             name = stop_name.lower()
-            # Penalize overly specific/technical terms
-            penalties = 0
-            if 'bus' in name and ('station' in name or 'terminal' in name):
-                penalties -= 10  # "Bramalea GO Bus" vs "Bramalea GO"
+            base_score = 100  # Start with a base score
+            
+            # Heavy penalties for overly specific terms
+            if 'bus' in name and ('go' in name or 'station' in name or 'terminal' in name):
+                base_score -= 50  # "Unionville GO Bus" vs "Unionville GO"
             if 'platform' in name:
-                penalties -= 5
+                base_score -= 30
+            if name.count(' ') > 4:  # Too many words
+                base_score -= 20
             
-            # Reward good descriptive terms
-            bonuses = 0
-            if 'station' in name:
-                bonuses += 5
-            if 'terminal' in name:
-                bonuses += 3
-            if 'university' in name:
-                bonuses += 8  # "University of Waterloo" vs "UW"
+            # Penalize names with major hub in brackets - prefer the hub name itself
+            if '(' in stop_name and ')' in stop_name:
+                # Extract content in brackets
+                bracket_content = stop_name[stop_name.find('(')+1:stop_name.find(')')].lower()
+                # If brackets contain major hub indicators, penalize this name
+                hub_indicators = ['station', 'terminal', 'go', 'transit', 'centre', 'center']
+                if any(indicator in bracket_content for indicator in hub_indicators):
+                    base_score -= 40  # "Local Stop (Union Station)" vs "Union Station"
             
-            # Base score on length but with diminishing returns
-            length_score = min(len(stop_name), 50)  # Cap length benefit
+            # Rewards for good descriptive terms
+            if 'university' in name and len(name) > 15:
+                base_score += 40  # "University of Waterloo" vs "UW"
+            if 'station' in name and 'bus' not in name and '(' not in name:
+                base_score += 20  # "Union Station" is good, but not if it's in brackets
+            if 'terminal' in name and 'bus' not in name and '(' not in name:
+                base_score += 15
             
-            return length_score + bonuses + penalties
+            # Prefer moderate lengths (not too short, not too long)
+            length = len(stop_name)
+            if 10 <= length <= 25:  # Sweet spot
+                base_score += 10
+            elif length < 5:  # Too short like "UW"
+                base_score -= 30
+            elif length > 40:  # Too long
+                base_score -= 20
+            
+            return base_score
         
         best_name = max(group, key=lambda s: score_name(s['stop_name']))['stop_name']
         

@@ -1,7 +1,7 @@
 [
   {
-    "station_id": "stn-frederick-(frederick-king)",
-    "station_name": "Frederick Station (Frederick / King)",
+    "station_id": "stn-frederick",
+    "station_name": "Frederick Station",
     "station_lat": 43.449672199999995,
     "station_lon": -80.4873156,
     "stops": [
@@ -201,8 +201,8 @@
     ]
   },
   {
-    "station_id": "stn-frederick-lancaster",
-    "station_name": "Frederick / Lancaster",
+    "station_id": "stn-frederick-otto",
+    "station_name": "Frederick / Otto",
     "station_lat": 43.452374999999996,
     "station_lon": -80.48319000000001,
     "stops": [
@@ -282,8 +282,8 @@
     ]
   },
   {
-    "station_id": "stn-frederick-filbert",
-    "station_name": "Frederick / Filbert",
+    "station_id": "stn-frederick-merner",
+    "station_name": "Frederick / Merner",
     "station_lat": 43.456375,
     "station_lon": -80.4767635,
     "stops": [
@@ -889,8 +889,8 @@
     ]
   },
   {
-    "station_id": "stn-oldfield-jadestone",
-    "station_name": "Oldfield / Jadestone",
+    "station_id": "stn-oldfield-casey",
+    "station_name": "Oldfield / Casey",
     "station_lat": 43.452702,
     "station_lon": -80.4307545,
     "stops": [
@@ -1119,8 +1119,8 @@
     ]
   },
   {
-    "station_id": "stn-block-line-fallowfield",
-    "station_name": "Block Line / Fallowfield",
+    "station_id": "stn-block-line-hanover",
+    "station_name": "Block Line / Hanover",
     "station_lat": 43.418884500000004,
     "station_lon": -80.4667375,
     "stops": [
@@ -1255,8 +1255,8 @@
     ]
   },
   {
-    "station_id": "stn-fairway-fairway-cres.",
-    "station_name": "Fairway / Fairway Cres.",
+    "station_id": "stn-fairway-idle-creek",
+    "station_name": "Fairway / Idle Creek",
     "station_lat": 43.4414455,
     "station_lon": -80.417959,
     "stops": [
@@ -1417,8 +1417,8 @@
     ]
   },
   {
-    "station_id": "stn-fairway-highway-8",
-    "station_name": "Fairway / Highway 8",
+    "station_id": "stn-fairway-wabanaki",
+    "station_name": "Fairway / Wabanaki",
     "station_lat": 43.4236725,
     "station_lon": -80.4353945,
     "stops": [
@@ -1754,8 +1754,8 @@
     ]
   },
   {
-    "station_id": "stn-holborn-stanley-park-mall",
-    "station_name": "Holborn / Stanley Park Mall",
+    "station_id": "stn-river-stanley-park-mall",
+    "station_name": "River / Stanley Park Mall",
     "station_lat": 43.4491622,
     "station_lon": -80.44361160000001,
     "stops": [
@@ -2049,8 +2049,8 @@
     ]
   },
   {
-    "station_id": "stn-weber-bristol",
-    "station_name": "Weber / Bristol",
+    "station_id": "stn-weber-union",
+    "station_name": "Weber / Union",
     "station_lat": 43.465785000000004,
     "station_lon": -80.50612933333333,
     "stops": [
@@ -2410,8 +2410,8 @@
     ]
   },
   {
-    "station_id": "stn-columbia-bennington",
-    "station_name": "Columbia / Bennington",
+    "station_id": "stn-columbia-chancery",
+    "station_name": "Columbia / Chancery",
     "station_lat": 43.4650975,
     "station_lon": -80.573402,
     "stops": [
@@ -2656,8 +2656,8 @@
     ]
   },
   {
-    "station_id": "stn-laurelwood-holly-view",
-    "station_name": "Laurelwood / Holly View",
+    "station_id": "stn-laurelwood-brookmill",
+    "station_name": "Laurelwood / Brookmill",
     "station_lat": 43.47219933333333,
     "station_lon": -80.585084,
     "stops": [
@@ -2928,8 +2928,8 @@
     ]
   },
   {
-    "station_id": "stn-chesapeake-chesapeake-cres.",
-    "station_name": "Chesapeake / Chesapeake Cres.",
+    "station_id": "stn-chesapeake-seawind",
+    "station_name": "Chesapeake / Seawind",
     "station_lat": 43.510839000000004,
     "station_lon": -80.5138535,
     "stops": [
@@ -3059,8 +3059,8 @@
     ]
   },
   {
-    "station_id": "stn-northfield-conestogo",
-    "station_name": "Northfield / Conestogo",
+    "station_id": "stn-northfield-colby",
+    "station_name": "Northfield / Colby",
     "station_lat": 43.5002935,
     "station_lon": -80.537216,
     "stops": [
@@ -3802,8 +3802,8 @@
     ]
   },
   {
-    "station_id": "stn-hazel-blythwood",
-    "station_name": "Hazel / Blythwood",
+    "station_id": "stn-hazel-albert",
+    "station_name": "Hazel / Albert",
     "station_lat": 43.485717666666666,
     "station_lon": -80.53860866666668,
     "stops": [
@@ -3993,8 +3993,8 @@
     ]
   },
   {
-    "station_id": "stn-university-ave.-wilfrid-laurier-university",
-    "station_name": "University Ave. / Wilfrid Laurier University",
+    "station_id": "stn-university-ave.-king",
+    "station_name": "University Ave. / King",
     "station_lat": 43.47564285714285,
     "station_lon": -80.52612285714288,
     "stops": [
@@ -4856,8 +4856,8 @@
     ]
   },
   {
-    "station_id": "stn-northland-bathurst",
-    "station_name": "Northland / Bathurst",
+    "station_id": "stn-northland-rupert",
+    "station_name": "Northland / Rupert",
     "station_lat": 43.506241,
     "station_lon": -80.53503950000001,
     "stops": [
@@ -4932,8 +4932,8 @@
     ]
   },
   {
-    "station_id": "stn-blair-clearview",
-    "station_name": "Blair / Clearview",
+    "station_id": "stn-blair-bismark",
+    "station_name": "Blair / Bismark",
     "station_lat": 43.37185,
     "station_lon": -80.33313075000001,
     "stops": [
@@ -5086,8 +5086,8 @@
     ]
   },
   {
-    "station_id": "stn-melran-mccormick",
-    "station_name": "Melran / Mccormick",
+    "station_id": "stn-melran-river",
+    "station_name": "Melran / River",
     "station_lat": 43.439186500000005,
     "station_lon": -80.299916,
     "stops": [
@@ -5141,8 +5141,8 @@
     ]
   },
   {
-    "station_id": "stn-mcmeeken-mccormick",
-    "station_name": "Mcmeeken / Mccormick",
+    "station_id": "stn-mcmeeken-werstine",
+    "station_name": "Mcmeeken / Werstine",
     "station_lat": 43.437531500000006,
     "station_lon": -80.29386149999999,
     "stops": [
@@ -5175,8 +5175,8 @@
     ]
   },
   {
-    "station_id": "stn-kerwood-housler",
-    "station_name": "Kerwood / Housler",
+    "station_id": "stn-kerwood-gees",
+    "station_name": "Kerwood / Gees",
     "station_lat": 43.431767,
     "station_lon": -80.293527,
     "stops": [
@@ -5667,8 +5667,8 @@
     ]
   },
   {
-    "station_id": "stn-winston-handorf",
-    "station_name": "Winston / Handorf",
+    "station_id": "stn-winston-darren",
+    "station_name": "Winston / Darren",
     "station_lat": 43.421276,
     "station_lon": -80.2977935,
     "stops": [
@@ -6240,8 +6240,8 @@
     ]
   },
   {
-    "station_id": "stn-franklin-shamrock",
-    "station_name": "Franklin / Shamrock",
+    "station_id": "stn-franklin-adam",
+    "station_name": "Franklin / Adam",
     "station_lat": 43.429503,
     "station_lon": -80.3092355,
     "stops": [
@@ -6478,8 +6478,8 @@
     ]
   },
   {
-    "station_id": "stn-holiday-inn-dr.-heritage-college",
-    "station_name": "Holiday Inn Dr. / Heritage College",
+    "station_id": "stn-holiday-inn-dr.-tri-city-centre",
+    "station_name": "Holiday Inn Dr. / Tri-City Centre",
     "station_lat": 43.417446999999996,
     "station_lon": -80.324291,
     "stops": [
@@ -6973,8 +6973,8 @@
     ]
   },
   {
-    "station_id": "stn-pinebush-(west-side)",
-    "station_name": "Pinebush Station (West Side)",
+    "station_id": "stn-pinebush",
+    "station_name": "Pinebush Station",
     "station_lat": 43.40779033333334,
     "station_lon": -80.32784116666666,
     "stops": [
@@ -7637,8 +7637,8 @@
     ]
   },
   {
-    "station_id": "stn-conestoga-college-doon-campus-recreation-centre",
-    "station_name": "Conestoga College Doon Campus - Recreation Centre",
+    "station_id": "stn-conestoga-college-doon-campus-door-6",
+    "station_name": "Conestoga College Doon Campus - Door 6",
     "station_lat": 43.389396000000005,
     "station_lon": -80.4073685,
     "stops": [
@@ -8027,8 +8027,8 @@
     ]
   },
   {
-    "station_id": "stn-franklin-saginaw",
-    "station_name": "Franklin / Saginaw",
+    "station_id": "stn-franklin-elgin",
+    "station_name": "Franklin / Elgin",
     "station_lat": 43.391581333333335,
     "station_lon": -80.302125,
     "stops": [
@@ -8383,8 +8383,8 @@
     ]
   },
   {
-    "station_id": "stn-hespeler-rd.-isherwood",
-    "station_name": "Hespeler Rd. / Isherwood",
+    "station_id": "stn-hespeler-rd.-munch",
+    "station_name": "Hespeler Rd. / Munch",
     "station_lat": 43.383215500000006,
     "station_lon": -80.320356,
     "stops": [
@@ -8694,8 +8694,8 @@
     ]
   },
   {
-    "station_id": "stn-dunbar-industrial",
-    "station_name": "Dunbar / Industrial",
+    "station_id": "stn-dunbar-daleview",
+    "station_name": "Dunbar / Daleview",
     "station_lat": 43.3893255,
     "station_lon": -80.3288135,
     "stops": [
@@ -8796,8 +8796,8 @@
     ]
   },
   {
-    "station_id": "stn-concession-grand-valley",
-    "station_name": "Concession / Grand Valley",
+    "station_id": "stn-dunbar-grand-valley",
+    "station_name": "Dunbar / Grand Valley",
     "station_lat": 43.38867525,
     "station_lon": -80.34163975,
     "stops": [
@@ -8898,8 +8898,8 @@
     ]
   },
   {
-    "station_id": "stn-bishop-pineview",
-    "station_name": "Bishop / Pineview",
+    "station_id": "stn-bishop-duke",
+    "station_name": "Bishop / Duke",
     "station_lat": 43.390598749999995,
     "station_lon": -80.3461325,
     "stops": [
@@ -10109,8 +10109,8 @@
     ]
   },
   {
-    "station_id": "stn-hespeler-rd.-wilmot",
-    "station_name": "Hespeler Rd. / Wilmot",
+    "station_id": "stn-160-hespeler-rd.",
+    "station_name": "160 Hespeler Rd.",
     "station_lat": 43.380789666666665,
     "station_lon": -80.31975200000001,
     "stops": [
@@ -10245,8 +10245,8 @@
     ]
   },
   {
-    "station_id": "stn-ainslie-park-hill",
-    "station_name": "Ainslie / Park Hill",
+    "station_id": "stn-ainslie-simcoe",
+    "station_name": "Ainslie / Simcoe",
     "station_lat": 43.364690333333336,
     "station_lon": -80.31434933333333,
     "stops": [
@@ -10313,8 +10313,8 @@
     ]
   },
   {
-    "station_id": "stn-wellington-dickson",
-    "station_name": "Wellington / Dickson",
+    "station_id": "stn-ainslie-dickson",
+    "station_name": "Ainslie / Dickson",
     "station_lat": 43.360098333333326,
     "station_lon": -80.31288266666667,
     "stops": [
@@ -11382,8 +11382,8 @@
     ]
   },
   {
-    "station_id": "stn-ainslie-veterans",
-    "station_name": "Ainslie / Veterans",
+    "station_id": "stn-ainslie-walnut",
+    "station_name": "Ainslie / Walnut",
     "station_lat": 43.3547115,
     "station_lon": -80.313784,
     "stops": [
@@ -11568,8 +11568,8 @@
     ]
   },
   {
-    "station_id": "stn-sportsworld-dr.-hwy.-8-park-&-ride",
-    "station_name": "Sportsworld Dr. @ Hwy. 8 Park & Ride",
+    "station_id": "stn-sportsworld",
+    "station_name": "Sportsworld Station",
     "station_lat": 43.4096943,
     "station_lon": -80.3928589375,
     "stops": [
@@ -11722,8 +11722,8 @@
     ]
   },
   {
-    "station_id": "stn-preston-pkwy.-shantz-hill",
-    "station_name": "Preston Pkwy. / Shantz Hill",
+    "station_id": "stn-preston-pkwy.-linden",
+    "station_name": "Preston Pkwy. / Linden",
     "station_lat": 43.398937000000004,
     "station_lon": -80.37694400000001,
     "stops": [
@@ -11824,8 +11824,8 @@
     ]
   },
   {
-    "station_id": "stn-preston-pkwy.-fountain",
-    "station_name": "Preston Pkwy. / Fountain",
+    "station_id": "stn-preston-pkwy.-woods",
+    "station_name": "Preston Pkwy. / Woods",
     "station_lat": 43.39168033333333,
     "station_lon": -80.37679833333333,
     "stops": [
@@ -13316,8 +13316,8 @@
     ]
   },
   {
-    "station_id": "stn-victoria-path-to-rothsay",
-    "station_name": "Victoria / Path To Rothsay",
+    "station_id": "stn-victoria-natchez",
+    "station_name": "Victoria / Natchez",
     "station_lat": 43.46894133333333,
     "station_lon": -80.44939299999999,
     "stops": [
@@ -13410,8 +13410,8 @@
     ]
   },
   {
-    "station_id": "stn-halifax-confederation",
-    "station_name": "Halifax / Confederation",
+    "station_id": "stn-halifax-natchez",
+    "station_name": "Halifax / Natchez",
     "station_lat": 43.462368,
     "station_lon": -80.445568,
     "stops": [
@@ -13773,8 +13773,8 @@
     ]
   },
   {
-    "station_id": "stn-wilson-odrich",
-    "station_name": "Wilson / Goodrich",
+    "station_id": "stn-wilson-webster",
+    "station_name": "Wilson / Webster",
     "station_lat": 43.4158235,
     "station_lon": -80.442335,
     "stops": [
@@ -13875,8 +13875,8 @@
     ]
   },
   {
-    "station_id": "stn-wabanaki-wilson",
-    "station_name": "Wabanaki / Wilson",
+    "station_id": "stn-wabanaki-kevco",
+    "station_name": "Wabanaki / Kevco",
     "station_lat": 43.409238,
     "station_lon": -80.441765,
     "stops": [
@@ -14278,8 +14278,8 @@
     ]
   },
   {
-    "station_id": "stn-old-carriage-pioneer-park-plaza",
-    "station_name": "Old Carriage / Pioneer Park Plaza",
+    "station_id": "stn-pioneer-pioneer-park-plaza",
+    "station_name": "Pioneer / Pioneer Park Plaza",
     "station_lat": 43.3940395,
     "station_lon": -80.433647,
     "stops": [
@@ -14529,8 +14529,8 @@
     ]
   },
   {
-    "station_id": "stn-pinnacle-old-mill",
-    "station_name": "Pinnacle / Old Mill",
+    "station_id": "stn-pinnacle-amherst",
+    "station_name": "Pinnacle / Amherst",
     "station_lat": 43.392762,
     "station_lon": -80.41422700000001,
     "stops": [
@@ -14644,8 +14644,8 @@
     ]
   },
   {
-    "station_id": "stn-doon-valley-conestoga-college-blvd.",
-    "station_name": "Doon Valley / Conestoga College Blvd.",
+    "station_id": "stn-doon-valley-orchard-mill",
+    "station_name": "Doon Valley / Orchard Mill",
     "station_lat": 43.391016,
     "station_lon": -80.41000249999999,
     "stops": [
@@ -14712,8 +14712,8 @@
     ]
   },
   {
-    "station_id": "stn-conestoga-college-doon-campus-door-3",
-    "station_name": "Conestoga College Doon Campus - Door 3",
+    "station_id": "stn-conestoga-college-doon",
+    "station_name": "Conestoga College Doon",
     "station_lat": 43.3903385,
     "station_lon": -80.403539,
     "stops": [
@@ -14827,8 +14827,8 @@
     ]
   },
   {
-    "station_id": "stn-old-country-century-hill",
-    "station_name": "Old Country / Century Hill",
+    "station_id": "stn-old-country-strasburg",
+    "station_name": "Old Country / Strasburg",
     "station_lat": 43.411440999999996,
     "station_lon": -80.475285,
     "stops": [
@@ -15301,8 +15301,8 @@
     ]
   },
   {
-    "station_id": "stn-strasburg-huron-heights-secondary-school",
-    "station_name": "Strasburg / Huron Heights Secondary School",
+    "station_id": "stn-strasburg-huron",
+    "station_name": "Strasburg / Huron",
     "station_lat": 43.39395175,
     "station_lon": -80.4674495,
     "stops": [
@@ -15900,8 +15900,8 @@
     ]
   },
   {
-    "station_id": "stn-courtland-manitou",
-    "station_name": "Courtland / Manitou",
+    "station_id": "stn-fairway-manitou",
+    "station_name": "Fairway / Manitou",
     "station_lat": 43.419501000000004,
     "station_lon": -80.45247633333334,
     "stops": [
@@ -16193,8 +16193,8 @@
     ]
   },
   {
-    "station_id": "stn-weber-arlington",
-    "station_name": "Weber / Arlington",
+    "station_id": "stn-weber-fergus",
+    "station_name": "Weber / Fergus",
     "station_lat": 43.433562,
     "station_lon": -80.443613,
     "stops": [
@@ -16334,8 +16334,8 @@
     ]
   },
   {
-    "station_id": "stn-weber-wilfred",
-    "station_name": "Weber / Wilfred",
+    "station_id": "stn-weber-euler",
+    "station_name": "Weber / Euler",
     "station_lat": 43.43595,
     "station_lon": -80.4520225,
     "stops": [
@@ -16996,8 +16996,8 @@
     ]
   },
   {
-    "station_id": "stn-grand-river-hospital-(lrt)",
-    "station_name": "Grand River Hospital Station (lrt)",
+    "station_id": "stn-grand-river-hospital",
+    "station_name": "Grand River Hospital Station",
     "station_lat": 43.4570495,
     "station_lon": -80.5111265,
     "stops": [
@@ -17213,8 +17213,8 @@
     ]
   },
   {
-    "station_id": "stn-bridgeport-rd.-albert",
-    "station_name": "Bridgeport Rd. / Albert",
+    "station_id": "stn-king-bridgeport-rd.",
+    "station_name": "King / Bridgeport Rd.",
     "station_lat": 43.46757333333333,
     "station_lon": -80.52361866666666,
     "stops": [
@@ -17260,8 +17260,8 @@
     ]
   },
   {
-    "station_id": "stn-king-central",
-    "station_name": "King / Central",
+    "station_id": "stn-king-elgin",
+    "station_name": "King / Elgin",
     "station_lat": 43.4699605,
     "station_lon": -80.5236635,
     "stops": [
@@ -17710,8 +17710,8 @@
     ]
   },
   {
-    "station_id": "stn-eastbridge-mayflower",
-    "station_name": "Eastbridge / Mayflower",
+    "station_id": "stn-eastbridge-cabot",
+    "station_name": "Eastbridge / Cabot",
     "station_lat": 43.50453,
     "station_lon": -80.505638,
     "stops": [
@@ -17744,8 +17744,8 @@
     ]
   },
   {
-    "station_id": "stn-eastbridge-windjammer",
-    "station_name": "Eastbridge / Windjammer",
+    "station_id": "stn-eastbridge-bonavista",
+    "station_name": "Eastbridge / Bonavista",
     "station_lat": 43.5058885,
     "station_lon": -80.502673,
     "stops": [
@@ -17922,8 +17922,8 @@
     ]
   },
   {
-    "station_id": "stn-victoria-st.-n.-frederick-st.",
-    "station_name": "Victoria St. N. @ Frederick St.",
+    "station_id": "stn-victoria-frederick",
+    "station_name": "Victoria / Frederick",
     "station_lat": 43.46626991866353,
     "station_lon": -80.45768911112279,
     "stops": [
@@ -18016,8 +18016,8 @@
     ]
   },
   {
-    "station_id": "stn-grand-fraser",
-    "station_name": "Grand / Fraser",
+    "station_id": "stn-grand-cedar",
+    "station_name": "Grand / Cedar",
     "station_lat": 43.3534365,
     "station_lon": -80.31742224999999,
     "stops": [
@@ -18144,8 +18144,8 @@
     ]
   },
   {
-    "station_id": "stn-weber-ottawa",
-    "station_name": "Weber / Ottawa",
+    "station_id": "stn-weber-east",
+    "station_name": "Weber / East",
     "station_lat": 43.4444015,
     "station_lon": -80.46778,
     "stops": [
@@ -18369,8 +18369,8 @@
     ]
   },
   {
-    "station_id": "stn-lancaster-bridgeport-rd.",
-    "station_name": "Lancaster / Bridgeport Rd.",
+    "station_id": "stn-lancaster-hamel",
+    "station_name": "Lancaster / Hamel",
     "station_lat": 43.47592233333334,
     "station_lon": -80.48437200000001,
     "stops": [
@@ -18416,8 +18416,8 @@
     ]
   },
   {
-    "station_id": "stn-bridgeport-rd.-leander",
-    "station_name": "Bridgeport Rd. / Leander",
+    "station_id": "stn-bridgeport-rd.-mackie",
+    "station_name": "Bridgeport Rd. / Mackie",
     "station_lat": 43.47526533333333,
     "station_lon": -80.48815866666666,
     "stops": [
@@ -18581,8 +18581,8 @@
     ]
   },
   {
-    "station_id": "stn-bridgeport-rd.-devitt",
-    "station_name": "Bridgeport Rd. / Devitt",
+    "station_id": "stn-bridgeport-rd.-weber",
+    "station_name": "Bridgeport Rd. / Weber",
     "station_lat": 43.4695075,
     "station_lon": -80.51445,
     "stops": [
@@ -18615,8 +18615,8 @@
     ]
   },
   {
-    "station_id": "stn-weber-lincoln",
-    "station_name": "Weber / Lincoln",
+    "station_id": "stn-weber-royal",
+    "station_name": "Weber / Royal",
     "station_lat": 43.470481,
     "station_lon": -80.51295499999999,
     "stops": [
@@ -18908,8 +18908,8 @@
     ]
   },
   {
-    "station_id": "stn-erb-westmount",
-    "station_name": "Erb / Westmount",
+    "station_id": "stn-erb-dietz",
+    "station_name": "Erb / Dietz",
     "station_lat": 43.4598355,
     "station_lon": -80.535721,
     "stops": [
@@ -18997,8 +18997,8 @@
     ]
   },
   {
-    "station_id": "stn-erb-mcdougall",
-    "station_name": "Erb / Mcdougall",
+    "station_id": "stn-erb-mulberry",
+    "station_name": "Erb / Mulberry",
     "station_lat": 43.4565385,
     "station_lon": -80.5421185,
     "stops": [
@@ -19099,8 +19099,8 @@
     ]
   },
   {
-    "station_id": "stn-erb-fischer-hallman",
-    "station_name": "Erb / Fischer-Hallman",
+    "station_id": "stn-erb-churchill",
+    "station_name": "Erb / Churchill",
     "station_lat": 43.4529935,
     "station_lon": -80.5519895,
     "stops": [
@@ -19359,7 +19359,7 @@
   },
   {
     "station_id": "stn-keats-way-beechwood",
-    "station_name": "Keats Way /  Beechwood",
+    "station_name": "Keats Way / Beechwood",
     "station_lat": 43.4565965,
     "station_lon": -80.57109750000001,
     "stops": [
@@ -19528,8 +19528,8 @@
     ]
   },
   {
-    "station_id": "stn-highland-queens",
-    "station_name": "Highland / Queens",
+    "station_id": "stn-highland-queen",
+    "station_name": "Highland / Queen",
     "station_lat": 43.4409565,
     "station_lon": -80.498041,
     "stops": [
@@ -20235,8 +20235,8 @@
     ]
   },
   {
-    "station_id": "stn-fairway-upper-mercer",
-    "station_name": "Fairway / Upper Mercer",
+    "station_id": "stn-fairway-pebblecreek",
+    "station_name": "Fairway / Pebblecreek",
     "station_lat": 43.446697,
     "station_lon": -80.4088225,
     "stops": [
@@ -20434,8 +20434,8 @@
     ]
   },
   {
-    "station_id": "stn-thomas-slee-terrington",
-    "station_name": "Thomas Slee / Terrington",
+    "station_id": "stn-thomas-slee-frontier",
+    "station_name": "Thomas Slee / Frontier",
     "station_lat": 43.3752105,
     "station_lon": -80.427243,
     "stops": [
@@ -20536,8 +20536,8 @@
     ]
   },
   {
-    "station_id": "stn-westmount-williamsburg",
-    "station_name": "Westmount / Williamsburg",
+    "station_id": "stn-westmount-block-line",
+    "station_name": "Westmount / Block Line",
     "station_lat": 43.412258,
     "station_lon": -80.4999715,
     "stops": [
@@ -20706,8 +20706,8 @@
     ]
   },
   {
-    "station_id": "stn-max-becker-fischer-hallman",
-    "station_name": "Max Becker / Fischer-Hallman",
+    "station_id": "stn-westmount-fischer-hallman",
+    "station_name": "Westmount / Fischer-Hallman",
     "station_lat": 43.406043333333336,
     "station_lon": -80.49978333333333,
     "stops": [
@@ -21808,8 +21808,8 @@
     ]
   },
   {
-    "station_id": "stn-elgin-linnwood",
-    "station_name": "Elgin / Linnwood",
+    "station_id": "stn-elgin-dundas",
+    "station_name": "Elgin / Dundas",
     "station_lat": 43.361436,
     "station_lon": -80.298367,
     "stops": [
@@ -21994,8 +21994,8 @@
     ]
   },
   {
-    "station_id": "stn-champlain-christopher",
-    "station_name": "Champlain / Christopher",
+    "station_id": "stn-champlain-brierdale",
+    "station_name": "Champlain / Brierdale",
     "station_lat": 43.346782999999995,
     "station_lon": -80.2976895,
     "stops": [
@@ -22274,8 +22274,8 @@
     ]
   },
   {
-    "station_id": "stn-blair-park-hill",
-    "station_name": "Blair / Park Hill",
+    "station_id": "stn-blair-james",
+    "station_name": "Blair / James",
     "station_lat": 43.3632995,
     "station_lon": -80.3222585,
     "stops": [
@@ -22308,8 +22308,8 @@
     ]
   },
   {
-    "station_id": "stn-churchill-berkley",
-    "station_name": "Churchill / Berkley",
+    "station_id": "stn-churchill-forest",
+    "station_name": "Churchill / Forest",
     "station_lat": 43.35476575,
     "station_lon": -80.3261295,
     "stops": [
@@ -22583,8 +22583,8 @@
     ]
   },
   {
-    "station_id": "stn-lisbon-pines-myers-(temporary-stop)",
-    "station_name": "Lisbon Pines / Myers (Temporary Stop)",
+    "station_id": "stn-lisbon-pines-myers",
+    "station_name": "Lisbon Pines / Myers",
     "station_lat": 43.345690250000004,
     "station_lon": -80.2804685,
     "stops": [
@@ -22677,8 +22677,8 @@
     ]
   },
   {
-    "station_id": "stn-myers-greenbrier",
-    "station_name": "Myers / Greenbrier",
+    "station_id": "stn-myers-elgin",
+    "station_name": "Myers / Elgin",
     "station_lat": 43.3424635,
     "station_lon": -80.292497,
     "stops": [
@@ -22774,8 +22774,8 @@
     ]
   },
   {
-    "station_id": "stn-grand-ridge-st-andrews",
-    "station_name": "Grand Ridge / St Andrews",
+    "station_id": "stn-grand-ridge-mark",
+    "station_name": "Grand Ridge / Mark",
     "station_lat": 43.34136966666667,
     "station_lon": -80.33542133333334,
     "stops": [
@@ -22855,8 +22855,8 @@
     ]
   },
   {
-    "station_id": "stn-grand-ridge-inverness",
-    "station_name": "Grand Ridge / Inverness",
+    "station_id": "stn-grand-ridge-oak-hill",
+    "station_name": "Grand Ridge / Oak Hill",
     "station_lat": 43.3366195,
     "station_lon": -80.3302165,
     "stops": [
@@ -22973,8 +22973,8 @@
     ]
   },
   {
-    "station_id": "stn-myers-ridgehill",
-    "station_name": "Myers / Ridgehill",
+    "station_id": "stn-myers-woodland",
+    "station_name": "Myers / Woodland",
     "station_lat": 43.3400645,
     "station_lon": -80.307009,
     "stops": [
@@ -23651,8 +23651,8 @@
     ]
   },
   {
-    "station_id": "stn-weber-st.-e.-queen-st.-n.",
-    "station_name": "Weber St. E. @ Queen St. N.",
+    "station_id": "stn-weber-queen",
+    "station_name": "Weber / Queen",
     "station_lat": 43.45187886666667,
     "station_lon": -80.4872491,
     "stops": [
@@ -24216,8 +24216,8 @@
     ]
   },
   {
-    "station_id": "stn-dundas-chalmers",
-    "station_name": "Dundas / Chalmers",
+    "station_id": "stn-dundas-re",
+    "station_name": "Dundas / Gore",
     "station_lat": 43.3630675,
     "station_lon": -80.30139750000001,
     "stops": [
@@ -24980,8 +24980,8 @@
     ]
   },
   {
-    "station_id": "stn-lancaster-guelph",
-    "station_name": "Lancaster / Guelph",
+    "station_id": "stn-lancaster-hill",
+    "station_name": "Lancaster / Hill",
     "station_lat": 43.46484575,
     "station_lon": -80.48418775,
     "stops": [
@@ -25108,8 +25108,8 @@
     ]
   },
   {
-    "station_id": "stn-bridge-bloomingdale",
-    "station_name": "Bridge / Bloomingdale",
+    "station_id": "stn-bridge-tyson",
+    "station_name": "Bridge / Tyson",
     "station_lat": 43.48093166666666,
     "station_lon": -80.47945133333333,
     "stops": [
@@ -25365,8 +25365,8 @@
     ]
   },
   {
-    "station_id": "stn-bloomingdale-horning",
-    "station_name": "Bloomingdale / Horning",
+    "station_id": "stn-bloomingdale-prince",
+    "station_name": "Bloomingdale / Prince",
     "station_lat": 43.481482,
     "station_lon": -80.4764045,
     "stops": [
@@ -25467,8 +25467,8 @@
     ]
   },
   {
-    "station_id": "stn-wellington-weber-(temporary-stop)",
-    "station_name": "Wellington / Weber (Temporary Stop)",
+    "station_id": "stn-wellington-weber",
+    "station_name": "Wellington / Weber",
     "station_lat": 43.4571295,
     "station_lon": -80.4948355,
     "stops": [
@@ -26236,8 +26236,8 @@
     ]
   },
   {
-    "station_id": "stn-hollinger-path-to-daniel",
-    "station_name": "Hollinger / Path To Daniel",
+    "station_id": "stn-hollinger-howard",
+    "station_name": "Hollinger / Howard",
     "station_lat": 43.479887000000005,
     "station_lon": -80.462387,
     "stops": [
@@ -26804,8 +26804,8 @@
     ]
   },
   {
-    "station_id": "stn-franklin-penrose",
-    "station_name": "Franklin / Penrose",
+    "station_id": "stn-franklin-dreger",
+    "station_name": "Franklin / Dreger",
     "station_lat": 43.446419000000006,
     "station_lon": -80.449512,
     "stops": [
@@ -27492,8 +27492,8 @@
     ]
   },
   {
-    "station_id": "stn-westmount-alexandra",
-    "station_name": "Westmount / Alexandra",
+    "station_id": "stn-westmount-dietz",
+    "station_name": "Westmount / Dietz",
     "station_lat": 43.456883000000005,
     "station_lon": -80.53158450000001,
     "stops": [
@@ -27756,8 +27756,8 @@
     ]
   },
   {
-    "station_id": "stn-belmont-victoria",
-    "station_name": "Belmont / Victoria",
+    "station_id": "stn-belmont-karn",
+    "station_name": "Belmont / Karn",
     "station_lat": 43.444571333333336,
     "station_lon": -80.512611,
     "stops": [
@@ -28080,8 +28080,8 @@
     ]
   },
   {
-    "station_id": "stn-courtland-stirling",
-    "station_name": "Courtland / Stirling",
+    "station_id": "stn-courtland-madison",
+    "station_name": "Courtland / Madison",
     "station_lat": 43.441918,
     "station_lon": -80.48552575,
     "stops": [
@@ -28862,8 +28862,8 @@
     ]
   },
   {
-    "station_id": "stn-davenport-conestoga-mall",
-    "station_name": "Davenport / Conestoga Mall",
+    "station_id": "stn-davenport-kingscourt",
+    "station_name": "Davenport / Kingscourt",
     "station_lat": 43.497176333333336,
     "station_lon": -80.52167466666667,
     "stops": [
@@ -28998,8 +28998,8 @@
     ]
   },
   {
-    "station_id": "stn-greenbrook-forest-hill-centre",
-    "station_name": "Greenbrook / Forest Hill Centre",
+    "station_id": "stn-greenbrook-stonybrook",
+    "station_name": "Greenbrook / Stonybrook",
     "station_lat": 43.424845749999996,
     "station_lon": -80.51207825,
     "stops": [
@@ -29610,8 +29610,8 @@
     ]
   },
   {
-    "station_id": "stn-stirling-kaufman-park",
-    "station_name": "Stirling / Kaufman Park",
+    "station_id": "stn-stirling-courtland",
+    "station_name": "Stirling / Courtland",
     "station_lat": 43.4418405,
     "station_lon": -80.48299399999999,
     "stops": [
@@ -29699,8 +29699,8 @@
     ]
   },
   {
-    "station_id": "stn-strasburg-kingswood",
-    "station_name": "Strasburg / Kingswood",
+    "station_id": "stn-strasburg-barwood",
+    "station_name": "Strasburg / Barwood",
     "station_lat": 43.4209515,
     "station_lon": -80.4855365,
     "stops": [
@@ -29733,8 +29733,8 @@
     ]
   },
   {
-    "station_id": "stn-kingswood-strasburg",
-    "station_name": "Kingswood / Strasburg",
+    "station_id": "stn-kingswood-lucerne",
+    "station_name": "Kingswood / Lucerne",
     "station_lat": 43.421354,
     "station_lon": -80.485008,
     "stops": [
@@ -30000,8 +30000,8 @@
     ]
   },
   {
-    "station_id": "stn-david-bergey-peach-blossom",
-    "station_name": "David Bergey / Peach Blossom",
+    "station_id": "stn-david-bergey-activa",
+    "station_name": "David Bergey / Activa",
     "station_lat": 43.406208750000005,
     "station_lon": -80.518643,
     "stops": [
@@ -30128,8 +30128,8 @@
     ]
   },
   {
-    "station_id": "stn-wilderness-mountain-mint",
-    "station_name": "Wilderness / Mountain Mint",
+    "station_id": "stn-wilderness-pine-martin",
+    "station_name": "Wilderness / Pine Martin",
     "station_lat": 43.4106795,
     "station_lon": -80.5138955,
     "stops": [
@@ -30625,8 +30625,8 @@
     ]
   },
   {
-    "station_id": "stn-greenbrook-fischer-hallman",
-    "station_name": "Greenbrook / Fischer-Hallman",
+    "station_id": "stn-greenbrook-ruskview",
+    "station_name": "Greenbrook / Ruskview",
     "station_lat": 43.420973000000004,
     "station_lon": -80.51522750000001,
     "stops": [
@@ -30659,8 +30659,8 @@
     ]
   },
   {
-    "station_id": "stn-victoria-michael",
-    "station_name": "Victoria / Michael",
+    "station_id": "stn-victoria-joseph",
+    "station_name": "Victoria / Joseph",
     "station_lat": 43.45025033333334,
     "station_lon": -80.500471,
     "stops": [
@@ -30753,8 +30753,8 @@
     ]
   },
   {
-    "station_id": "stn-victoria-iron-horse-trail",
-    "station_name": "Victoria / Iron Horse Trail",
+    "station_id": "stn-victoria-patricia",
+    "station_name": "Victoria / Patricia",
     "station_lat": 43.44466175,
     "station_lon": -80.50753399999999,
     "stops": [
@@ -31051,8 +31051,8 @@
     ]
   },
   {
-    "station_id": "stn-hazelglen-mooregate",
-    "station_name": "Hazelglen / Mooregate",
+    "station_id": "stn-hazelglen-victoria",
+    "station_name": "Hazelglen / Victoria",
     "station_lat": 43.4387225,
     "station_lon": -80.524261,
     "stops": [
@@ -31106,8 +31106,8 @@
     ]
   },
   {
-    "station_id": "stn-victoria-fischer-hallman",
-    "station_name": "Victoria / Fischer-Hallman",
+    "station_id": "stn-victoria-fenwick",
+    "station_name": "Victoria / Fenwick",
     "station_lat": 43.437043,
     "station_lon": -80.5276435,
     "stops": [
@@ -31195,8 +31195,8 @@
     ]
   },
   {
-    "station_id": "stn-victoria-oprington",
-    "station_name": "Victoria / Oprington",
+    "station_id": "stn-victoria-stoke",
+    "station_name": "Victoria / Stoke",
     "station_lat": 43.435122,
     "station_lon": -80.532848,
     "stops": [
@@ -31297,8 +31297,8 @@
     ]
   },
   {
-    "station_id": "stn-bingemans-centre-dr.-shirley",
-    "station_name": "Bingemans Centre Dr. / Shirley",
+    "station_id": "stn-540-bingemans-centre-dr.",
+    "station_name": "540 Bingemans Centre Dr.",
     "station_lat": 43.473477333333335,
     "station_lon": -80.44355666666667,
     "stops": [
@@ -31441,8 +31441,8 @@
     ]
   },
   {
-    "station_id": "stn-keats-way-candlewood",
-    "station_name": "Keats Way / Candlewood",
+    "station_id": "stn-keats-way-midwood",
+    "station_name": "Keats Way / Midwood",
     "station_lat": 43.458037000000004,
     "station_lon": -80.5545295,
     "stops": [
@@ -31721,8 +31721,8 @@
     ]
   },
   {
-    "station_id": "stn-westmount-highland",
-    "station_name": "Westmount / Highland",
+    "station_id": "stn-westmount-overlea",
+    "station_name": "Westmount / Overlea",
     "station_lat": 43.43561433333334,
     "station_lon": -80.51321366666667,
     "stops": [
@@ -31823,8 +31823,8 @@
     ]
   },
   {
-    "station_id": "stn-queens-westmount",
-    "station_name": "Queens / Westmount",
+    "station_id": "stn-queens-hahn",
+    "station_name": "Queens / Hahn",
     "station_lat": 43.43353833333333,
     "station_lon": -80.50993966666665,
     "stops": [
@@ -32595,8 +32595,8 @@
     ]
   },
   {
-    "station_id": "stn-university-ave.-resurrection-c.-s.-s.",
-    "station_name": "University Ave. / Resurrection C. S. S.",
+    "station_id": "stn-university-ave.-westvale",
+    "station_name": "University Ave. / Westvale",
     "station_lat": 43.441042499999995,
     "station_lon": -80.5480795,
     "stops": [
@@ -32731,8 +32731,8 @@
     ]
   },
   {
-    "station_id": "stn-queens-bonfair",
-    "station_name": "Queens / Bonfair",
+    "station_id": "stn-queens-eagen",
+    "station_name": "Queens / Eagen",
     "station_lat": 43.429589,
     "station_lon": -80.5202925,
     "stops": [
@@ -32901,8 +32901,8 @@
     ]
   },
   {
-    "station_id": "stn-mcgarry-forestwood",
-    "station_name": "Mcgarry / Forestwood",
+    "station_id": "stn-mcgarry-pinehurst",
+    "station_name": "Mcgarry / Pinehurst",
     "station_lat": 43.421614,
     "station_lon": -80.5224105,
     "stops": [
@@ -33100,8 +33100,8 @@
     ]
   },
   {
-    "station_id": "stn-driftwood-rolling-meadows",
-    "station_name": "Driftwood / Rolling Meadows",
+    "station_id": "stn-driftwood-highview",
+    "station_name": "Driftwood / Highview",
     "station_lat": 43.4170805,
     "station_lon": -80.5408715,
     "stops": [
@@ -33359,8 +33359,8 @@
     ]
   },
   {
-    "station_id": "stn-saginaw-glenvalley",
-    "station_name": "Saginaw / Glenvalley",
+    "station_id": "stn-saginaw-haddaway",
+    "station_name": "Saginaw / Haddaway",
     "station_lat": 43.3949645,
     "station_lon": -80.2751475,
     "stops": [
@@ -33456,8 +33456,8 @@
     ]
   },
   {
-    "station_id": "stn-wellington-spring-valley",
-    "station_name": "Wellington / Spring Valley",
+    "station_id": "stn-wellington-patrick",
+    "station_name": "Wellington / Patrick",
     "station_lat": 43.462377000000004,
     "station_lon": -80.48028400000001,
     "stops": [
@@ -34183,8 +34183,8 @@
     ]
   },
   {
-    "station_id": "stn-fischer-hallman-rockwood",
-    "station_name": "Fischer-Hallman / Rockwood",
+    "station_id": "stn-fischer-hallman-bleams",
+    "station_name": "Fischer-Hallman / Bleams",
     "station_lat": 43.40316525,
     "station_lon": -80.49709625000001,
     "stops": [
@@ -34531,8 +34531,8 @@
     ]
   },
   {
-    "station_id": "stn-victoria-bramblewood",
-    "station_name": "Victoria / Bramblewood",
+    "station_id": "stn-victoria-highgate",
+    "station_name": "Victoria / Highgate",
     "station_lat": 43.430195,
     "station_lon": -80.548553,
     "stops": [
@@ -34738,8 +34738,8 @@
     ]
   },
   {
-    "station_id": "stn-bridge-northfield",
-    "station_name": "Bridge / Northfield",
+    "station_id": "stn-bridge-frobisher",
+    "station_name": "Bridge / Frobisher",
     "station_lat": 43.511532,
     "station_lon": -80.5216795,
     "stops": [
@@ -34827,8 +34827,8 @@
     ]
   },
   {
-    "station_id": "stn-new-bedford-chesapeake",
-    "station_name": "New Bedford / Chesapeake",
+    "station_id": "stn-new-bedford-starboard",
+    "station_name": "New Bedford / Starboard",
     "station_lat": 43.51045533333333,
     "station_lon": -80.50480666666667,
     "stops": [
@@ -34950,8 +34950,8 @@
     ]
   },
   {
-    "station_id": "stn-parkside-cedarbrae",
-    "station_name": "Parkside / Cedarbrae",
+    "station_id": "stn-parkside-glenelm",
+    "station_name": "Parkside / Glenelm",
     "station_lat": 43.489076499999996,
     "station_lon": -80.5455735,
     "stops": [
@@ -35052,8 +35052,8 @@
     ]
   },
   {
-    "station_id": "stn-ludolph-west-oak",
-    "station_name": "Ludolph / West Oak",
+    "station_id": "stn-ludolph-huron",
+    "station_name": "Ludolph / Huron",
     "station_lat": 43.382513,
     "station_lon": -80.49446775,
     "stops": [
@@ -35256,8 +35256,8 @@
     ]
   },
   {
-    "station_id": "stn-university-ave.-countrystone",
-    "station_name": "University Ave. / Countrystone",
+    "station_id": "stn-university-ave.-baker",
+    "station_name": "University Ave. / Baker",
     "station_lat": 43.437559,
     "station_lon": -80.55856299999999,
     "stops": [
@@ -36133,8 +36133,8 @@
     ]
   },
   {
-    "station_id": "stn-lexington-dearborn-blvd.",
-    "station_name": "Lexington / Dearborn Blvd.",
+    "station_id": "stn-lexington-dearborn-blvd",
+    "station_name": "Lexington / Dearborn Blvd",
     "station_lat": 43.4901025,
     "station_lon": -80.516953,
     "stops": [
@@ -36528,8 +36528,8 @@
     ]
   },
   {
-    "station_id": "stn-farmers-market-rd.-market-trail",
-    "station_name": "Farmers Market Rd. / Market Trail",
+    "station_id": "stn-farmers-market-rd.-king",
+    "station_name": "Farmers Market Rd. / King",
     "station_lat": 43.510137,
     "station_lon": -80.5499415,
     "stops": [
@@ -36630,8 +36630,8 @@
     ]
   },
   {
-    "station_id": "stn-arthur-listowel",
-    "station_name": "Arthur / Listowel",
+    "station_id": "stn-arthur-union",
+    "station_name": "Arthur / Union",
     "station_lat": 43.577071000000004,
     "station_lon": -80.56313399999999,
     "stops": [
@@ -36803,8 +36803,8 @@
     ]
   },
   {
-    "station_id": "stn-arthur-wyatt",
-    "station_name": "Arthur / Wyatt",
+    "station_id": "stn-arthur-park",
+    "station_name": "Arthur / Park",
     "station_lat": 43.5973345,
     "station_lon": -80.559636,
     "stops": [
@@ -38164,8 +38164,8 @@
     ]
   },
   {
-    "station_id": "stn-pinebush-thompson",
-    "station_name": "Pinebush / Thompson",
+    "station_id": "stn-pinebush-tyler",
+    "station_name": "Pinebush / Tyler",
     "station_lat": 43.415197500000005,
     "station_lon": -80.2875435,
     "stops": [
@@ -38659,8 +38659,8 @@
     ]
   },
   {
-    "station_id": "stn-lincoln-marshall",
-    "station_name": "Lincoln / Marshall",
+    "station_id": "stn-lincoln-ellis",
+    "station_name": "Lincoln / Ellis",
     "station_lat": 43.47491933333333,
     "station_lon": -80.50962466666668,
     "stops": [
@@ -38727,8 +38727,8 @@
     ]
   },
   {
-    "station_id": "stn-westvale-bridgewater",
-    "station_name": "Westvale / Bridgewater",
+    "station_id": "stn-westvale-cardiff",
+    "station_name": "Westvale / Cardiff",
     "station_lat": 43.441911000000005,
     "station_lon": -80.558265,
     "stops": [
@@ -40309,8 +40309,8 @@
     ]
   },
   {
-    "station_id": "stn-waterloo-st.-victoria",
-    "station_name": "Waterloo St. / Victoria",
+    "station_id": "stn-waterloo-st.-forrest",
+    "station_name": "Waterloo St. / Forrest",
     "station_lat": 43.387721,
     "station_lon": -80.7111615,
     "stops": [
@@ -40624,7 +40624,7 @@
   },
   {
     "station_id": "stn-west-harbour",
-    "station_name": "West Harbour GO Bus",
+    "station_name": "West Harbour GO",
     "station_lat": 43.2664217748734,
     "station_lon": -79.8661099028254,
     "stops": [
@@ -40658,7 +40658,7 @@
   },
   {
     "station_id": "stn-whitby",
-    "station_name": "Whitby GO Bus",
+    "station_name": "Whitby GO",
     "station_lat": 43.865096300000005,
     "station_lon": -78.9380536,
     "stops": [
@@ -40712,8 +40712,8 @@
     ]
   },
   {
-    "station_id": "stn-union-(up-express)",
-    "station_name": "Union Station (UP Express)",
+    "station_id": "stn-union",
+    "station_name": "Union Station",
     "station_lat": 43.64496400437475,
     "station_lon": -79.3814642802017,
     "stops": [
@@ -40747,7 +40747,7 @@
   },
   {
     "station_id": "stn-unionville",
-    "station_name": "Unionville GO Bus",
+    "station_name": "Unionville GO",
     "station_lat": 43.851811999999995,
     "station_lon": -79.314053,
     "stops": [
@@ -40780,8 +40780,8 @@
     ]
   },
   {
-    "station_id": "stn-main-st.-edward-st.-(stouffville)",
-    "station_name": "Main St. @ Edward St. (Stouffville GO)",
+    "station_id": "stn-stouffville",
+    "station_name": "Stouffville GO",
     "station_lat": 43.9706727,
     "station_lon": -79.25030736666668,
     "stops": [
@@ -40828,7 +40828,7 @@
   },
   {
     "station_id": "stn-streetsville",
-    "station_name": "Streetsville GO Bus",
+    "station_name": "Streetsville GO",
     "station_lat": 43.575480999999996,
     "station_lon": -79.7090455,
     "stops": [
@@ -40904,7 +40904,7 @@
   },
   {
     "station_id": "stn-rutherford",
-    "station_name": "Rutherford GO Bus",
+    "station_name": "Rutherford GO",
     "station_lat": 43.8385345,
     "station_lon": -79.49888200000001,
     "stops": [
@@ -40959,7 +40959,7 @@
   },
   {
     "station_id": "stn-richmond-hill",
-    "station_name": "Richmond Hill GO Bus",
+    "station_name": "Richmond Hill GO",
     "station_lat": 43.875046499999996,
     "station_lon": -79.4261975,
     "stops": [
@@ -41048,7 +41048,7 @@
   },
   {
     "station_id": "stn-pickering",
-    "station_name": "Pickering GO Bus",
+    "station_name": "Pickering GO",
     "station_lat": 43.831278999999995,
     "station_lon": -79.0845825,
     "stops": [
@@ -41179,7 +41179,7 @@
   },
   {
     "station_id": "stn-oakville",
-    "station_name": "Oakville GO Bus",
+    "station_name": "Oakville GO",
     "station_lat": 43.45578,
     "station_lon": -79.681959,
     "stops": [
@@ -41213,7 +41213,7 @@
   },
   {
     "station_id": "stn-niagara-falls",
-    "station_name": "Niagara Falls Bus Terminal",
+    "station_name": "Niagara Falls GO",
     "station_lat": 43.108708899999996,
     "station_lon": -79.06346265,
     "stops": [
@@ -41246,8 +41246,8 @@
     ]
   },
   {
-    "station_id": "stn-davis-dr.-superior-st.-(newmarket)",
-    "station_name": "Davis Dr. @ Superior St. (Newmarket GO)",
+    "station_id": "stn-newmarket",
+    "station_name": "Newmarket GO",
     "station_lat": 44.05982756666666,
     "station_lon": -79.45918003333334,
     "stops": [
@@ -41293,8 +41293,8 @@
     ]
   },
   {
-    "station_id": "stn-main-st.-n.-st.-(markham)",
-    "station_name": "Main St. N. @ Station St. (Markham GO)",
+    "station_id": "stn-markham",
+    "station_name": "Markham GO",
     "station_lat": 43.882688300000005,
     "station_lon": -79.26207326666666,
     "stops": [
@@ -41341,7 +41341,7 @@
   },
   {
     "station_id": "stn-maple",
-    "station_name": "Maple GO Bus",
+    "station_name": "Maple GO",
     "station_lat": 43.859667,
     "station_lon": -79.506455,
     "stops": [
@@ -41375,7 +41375,7 @@
   },
   {
     "station_id": "stn-mount-pleasant",
-    "station_name": "Mount Pleasant GO Bus",
+    "station_name": "Mount Pleasant GO",
     "station_lat": 43.67497615,
     "station_lon": -79.82218135,
     "stops": [
@@ -41409,7 +41409,7 @@
   },
   {
     "station_id": "stn-milton",
-    "station_name": "Milton GO Bus",
+    "station_name": "Milton GO",
     "station_lat": 43.5237215,
     "station_lon": -79.867175,
     "stops": [
@@ -41464,7 +41464,7 @@
   },
   {
     "station_id": "stn-mount-joy",
-    "station_name": "Mount Joy GO Bus",
+    "station_name": "Mount Joy GO",
     "station_lat": 43.900487999999996,
     "station_lon": -79.2633895,
     "stops": [
@@ -41519,7 +41519,7 @@
   },
   {
     "station_id": "stn-meadowvale",
-    "station_name": "Meadowvale GO Bus",
+    "station_name": "Meadowvale GO",
     "station_lat": 43.5975325,
     "station_lon": -79.7544225,
     "stops": [
@@ -41553,7 +41553,7 @@
   },
   {
     "station_id": "stn-malton",
-    "station_name": "Malton GO Bus",
+    "station_name": "Malton GO",
     "station_lat": 43.705148,
     "station_lon": -79.63802749999999,
     "stops": [
@@ -41587,7 +41587,7 @@
   },
   {
     "station_id": "stn-lisgar",
-    "station_name": "Lisgar GO Bus",
+    "station_name": "Lisgar GO",
     "station_lat": 43.591147500000005,
     "station_lon": -79.7883815,
     "stops": [
@@ -41642,7 +41642,7 @@
   },
   {
     "station_id": "stn-old-elm",
-    "station_name": "Old Elm GO Bus",
+    "station_name": "Old Elm GO",
     "station_lat": 43.99006631502484,
     "station_lon": -79.23733677948724,
     "stops": [
@@ -41731,7 +41731,7 @@
   },
   {
     "station_id": "stn-kitchener",
-    "station_name": "Kitchener GO Bus",
+    "station_name": "Kitchener GO",
     "station_lat": 43.4556295,
     "station_lon": -80.4928365,
     "stops": [
@@ -41785,8 +41785,8 @@
     ]
   },
   {
-    "station_id": "stn-keele-st.-rd.-(king-city)",
-    "station_name": "Keele St. @ Station Rd. (King City GO)",
+    "station_id": "stn-king-city",
+    "station_name": "King City GO",
     "station_lat": 43.920397666666666,
     "station_lon": -79.52631380000001,
     "stops": [
@@ -41832,8 +41832,8 @@
     ]
   },
   {
-    "station_id": "stn-hamilton-centre-bus",
-    "station_name": "Hamilton GO Centre Bus",
+    "station_id": "stn-hamilton-centre",
+    "station_name": "Hamilton GO Centre",
     "station_lat": 43.253114499999995,
     "station_lon": -79.869389,
     "stops": [
@@ -41922,7 +41922,7 @@
   },
   {
     "station_id": "stn-guelph-central",
-    "station_name": "Guelph Central GO Bus",
+    "station_name": "Guelph Central GO",
     "station_lat": 43.5446425,
     "station_lon": -80.2466525,
     "stops": [
@@ -41956,7 +41956,7 @@
   },
   {
     "station_id": "stn-georgetown",
-    "station_name": "Georgetown GO Bus",
+    "station_name": "Georgetown GO",
     "station_lat": 43.65570085,
     "station_lon": -79.91886615,
     "stops": [
@@ -42032,7 +42032,7 @@
   },
   {
     "station_id": "stn-erindale",
-    "station_name": "Erindale GO Bus",
+    "station_name": "Erindale GO",
     "station_lat": 43.567548,
     "station_lon": -79.668069,
     "stops": [
@@ -42087,7 +42087,7 @@
   },
   {
     "station_id": "stn-east-gwillimbury",
-    "station_name": "East Gwillimbury GO Bus",
+    "station_name": "East Gwillimbury GO",
     "station_lat": 44.078250999999995,
     "station_lon": -79.4561575,
     "stops": [
@@ -42184,7 +42184,7 @@
   },
   {
     "station_id": "stn-cooksville",
-    "station_name": "Cooksville GO Bus",
+    "station_name": "Cooksville GO",
     "station_lat": 43.58252172557237,
     "station_lon": -79.62423552708286,
     "stops": [
@@ -42231,7 +42231,7 @@
   },
   {
     "station_id": "stn-clarkson",
-    "station_name": "Clarkson GO Bus",
+    "station_name": "Clarkson GO",
     "station_lat": 43.512979,
     "station_lon": -79.63315750000001,
     "stops": [
@@ -42264,8 +42264,8 @@
     ]
   },
   {
-    "station_id": "stn-bullock-dr.-mccowan-rd.-(centennial)",
-    "station_name": "Bullock Dr. @ McCowan Rd. (Centennial GO)",
+    "station_id": "stn-centennial",
+    "station_name": "Centennial GO",
     "station_lat": 43.872828049999995,
     "station_lon": -79.28867514999999,
     "stops": [
@@ -42299,7 +42299,7 @@
   },
   {
     "station_id": "stn-burlington",
-    "station_name": "Burlington GO Bus",
+    "station_name": "Burlington GO",
     "station_lat": 43.3408532696104,
     "station_lon": -79.8093202472586,
     "stops": [
@@ -42367,7 +42367,7 @@
   },
   {
     "station_id": "stn-bronte",
-    "station_name": "Bronte GO Bus",
+    "station_name": "Bronte GO",
     "station_lat": 43.416524499999994,
     "station_lon": -79.7231515,
     "stops": [
@@ -42456,7 +42456,7 @@
   },
   {
     "station_id": "stn-bramalea",
-    "station_name": "Bramalea GO Bus",
+    "station_name": "Bramalea GO",
     "station_lat": 43.70226702,
     "station_lon": -79.68981884,
     "stops": [
@@ -42529,7 +42529,7 @@
   },
   {
     "station_id": "stn-bradford",
-    "station_name": "Bradford GO Bus",
+    "station_name": "Bradford GO",
     "station_lat": 44.1165835,
     "station_lon": -79.55557300000001,
     "stops": [
@@ -42563,7 +42563,7 @@
   },
   {
     "station_id": "stn-barrie-south",
-    "station_name": "Barrie South GO Bus",
+    "station_name": "Barrie South GO",
     "station_lat": 44.3514455,
     "station_lon": -79.62788800000001,
     "stops": [
@@ -42597,7 +42597,7 @@
   },
   {
     "station_id": "stn-aurora",
-    "station_name": "Aurora GO Bus",
+    "station_name": "Aurora GO",
     "station_lat": 44.000302,
     "station_lon": -79.45958,
     "stops": [
@@ -42631,7 +42631,7 @@
   },
   {
     "station_id": "stn-appleby",
-    "station_name": "Appleby GO Bus",
+    "station_name": "Appleby GO",
     "station_lat": 43.379345,
     "station_lon": -79.760737,
     "stops": [
@@ -42665,7 +42665,7 @@
   },
   {
     "station_id": "stn-aldershot",
-    "station_name": "Aldershot GO Bus",
+    "station_name": "Aldershot GO",
     "station_lat": 43.3132105,
     "station_lon": -79.85578100000001,
     "stops": [
@@ -42699,7 +42699,7 @@
   },
   {
     "station_id": "stn-ajax",
-    "station_name": "Ajax GO Bus",
+    "station_name": "Ajax GO",
     "station_lat": 43.8476565,
     "station_lon": -79.04122799999999,
     "stops": [
@@ -43002,8 +43002,8 @@
     ]
   },
   {
-    "station_id": "stn-durham-hwy.-2-kurve-inn-rd.",
-    "station_name": "Durham Hwy. 2 @ Kurve Inn Rd.",
+    "station_id": "stn-durham-hwy.-2-browview-rd.",
+    "station_name": "Durham Hwy. 2 @ Browview Rd.",
     "station_lat": 43.91304474904405,
     "station_lon": -78.6220265129804,
     "stops": [
@@ -43091,8 +43091,8 @@
     ]
   },
   {
-    "station_id": "stn-keele-st.-barrhill-rd.",
-    "station_name": "Keele St. @ Barrhill Rd.",
+    "station_id": "stn-keele-st.-barhill-rd.",
+    "station_name": "Keele St. @ Barhill Rd.",
     "station_lat": 43.85047474566045,
     "station_lon": -79.51137551575701,
     "stops": [
@@ -43235,8 +43235,8 @@
     ]
   },
   {
-    "station_id": "stn-thomas-st.-erin-mills-pkwy.",
-    "station_name": "Thomas St. @ Erin Mills Pkwy.",
+    "station_id": "stn-thomas-st.-highbank-rd.",
+    "station_name": "Thomas St. @ Highbank Rd.",
     "station_lat": 43.5707771992615,
     "station_lon": -79.72138773366825,
     "stops": [
@@ -43578,8 +43578,8 @@
     ]
   },
   {
-    "station_id": "stn-yonge-st.-glendora-ave.",
-    "station_name": "Yonge St. @ Glendora Ave.",
+    "station_id": "stn-yonge-st.-poyntz-ave.",
+    "station_name": "Yonge St. @ Poyntz Ave.",
     "station_lat": 43.760113321228324,
     "station_lon": -79.41066228632687,
     "stops": [
@@ -43735,8 +43735,8 @@
     ]
   },
   {
-    "station_id": "stn-main-st.-s.-maclennan-st.",
-    "station_name": "Main St. S. @ MacLennan St.",
+    "station_id": "stn-main-st.-s.-dunbar-st.",
+    "station_name": "Main St. S. @ Dunbar St.",
     "station_lat": 43.60921005,
     "station_lon": -80.13048495,
     "stops": [
@@ -43769,8 +43769,8 @@
     ]
   },
   {
-    "station_id": "stn-guelph-st.-w.-lakeview-ave.",
-    "station_name": "Guelph St. W. @ Lakeview Ave.",
+    "station_id": "stn-guelph-st.-lakeview-ave.",
+    "station_name": "Guelph St. @ Lakeview Ave.",
     "station_lat": 43.6329678,
     "station_lon": -80.0498513,
     "stops": [
@@ -43845,8 +43845,8 @@
     ]
   },
   {
-    "station_id": "stn-main-st.-n.-george-st.",
-    "station_name": "Main St. N. @ George St.",
+    "station_id": "stn-main-st.-n.-henry-st.",
+    "station_name": "Main St. N. @ Henry St.",
     "station_lat": 43.6517295,
     "station_lon": -79.929089,
     "stops": [
@@ -43879,8 +43879,8 @@
     ]
   },
   {
-    "station_id": "stn-mountainview-rd.-n.-maple-ave.",
-    "station_name": "Mountainview Rd. N. @ Maple Ave.",
+    "station_id": "stn-moutainview-rd.-n.-maple-ave.",
+    "station_name": "Moutainview Rd. N. @ Maple Ave.",
     "station_lat": 43.65566495,
     "station_lon": -79.91069304999999,
     "stops": [
@@ -44036,8 +44036,8 @@
     ]
   },
   {
-    "station_id": "stn-trafalgar-rd.-river-oaks-blvd.-e.",
-    "station_name": "Trafalgar Rd. @ River Oaks Blvd. E.",
+    "station_id": "stn-trafalgar-rd.-briarhall-gate",
+    "station_name": "Trafalgar Rd. @ Briarhall Gate",
     "station_lat": 43.477268,
     "station_lon": -79.705176,
     "stops": [
@@ -44104,8 +44104,8 @@
     ]
   },
   {
-    "station_id": "stn-simcoe-st.-n.-britannia-ave.",
-    "station_name": "Simcoe St. N. @ Britannia Ave.",
+    "station_id": "stn-simcoe-st.-britannia-ave.",
+    "station_name": "Simcoe St. @ Britannia Ave.",
     "station_lat": 43.9557352580971,
     "station_lon": -78.8996156145179,
     "stops": [
@@ -44256,8 +44256,8 @@
     ]
   },
   {
-    "station_id": "stn-yonge-st.-garden-ave.",
-    "station_name": "Yonge St. @ Garden Ave.",
+    "station_id": "stn-yonge-st.-hwy.-407",
+    "station_name": "Yonge St. @ Hwy. 407",
     "station_lat": 43.83846081254515,
     "station_lon": -79.4295443958447,
     "stops": [
@@ -44290,8 +44290,8 @@
     ]
   },
   {
-    "station_id": "stn-yonge-st.-beresford-dr.",
-    "station_name": "Yonge St. @ Beresford Dr.",
+    "station_id": "stn-yonge-st.-westwood-ln.",
+    "station_name": "Yonge St. @ Westwood Ln.",
     "station_lat": 43.84429226874645,
     "station_lon": -79.4309469479564,
     "stops": [
@@ -44324,8 +44324,8 @@
     ]
   },
   {
-    "station_id": "stn-trafalgar-rd.-white-oaks-blvd.",
-    "station_name": "Trafalgar Rd. @ White Oaks Blvd.",
+    "station_id": "stn-trafalgar-rd.-mccraney-st.-e.",
+    "station_name": "Trafalgar Rd. @ McCraney St. E.",
     "station_lat": 43.4664791,
     "station_lon": -79.6900214,
     "stops": [
@@ -44837,8 +44837,8 @@
     ]
   },
   {
-    "station_id": "stn-main-st.-n.-mill-st.-e.",
-    "station_name": "Main St. N. @ Mill St. E.",
+    "station_id": "stn-main-st.-mill-st.-e.",
+    "station_name": "Main St. @ Mill St. E.",
     "station_lat": 43.630074423969745,
     "station_lon": -80.04203357174354,
     "stops": [
@@ -44905,8 +44905,8 @@
     ]
   },
   {
-    "station_id": "stn-elizabeth-st.-victoria-rd.-s.",
-    "station_name": "Elizabeth St. @ Victoria Rd. S.",
+    "station_id": "stn-elizabeth-st.-victoria-rd.",
+    "station_name": "Elizabeth St. @ Victoria Rd.",
     "station_lat": 43.55530510115665,
     "station_lon": -80.22982072642824,
     "stops": [
@@ -44981,8 +44981,8 @@
     ]
   },
   {
-    "station_id": "stn-gordon-st.-kortright-rd.-e.",
-    "station_name": "Gordon St. @ Kortright Rd. E.",
+    "station_id": "stn-gordon-st.-kortright-rd.",
+    "station_name": "Gordon St. @ Kortright Rd.",
     "station_lat": 43.52242386311035,
     "station_lon": -80.21330253194179,
     "stops": [
@@ -45274,8 +45274,8 @@
     ]
   },
   {
-    "station_id": "stn-yonge-st.-mount-albert-rd.",
-    "station_name": "Yonge St. @ Mount Albert Rd.",
+    "station_id": "stn-yonge-st.-queen-st.",
+    "station_name": "Yonge St. @ Queen St.",
     "station_lat": 44.0954264908702,
     "station_lon": -79.49007444087906,
     "stops": [
@@ -45342,8 +45342,8 @@
     ]
   },
   {
-    "station_id": "stn-trafalgar-rd.-dundas-st.-e.",
-    "station_name": "Trafalgar Rd. @ Dundas St. E.",
+    "station_id": "stn-trafalgar-rd.-dundas-st.",
+    "station_name": "Trafalgar Rd. @ Dundas St.",
     "station_lat": 43.48785565721645,
     "station_lon": -79.719638138338,
     "stops": [
@@ -45376,8 +45376,8 @@
     ]
   },
   {
-    "station_id": "stn-hurontario-st.-travelled-rd.",
-    "station_name": "Hurontario St. @ Travelled Rd.",
+    "station_id": "stn-hwy.-10-travelled-rd.",
+    "station_name": "Hwy. 10 @ Travelled Rd.",
     "station_lat": 43.857287346791296,
     "station_lon": -79.99197009678025,
     "stops": [
@@ -45410,8 +45410,8 @@
     ]
   },
   {
-    "station_id": "stn-victoria-st.-e.-s.-blair-st.",
-    "station_name": "Victoria St. E. @ S. Blair St.",
+    "station_id": "stn-victoria-st.-e.-s.-blair-st",
+    "station_name": "Victoria St. E. @ S. Blair St",
     "station_lat": 43.8654015612089,
     "station_lon": -78.9209812302373,
     "stops": [
@@ -45444,8 +45444,8 @@
     ]
   },
   {
-    "station_id": "stn-guelph-st.-mcfarlane-dr.",
-    "station_name": "Guelph St. @ McFarlane Dr.",
+    "station_id": "stn-guelph-st.-hall-rd.",
+    "station_name": "Guelph St. @ Hall Rd.",
     "station_lat": 43.64882709714975,
     "station_lon": -79.87673353602361,
     "stops": [
@@ -45601,8 +45601,8 @@
     ]
   },
   {
-    "station_id": "stn-queen-st.-hickman-st.",
-    "station_name": "Queen St. @ Hickman St.",
+    "station_id": "stn-queen-st.-mill-st.",
+    "station_name": "Queen St. @ Mill St.",
     "station_lat": 43.88114452007585,
     "station_lon": -79.74041459719831,
     "stops": [
@@ -45978,8 +45978,8 @@
     ]
   },
   {
-    "station_id": "stn-main-st.-baker-hill-blvd.",
-    "station_name": "Main St. @ Baker Hill Blvd.",
+    "station_id": "stn-main-st.-ringwood-dr.",
+    "station_name": "Main St. @ Ringwood Dr.",
     "station_lat": 43.96521508897595,
     "station_lon": -79.27460928665995,
     "stops": [
@@ -46190,8 +46190,8 @@
     ]
   },
   {
-    "station_id": "stn-colborne-st.-e.-park-ave.",
-    "station_name": "Colborne St. E. @ Park Ave.",
+    "station_id": "stn-dalhousie-st.-park-ave.",
+    "station_name": "Dalhousie St. @ Park Ave.",
     "station_lat": 43.1395664,
     "station_lon": -80.25463485,
     "stops": [
@@ -46224,8 +46224,8 @@
     ]
   },
   {
-    "station_id": "stn-colborne-st.-e.-puleston-st.",
-    "station_name": "Colborne St. E. @ Puleston St.",
+    "station_id": "stn-colborne-st-e.-kiwanis-way",
+    "station_name": "Colborne St E. @ Kiwanis Way",
     "station_lat": 43.1405277,
     "station_lon": -80.2403412,
     "stops": [
@@ -46360,8 +46360,8 @@
     ]
   },
   {
-    "station_id": "stn-6715-millcreek-dr.-aquitaine-ave.-(millcreek-business-centre)",
-    "station_name": "6715 Millcreek Dr. @ Aquitaine Ave. (Millcreek Business Centre)",
+    "station_id": "stn-millcreek-dr.-aquitaine-ave.",
+    "station_name": "Millcreek Dr. @ Aquitaine Ave.",
     "station_lat": 43.59510805,
     "station_lon": -79.7518959,
     "stops": [
@@ -46504,8 +46504,8 @@
     ]
   },
   {
-    "station_id": "stn-mississauga-rd.-dupont-meadow-place",
-    "station_name": "Mississauga Rd. @ Dupont Meadow Place",
+    "station_id": "stn-mississauga-rd.-royal-bank-dr.",
+    "station_name": "Mississauga Rd. @ Royal Bank Dr.",
     "station_lat": 43.608778,
     "station_lon": -79.75048065,
     "stops": [
@@ -46936,8 +46936,8 @@
     ]
   },
   {
-    "station_id": "stn-barrie-st.-holland-st.-w.",
-    "station_name": "Barrie St. @ Holland St. W.",
+    "station_id": "stn-barrie-st.-doctors-lane",
+    "station_name": "Barrie St. @ Doctors Lane",
     "station_lat": 44.11516595,
     "station_lon": -79.565048,
     "stops": [
@@ -47101,8 +47101,8 @@
     ]
   },
   {
-    "station_id": "stn-wellington-st.-e.-john-west-way",
-    "station_name": "Wellington St. E. @ John West Way",
+    "station_id": "stn-wellington-st.-e.-mary-st.",
+    "station_name": "Wellington St. E. @ Mary St.",
     "station_lat": 44.0033512,
     "station_lon": -79.4509163,
     "stops": [
@@ -47337,8 +47337,8 @@
     ]
   },
   {
-    "station_id": "stn-main-st.-s.-frederick-st.",
-    "station_name": "Main St. S. @ Frederick St.",
+    "station_id": "stn-main-st.-s.-ridge-rd.",
+    "station_name": "Main St. S. @ Ridge Rd.",
     "station_lat": 43.6110986,
     "station_lon": -80.1331597,
     "stops": [
@@ -47604,8 +47604,8 @@
     ]
   },
   {
-    "station_id": "stn-main-st.-sandiford-dr.",
-    "station_name": "Main St. @ Sandiford Dr.",
+    "station_id": "stn-main-st.-sandale-rd.",
+    "station_name": "Main St. @ Sandale Rd.",
     "station_lat": 43.9661026,
     "station_lon": -79.27057645,
     "stops": [
@@ -47900,8 +47900,8 @@
     ]
   },
   {
-    "station_id": "stn-yonge-st.-bonshaw-ave.",
-    "station_name": "Yonge St. @ Bonshaw Ave.",
+    "station_id": "stn-yonge-st.-london-rd.",
+    "station_name": "Yonge St. @ London Rd.",
     "station_lat": 44.064380650000004,
     "station_lon": -79.48276519999999,
     "stops": [
@@ -47968,8 +47968,8 @@
     ]
   },
   {
-    "station_id": "stn-yonge-st.-glen-cameron-rd.",
-    "station_name": "Yonge St. @ Glen Cameron Rd.",
+    "station_id": "stn-yonge-st.-clark-ave.-e.",
+    "station_name": "Yonge St. @ Clark Ave. E.",
     "station_lat": 43.806678766666664,
     "station_lon": -79.42232516666668,
     "stops": [
@@ -48138,8 +48138,8 @@
     ]
   },
   {
-    "station_id": "stn-queen-st.-n.-columbia-way",
-    "station_name": "Queen St. N. @ Columbia Way",
+    "station_id": "stn-hwy.-50-columbia-way",
+    "station_name": "Hwy. 50 @ Columbia Way",
     "station_lat": 43.89151955,
     "station_lon": -79.75460435,
     "stops": [
@@ -48172,8 +48172,8 @@
     ]
   },
   {
-    "station_id": "stn-main-st.-n.-16th-ave.",
-    "station_name": "Main St. N. @ 16th Ave.",
+    "station_id": "stn-hwy.-48-16th-ave.",
+    "station_name": "Hwy. 48 @ 16th Ave.",
     "station_lat": 43.8919849,
     "station_lon": -79.26407625,
     "stops": [
@@ -48295,8 +48295,8 @@
     ]
   },
   {
-    "station_id": "stn-yonge-st.-green-ln.-w.-(green-lane-centre)",
-    "station_name": "Yonge St. @ Green Ln. W. (Green Lane Centre)",
+    "station_id": "stn-yonge-st.-green-ln.-e.",
+    "station_name": "Yonge St. @ Green Ln. E.",
     "station_lat": 44.0714798,
     "station_lon": -79.48444113333333,
     "stops": [
@@ -48376,8 +48376,8 @@
     ]
   },
   {
-    "station_id": "stn-yonge-st.-yongehurst-dr.",
-    "station_name": "Yonge St. @ Yongehurst Dr.",
+    "station_id": "stn-yonge-st.-may-ave.",
+    "station_name": "Yonge St. @ May Ave.",
     "station_lat": 43.863204,
     "station_lon": -79.435407625,
     "stops": [
@@ -48470,8 +48470,8 @@
     ]
   },
   {
-    "station_id": "stn-yonge-st.-thornhill-ave.",
-    "station_name": "Yonge St. @ Thornhill Ave.",
+    "station_id": "stn-yonge-st.-uplands-ave.",
+    "station_name": "Yonge St. @ Uplands Ave.",
     "station_lat": 43.826128,
     "station_lon": -79.42675399999999,
     "stops": [
@@ -48504,8 +48504,8 @@
     ]
   },
   {
-    "station_id": "stn-yonge-st.-bantry-ave.",
-    "station_name": "Yonge St. @ Bantry Ave.",
+    "station_id": "stn-yonge-st.-scott-dr.",
+    "station_name": "Yonge St. @ Scott Dr.",
     "station_lat": 43.847345966666666,
     "station_lon": -79.43172196666667,
     "stops": [
@@ -48737,8 +48737,8 @@
     ]
   },
   {
-    "station_id": "stn-yonge-st.-elmwood-ave.",
-    "station_name": "Yonge St. @ Elmwood Ave.",
+    "station_id": "stn-yonge-st.-hopkins-st.",
+    "station_name": "Yonge St. @ Hopkins St.",
     "station_lat": 43.86947635,
     "station_lon": -79.43684005,
     "stops": [
@@ -48771,8 +48771,8 @@
     ]
   },
   {
-    "station_id": "stn-yonge-st.-dawson-manor-blvd.",
-    "station_name": "Yonge St. @ Dawson Manor Blvd.",
+    "station_id": "stn-yonge-st.-kingston-rd.",
+    "station_name": "Yonge St. @ Kingston Rd.",
     "station_lat": 44.0612259,
     "station_lon": -79.4819107,
     "stops": [
@@ -48839,8 +48839,8 @@
     ]
   },
   {
-    "station_id": "stn-yonge-st.-harding-blvd.-w.",
-    "station_name": "Yonge St. @ Harding Blvd. W.",
+    "station_id": "stn-yonge-st.-harding-blvd.",
+    "station_name": "Yonge St. @ Harding Blvd.",
     "station_lat": 43.86658095,
     "station_lon": -79.4361763,
     "stops": [
@@ -49169,8 +49169,8 @@
     ]
   },
   {
-    "station_id": "stn-main-st.-church-st.-n.",
-    "station_name": "Main St. @ Church St. N.",
+    "station_id": "stn-main-st.-market-st.",
+    "station_name": "Main St. @ Market St.",
     "station_lat": 43.971483250000006,
     "station_lon": -79.246212,
     "stops": [
@@ -49368,8 +49368,8 @@
     ]
   },
   {
-    "station_id": "stn-bullock-dr.-austin-dr.",
-    "station_name": "Bullock Dr. @ Austin Dr.",
+    "station_id": "stn-bullock-dr.-hwy.-7",
+    "station_name": "Bullock Dr. @ Hwy. 7",
     "station_lat": 43.8663635,
     "station_lon": -79.2922338,
     "stops": [
@@ -49449,8 +49449,8 @@
     ]
   },
   {
-    "station_id": "stn-toronto-st.-s.-campbell-dr.",
-    "station_name": "Toronto St. S. @ Campbell Dr.",
+    "station_id": "stn-toronto-st.-s.-mill-st.",
+    "station_name": "Toronto St. S. @ Mill St.",
     "station_lat": 44.1035932,
     "station_lon": -79.1252009,
     "stops": [
@@ -49538,8 +49538,8 @@
     ]
   },
   {
-    "station_id": "stn-brock-rd.-s.-maple-leaf-ln.",
-    "station_name": "Brock Rd. S. @ Maple Leaf Ln.",
+    "station_id": "stn-brock-rd.-s.-old-brock-rd.",
+    "station_name": "Brock Rd. S. @ Old Brock Rd.",
     "station_lat": 43.471736899999996,
     "station_lon": -80.1499443,
     "stops": [
@@ -49805,8 +49805,8 @@
     ]
   },
   {
-    "station_id": "stn-yonge-st.-ellerslie-ave.",
-    "station_name": "Yonge St. @ Ellerslie Ave.",
+    "station_id": "stn-yonge-st.-norton-ave.",
+    "station_name": "Yonge St. @ Norton Ave.",
     "station_lat": 43.77230265,
     "station_lon": -79.4136772,
     "stops": [
@@ -49923,8 +49923,8 @@
     ]
   },
   {
-    "station_id": "stn-yonge-st.-churchill-ave.",
-    "station_name": "Yonge St. @ Churchill Ave.",
+    "station_id": "stn-yonge-st.-northtown-way",
+    "station_name": "Yonge St. @ Northtown Way",
     "station_lat": 43.7747402,
     "station_lon": -79.4142914,
     "stops": [
@@ -50114,8 +50114,8 @@
     ]
   },
   {
-    "station_id": "stn-yonge-st.-meadowland-st.",
-    "station_name": "Yonge St. @ Meadowland St.",
+    "station_id": "stn-hwy.-11-meadowland-st.",
+    "station_name": "Hwy. 11 @ Meadowland St.",
     "station_lat": 44.2577305,
     "station_lon": -79.60252,
     "stops": [
@@ -50575,8 +50575,8 @@
     ]
   },
   {
-    "station_id": "stn-steeles-ave.-e.-rutherford-st.-s.",
-    "station_name": "Steeles Ave. E. @ Rutherford St. S.",
+    "station_id": "stn-steeles-ave.-e.-first-gulf-blvd.",
+    "station_name": "Steeles Ave. E. @ First Gulf Blvd.",
     "station_lat": 43.6807407,
     "station_lon": -79.71710075,
     "stops": [
@@ -50698,8 +50698,8 @@
     ]
   },
   {
-    "station_id": "stn-erin-mills-pkwy.-mcfarren-blvd.",
-    "station_name": "Erin Mills Pkwy. @ McFarren Blvd.",
+    "station_id": "stn-erin-mills-pkwy.-banfield-rd.",
+    "station_name": "Erin Mills Pkwy. @ Banfield Rd.",
     "station_lat": 43.56762885,
     "station_lon": -79.7186737,
     "stops": [
@@ -50732,8 +50732,8 @@
     ]
   },
   {
-    "station_id": "stn-eglinton-ave.-w.-credit-valley-rd.",
-    "station_name": "Eglinton Ave. W. @ Credit Valley Rd.",
+    "station_id": "stn-eglinton-ave.-w.-summersky-crt.",
+    "station_name": "Eglinton Ave. W. @ Summersky Crt.",
     "station_lat": 43.56222725,
     "station_lon": -79.70304870000001,
     "stops": [
@@ -51279,8 +51279,8 @@
     ]
   },
   {
-    "station_id": "stn-queen-st.-s.-downey-dr.",
-    "station_name": "Queen St. S. @ Downey Dr.",
+    "station_id": "stn-queen-st.-s.-shore-st.",
+    "station_name": "Queen St. S. @ Shore St.",
     "station_lat": 43.8749638,
     "station_lon": -79.73177340000001,
     "stops": [
@@ -51711,8 +51711,8 @@
     ]
   },
   {
-    "station_id": "stn-hurontario-st.-conservation-dr.",
-    "station_name": "Hurontario St. @ Conservation Dr.",
+    "station_id": "stn-hurontario-st.-wanless-dr.",
+    "station_name": "Hurontario St. @ Wanless Dr.",
     "station_lat": 43.7259121,
     "station_lon": -79.8140488,
     "stops": [
@@ -51808,8 +51808,8 @@
     ]
   },
   {
-    "station_id": "stn-finch-ave.-kenview-blvd.-(wild-water-kingdom)",
-    "station_name": "Finch Ave. @ Kenview Blvd. (Wild Water Kingdom)",
+    "station_id": "stn-finch-ave.-kenview-blvd.",
+    "station_name": "Finch Ave. @ Kenview Blvd.",
     "station_lat": 43.739992150000006,
     "station_lon": -79.6436157,
     "stops": [
@@ -51973,8 +51973,8 @@
     ]
   },
   {
-    "station_id": "stn-derry-rd.-w.-forest-park-dr.",
-    "station_name": "Derry Rd. W. @ Forest Park Dr.",
+    "station_id": "stn-derry-rd.-w.-terragar-blvd.",
+    "station_name": "Derry Rd. W. @ Terragar Blvd.",
     "station_lat": 43.58153915,
     "station_lon": -79.778862,
     "stops": [
@@ -52041,8 +52041,8 @@
     ]
   },
   {
-    "station_id": "stn-derry-rd.-w.-rosehurst-dr.",
-    "station_name": "Derry Rd. W. @ Rosehurst Dr.",
+    "station_id": "stn-derry-rd.-w.-lisgar-dr.",
+    "station_name": "Derry Rd. W. @ Lisgar Dr.",
     "station_lat": 43.5767193,
     "station_lon": -79.78432079999999,
     "stops": [
@@ -52630,8 +52630,8 @@
     ]
   },
   {
-    "station_id": "stn-main-st.-w.-pearl-st.-s.",
-    "station_name": "Main St. W. @ Pearl St. S.",
+    "station_id": "stn-main-st.-w.-ray-st.-s.",
+    "station_name": "Main St. W. @ Ray St. S.",
     "station_lat": 43.258132950000004,
     "station_lon": -79.88190460000001,
     "stops": [
@@ -52811,8 +52811,8 @@
     ]
   },
   {
-    "station_id": "stn-hurontario-st.-county-court-blvd.",
-    "station_name": "Hurontario St. @ County Court Blvd.",
+    "station_id": "stn-hurontario-st.-sir-lou-dr.",
+    "station_name": "Hurontario St. @ Sir Lou Dr.",
     "station_lat": 43.6616726,
     "station_lon": -79.72746275,
     "stops": [
@@ -52845,8 +52845,8 @@
     ]
   },
   {
-    "station_id": "stn-hurontario-st.-county-court-blvd.",
-    "station_name": "Hurontario St. @ County Court Blvd.",
+    "station_id": "stn-hurontario-st.-ray-lawson-blvd.",
+    "station_name": "Hurontario St. @ Ray Lawson Blvd.",
     "station_lat": 43.6587677,
     "station_lon": -79.7235451,
     "stops": [
@@ -52879,8 +52879,8 @@
     ]
   },
   {
-    "station_id": "stn-yonge-st.-shore-acres-dr.",
-    "station_name": "Yonge St. @ Shore Acres Dr.",
+    "station_id": "stn-yonge-st.-county-rd.-89",
+    "station_name": "Yonge St. @ County Rd. 89",
     "station_lat": 44.215484599999996,
     "station_lon": -79.59029385,
     "stops": [
@@ -53057,8 +53057,8 @@
     ]
   },
   {
-    "station_id": "stn-tenth-line-norm-faulkner-dr.",
-    "station_name": "Tenth Line @ Norm Faulkner Dr.",
+    "station_id": "stn-tenth-line-hemlock-dr.",
+    "station_name": "Tenth Line @ Hemlock Dr.",
     "station_lat": 43.980329499999996,
     "station_lon": -79.2324715,
     "stops": [
@@ -53167,8 +53167,8 @@
     ]
   },
   {
-    "station_id": "stn-durham-rd.-57-bowmanville-ave.",
-    "station_name": "Durham Rd. 57 @ Bowmanville Ave.",
+    "station_id": "stn-durham-rd.-57-waverley-rd.",
+    "station_name": "Durham Rd. 57 @ Waverley Rd.",
     "station_lat": 43.90036585,
     "station_lon": -78.69293214999999,
     "stops": [
@@ -53659,8 +53659,8 @@
     ]
   },
   {
-    "station_id": "stn-plains-rd.-e.-lasalle-park-rd.",
-    "station_name": "Plains Rd. E. @ Lasalle Park Rd.",
+    "station_id": "stn-plains-rd.-e.-waterdown-rd.",
+    "station_name": "Plains Rd. E. @ Waterdown Rd.",
     "station_lat": 43.30697825,
     "station_lon": -79.85237885000001,
     "stops": [
@@ -53693,8 +53693,8 @@
     ]
   },
   {
-    "station_id": "stn-plains-rd.-e.-cedarwood-place",
-    "station_name": "Plains Rd. E. @ Cedarwood Place",
+    "station_id": "stn-plains-rd.-e.-king-rd.",
+    "station_name": "Plains Rd. E. @ King Rd.",
     "station_lat": 43.3209629,
     "station_lon": -79.83379365,
     "stops": [
@@ -53829,8 +53829,8 @@
     ]
   },
   {
-    "station_id": "stn-main-st.-n.-elizabeth-dr.",
-    "station_name": "Main St. N. @ Elizabeth Dr.",
+    "station_id": "stn-main-st.-n.-school-ln.",
+    "station_name": "Main St. N. @ School Ln.",
     "station_lat": 43.63251305,
     "station_lon": -80.0452423,
     "stops": [
@@ -54271,8 +54271,8 @@
     ]
   },
   {
-    "station_id": "stn-derry-rd.-thompson-rd.-s.",
-    "station_name": "Derry Rd. @ Thompson Rd. S.",
+    "station_id": "stn-derry-rd.-miller-way",
+    "station_name": "Derry Rd. @ Miller Way",
     "station_lat": 43.51844349874375,
     "station_lon": -79.84858885037096,
     "stops": [
@@ -54407,8 +54407,8 @@
     ]
   },
   {
-    "station_id": "stn-king-st.-e.-galbraith-cr.",
-    "station_name": "King St. E. @ Galbraith Cr.",
+    "station_id": "stn-king-st.-e.-simpson-ave.",
+    "station_name": "King St. E. @ Simpson Ave.",
     "station_lat": 43.9117069,
     "station_lon": -78.6742287,
     "stops": [
@@ -54606,8 +54606,8 @@
     ]
   },
   {
-    "station_id": "stn-toronto-st.-n.-albert-st.",
-    "station_name": "Toronto St. N. @ Albert St.",
+    "station_id": "stn-toronto-st.-brock-st.",
+    "station_name": "Toronto St. @ Brock St.",
     "station_lat": 44.1092949,
     "station_lon": -79.12260054999999,
     "stops": [
@@ -54674,8 +54674,8 @@
     ]
   },
   {
-    "station_id": "stn-toronto-st.-s.-poplar-st.",
-    "station_name": "Toronto St. S. @ Poplar St.",
+    "station_id": "stn-toronto-st.-s.-peel-st.",
+    "station_name": "Toronto St. S. @ Peel St.",
     "station_lat": 44.1063175,
     "station_lon": -79.1237564,
     "stops": [
@@ -54839,8 +54839,8 @@
     ]
   },
   {
-    "station_id": "stn-bond-st.-w.-park-rd.-n.",
-    "station_name": "Bond St. W. @ Park Rd. N.",
+    "station_id": "stn-king-st.-w.-park-rd.",
+    "station_name": "King St. W. @ Park Rd.",
     "station_lat": 43.895818750000004,
     "station_lon": -78.87363815,
     "stops": [
@@ -55224,8 +55224,8 @@
     ]
   },
   {
-    "station_id": "stn-queen-st.-s.-wilton-dr.",
-    "station_name": "Queen St. S. @ Wilton Dr.",
+    "station_id": "stn-queen-st.-s.-allan-dr.",
+    "station_name": "Queen St. S. @ Allan Dr.",
     "station_lat": 43.871971099999996,
     "station_lon": -79.72750475000001,
     "stops": [
@@ -55347,8 +55347,8 @@
     ]
   },
   {
-    "station_id": "stn-bond-st.-w.-stevenson-rd.-n.",
-    "station_name": "Bond St. W. @ Stevenson Rd. N.",
+    "station_id": "stn-king-st.-w.-stevenson-rd.",
+    "station_name": "King St. W. @ Stevenson Rd.",
     "station_lat": 43.893596650000006,
     "station_lon": -78.88316345000001,
     "stops": [
@@ -55381,8 +55381,8 @@
     ]
   },
   {
-    "station_id": "stn-dundas-st.-anderson-st.",
-    "station_name": "Dundas St. @ Anderson St.",
+    "station_id": "stn-dundas-st.-hopkins-st.",
+    "station_name": "Dundas St. @ Hopkins St.",
     "station_lat": 43.884288749999996,
     "station_lon": -78.92250824999999,
     "stops": [
@@ -55724,8 +55724,8 @@
     ]
   },
   {
-    "station_id": "stn-finch-ave.-w.-longo-circle",
-    "station_name": "Finch Ave. W. @ Longo Circle",
+    "station_id": "stn-finch-ave.-w.-darcel-ave.",
+    "station_name": "Finch Ave. W. @ Darcel Ave.",
     "station_lat": 43.73348045,
     "station_lon": -79.63381575,
     "stops": [
@@ -56041,8 +56041,8 @@
     ]
   },
   {
-    "station_id": "stn-aquitaine-ave.-formentera-ave.-(meadowvale-town-centre)",
-    "station_name": "Aquitaine Ave. @ Formentera Ave. (Meadowvale Town Centre)",
+    "station_id": "stn-aquitaine-ave.-meadowvale-town-centre-circle",
+    "station_name": "Aquitaine Ave. @ Meadowvale Town Centre Circle",
     "station_lat": 43.58450125,
     "station_lon": -79.7612267,
     "stops": [
