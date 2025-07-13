@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from functools import wraps
 from difflib import SequenceMatcher
 from transit_plugins import PluginManager
+# from gtfs_scheduler import GTFSScheduler  # Disabled due to duplication issues
 
 
 # get the environment variables
@@ -18,6 +19,7 @@ plugin_config = {
     'GO_API_KEY': GO_API_KEY
 }
 plugin_manager = PluginManager(plugin_config)
+# gtfs_scheduler = GTFSScheduler()  # Disabled due to duplication issues
 
 # app instance
 app = Flask(__name__)
@@ -73,6 +75,10 @@ def get_departures():
     
     # Use plugin manager to get departures
     departures_list = plugin_manager.get_departures_for_stops(stop_ids)
+    
+    # TODO: Re-enable GTFS scheduler integration once duplication issues are fixed
+    # static_departures_list = gtfs_scheduler.get_static_departures(stop_ids)
+    # all_departures = gtfs_scheduler.merge_departures(realtime_departures_dicts, static_departures_list)
     
     # Convert plugin Departure objects to dictionaries for compatibility
     departures_dicts = []
