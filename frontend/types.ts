@@ -11,7 +11,7 @@ export interface RouteGroup {
   routeNetwork: string;
   routeNumber: string;
   routeTextColor: string;
-  stopCode: string;
+  stopId: string;
   departures: DepartureTime[];
 }
 
