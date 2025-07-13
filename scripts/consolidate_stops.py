@@ -214,8 +214,31 @@ def consolidate_cluster(cluster: List[Dict], min_name_similarity: float = 0.6) -
         avg_lat = sum(stop['stop_lat'] for stop in group) / len(group)
         avg_lon = sum(stop['stop_lon'] for stop in group) / len(group)
         
-        # Choose the best name (prefer longer, more descriptive names)
-        best_name = max(group, key=lambda s: (len(s['stop_name']), s['stop_name']))['stop_name']
+        # Choose the best name with smarter logic
+        def score_name(stop_name):
+            name = stop_name.lower()
+            # Penalize overly specific/technical terms
+            penalties = 0
+            if 'bus' in name and ('station' in name or 'terminal' in name):
+                penalties -= 10  # "Bramalea GO Bus" vs "Bramalea GO"
+            if 'platform' in name:
+                penalties -= 5
+            
+            # Reward good descriptive terms
+            bonuses = 0
+            if 'station' in name:
+                bonuses += 5
+            if 'terminal' in name:
+                bonuses += 3
+            if 'university' in name:
+                bonuses += 8  # "University of Waterloo" vs "UW"
+            
+            # Base score on length but with diminishing returns
+            length_score = min(len(stop_name), 50)  # Cap length benefit
+            
+            return length_score + bonuses + penalties
+        
+        best_name = max(group, key=lambda s: score_name(s['stop_name']))['stop_name']
         
         # Create clean, URL-friendly station ID
         clean_name = normalize_stop_name(best_name)
@@ -243,7 +266,7 @@ def main():
     print("=" * 40)
     
     # Discover all GTFS feeds
-    gtfs_root_dir = 'data/GTFS'
+    gtfs_root_dir = 'backend/data/GTFS'
     print(f"Discovering GTFS feeds in {gtfs_root_dir}...")
     gtfs_feeds = discover_gtfs_feeds(gtfs_root_dir)
     

@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 import { DepartureRow } from '../components/DepartureRow';
 import { DepartureHeader } from '../components/DepartureHeader';
+import { StationSearch } from '../components/StationSearch';
 import { NetworkGroup, RouteGroup } from '../types';
 import GoTransitLogo from '../components/svg/gotransit_logo.svg';
 import GrtLogo from '../components/svg/grt_logo_white.svg';
@@ -16,8 +17,15 @@ function Index() {
   useEffect(() => {
     if (!router.isReady) return;
 
+    // Only fetch departures if stops are provided in the URL
+    if (!router.query.stops || router.query.stops === '') {
+      setIsLoading(false);
+      setDepartures([]);
+      return;
+    }
+
     const fetchDepartures = () => {
-      const stops = router.query.stops || 'GO_02799';
+      const stops = router.query.stops;
       const apiQuery = `/api/departures?stops=${stops}`;
 
       if (isInitialLoad.current) {
@@ -91,8 +99,34 @@ function Index() {
     }
   };
 
+  // Show search page if no stops in URL
+  if (!router.query.stops || router.query.stops === '') {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center px-4">
+        <div className="w-full max-w-2xl text-center">
+          <h1 className="text-4xl sm:text-6xl font-bold mb-4 text-white">
+            UW Departures
+          </h1>
+          <p className="text-xl text-[var(--light-grey)] mb-8">
+            Real-time transit departures for University of Waterloo
+          </p>
+          <StationSearch />
+          <p className="text-sm text-[var(--light-grey)] mt-6">
+            Search for any GO Transit or Grand River Transit station
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show departure board if stops are provided
   return (
     <div className="mx-3 font-bold tracking-tight">
+      {/* Search bar at top when showing departures */}
+      <div className="mb-6 pt-4">
+        <StationSearch />
+      </div>
+
       {isLoading && isInitialLoad.current ? (
         <div className="h-32 sm:h-40 flex items-center justify-center text-[var(--light-grey)] text-xl sm:text-2xl">
           Loading departures...

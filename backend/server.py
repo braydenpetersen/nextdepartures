@@ -340,9 +340,19 @@ def station_name_similarity(query: str, station_name: str) -> float:
     if query_lower == station_lower:
         return 1.0
     
+    # Check if query matches the start of station name (high priority)
+    if station_lower.startswith(query_lower):
+        return 0.95
+    
     # Check if query is contained in station name
     if query_lower in station_lower:
         return 0.9
+    
+    # Check if any word in station name starts with query
+    station_words = station_lower.split()
+    for word in station_words:
+        if word.startswith(query_lower):
+            return 0.85
     
     # Fuzzy matching
     return SequenceMatcher(None, query_lower, station_lower).ratio()
@@ -392,13 +402,17 @@ def search_stations():
         if wanted_agencies:
             filtered_stops = [stop for stop in station['stops'] if stop['agency'] in wanted_agencies]
         
+        # Add a small bonus for stations with more stops (major hubs)
+        stop_count_bonus = min(len(filtered_stops) * 0.05, 0.2)  # Max 0.2 bonus
+        final_score = score + stop_count_bonus
+        
         scored_stations.append({
             'station_id': station['station_id'],
             'station_name': station['station_name'], 
             'station_lat': station['station_lat'],
             'station_lon': station['station_lon'],
             'stops': filtered_stops,
-            'score': score
+            'score': final_score
         })
     
     # Sort by score (descending) and limit results
