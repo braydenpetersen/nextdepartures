@@ -132,7 +132,7 @@ export function StationSearch({ onStationSelect }: StationSearchProps) {
       </div>
 
       {isDropdownOpen && stations.length > 0 && (
-        <div className="absolute z-50 w-full mt-2 bg-[var(--dark-grey)] border border-[var(--light-grey)] rounded-lg shadow-lg max-h-80 overflow-y-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-[var(--light-grey)]">
+        <div className="absolute z-50 w-full mt-2 bg-[var(--dark-grey)] border border-[var(--light-grey)] rounded-lg shadow-lg max-h-80 overflow-y-auto custom-scrollbar">
           {stations.map((station, index) => {
             const agencies = station.stops.map(stop => stop.agency);
             const isSelected = index === selectedIndex;
@@ -144,7 +144,7 @@ export function StationSearch({ onStationSelect }: StationSearchProps) {
                 className={`px-4 py-3 cursor-pointer transition-colors border-b border-[var(--light-grey)] last:border-b-0 ${
                   isSelected 
                     ? 'bg-[var(--light-green)] bg-opacity-20 text-[var(--light-green)]'
-                    : 'hover:bg-black hover:bg-opacity-40'
+                    : 'hover:bg-white hover:bg-opacity-10'
                 }`}
               >
                 <div className="font-semibold text-white">{station.station_name}</div>
