@@ -7,6 +7,7 @@ from functools import wraps
 from difflib import SequenceMatcher
 from transit_plugins import PluginManager
 # from gtfs_scheduler import GTFSScheduler  # Disabled due to duplication issues
+from og_generator import OGImageGenerator
 
 
 # get the environment variables
@@ -14,12 +15,13 @@ load_dotenv()
 API_KEY = os.environ.get('API_KEY')
 GO_API_KEY = os.environ.get('GO_API_KEY')
 
-# Initialize plugin manager
+# Initialize plugin manager and OG image generator
 plugin_config = {
     'GO_API_KEY': GO_API_KEY
 }
 plugin_manager = PluginManager(plugin_config)
 # gtfs_scheduler = GTFSScheduler()  # Disabled due to duplication issues
+og_generator = OGImageGenerator()
 
 # app instance
 app = Flask(__name__)
@@ -293,6 +295,49 @@ def search_stations():
         'total_results': len(results),
         'stations': results
     })
+
+@app.route('/api/og-image', methods=['GET'])
+def generate_og_image():
+    """
+    Generate OpenGraph image for a station.
+    Query params:
+    - station: station ID to generate image for (optional)
+    - name: station name to display (optional, will lookup from station ID if not provided)
+    """
+    station_id = request.args.get('station', '')
+    station_name = request.args.get('name', '')
+    
+    # If station ID provided, look up the station name
+    if station_id and not station_name:
+        stations = load_consolidated_stations()
+        station = next((s for s in stations if s['station_id'] == station_id), None)
+        if station:
+            station_name = station['station_name']
+        else:
+            return jsonify({'error': f'Station not found: {station_id}'}), 404
+    
+    # Generate image
+    try:
+        if station_name:
+            image_bytes = og_generator.generate_station_image(station_name)
+        else:
+            # Default image for homepage
+            image_bytes = og_generator.generate_default_image()
+        
+        # Return image with proper headers
+        response = app.response_class(
+            image_bytes,
+            mimetype='image/png',
+            headers={
+                'Cache-Control': 'public, max-age=3600',  # Cache for 1 hour
+                'Content-Type': 'image/png'
+            }
+        )
+        return response
+        
+    except Exception as e:
+        print(f"Error generating OG image: {e}")
+        return jsonify({'error': 'Failed to generate image'}), 500
 
 if __name__ == '__main__':
     app.run(debug=True, port=8080, host="0.0.0.0") # run the server in debug mode

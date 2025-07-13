@@ -125,11 +125,25 @@ function Index() {
     );
   }
 
+  // Generate dynamic OG image URL for station
+  const generateOGImageUrl = (stationId: string) => {
+    const baseUrl = process.env.NODE_ENV === 'production' 
+      ? 'https://api.braydenpetersen.com' 
+      : 'http://localhost:8080';
+    return `${baseUrl}/api/og-image?station=${encodeURIComponent(stationId)}`;
+  };
+
   // Show departure board if station is provided
   return (
     <>
       <Head>
         <title>Live Departure Board - Real-time Transit Departures</title>
+        {router.query.station && (
+          <>
+            <meta property="og:image" content={generateOGImageUrl(router.query.station as string)} />
+            <meta property="twitter:image" content={generateOGImageUrl(router.query.station as string)} />
+          </>
+        )}
       </Head>
       <div className="mx-3 font-bold tracking-tight">
       {/* Search bar at top when showing departures */}
