@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { GetServerSideProps } from 'next';
 import { DepartureRow } from '../components/DepartureRow';
 import { DepartureHeader } from '../components/DepartureHeader';
 import { StationSearch } from '../components/StationSearch';
@@ -8,13 +9,18 @@ import { NetworkGroup, RouteGroup, Station } from '../types';
 import GoTransitLogo from '../components/svg/gotransit_logo.svg';
 import GrtLogo from '../components/svg/grt_logo_white.svg';
 
-function Index() {
+interface PageProps {
+  stationId?: string;
+  stationName?: string;
+}
+
+function Index({ stationId: serverStationId, stationName: serverStationName }: PageProps) {
   const router = useRouter();
   const isInitialLoad = useRef(true);
 
   const [departures, setDepartures] = useState<NetworkGroup[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [stationName, setStationName] = useState<string>('');
+  const [stationName, setStationName] = useState<string>(serverStationName || '');
 
   useEffect(() => {
     if (!router.isReady) return;
@@ -187,14 +193,14 @@ function Index() {
             : 'Live Departure Board - Real-time Transit Departures'
           }
         </title>
-        {router.query.station && (
+        {(serverStationId || router.query.station) && (
           <>
             <meta property="og:title" content={stationName ? `${stationName} - Live Departures` : 'Live Departure Board'} />
             <meta property="og:description" content={`Real-time transit departures ${stationName ? `for ${stationName}` : 'for University of Waterloo and surrounding areas'}`} />
-            <meta property="og:image" content={generateOGImageUrl(router.query.station as string)} />
+            <meta property="og:image" content={generateOGImageUrl((serverStationId || router.query.station) as string)} />
             <meta property="twitter:title" content={stationName ? `${stationName} - Live Departures` : 'Live Departure Board'} />
             <meta property="twitter:description" content={`Real-time transit departures ${stationName ? `for ${stationName}` : 'for University of Waterloo and surrounding areas'}`} />
-            <meta property="twitter:image" content={generateOGImageUrl(router.query.station as string)} />
+            <meta property="twitter:image" content={generateOGImageUrl((serverStationId || router.query.station) as string)} />
           </>
         )}
       </Head>
@@ -258,5 +264,74 @@ function Index() {
     </>
   );
 }
+
+export const getServerSideProps: GetServerSideProps<PageProps> = async (context) => {
+  const { station } = context.query;
+  
+  if (!station || typeof station !== 'string') {
+    return {
+      props: {}
+    };
+  }
+
+  try {
+    // Extract fallback name from station ID
+    const fallbackName = station
+      .replace('stn-', '')
+      .replace(/-/g, ' ')
+      .replace(/\b\w/g, l => l.toUpperCase());
+
+    // Try to fetch proper station name from API
+    const apiUrl = process.env.BACKEND_API_URL || 'http://localhost:8080';
+    const response = await fetch(`${apiUrl}/api/stations/search?q=${encodeURIComponent(fallbackName)}&limit=10`);
+    
+    if (response.ok) {
+      const data = await response.json();
+      if (data.stations && data.stations.length > 0) {
+        // Look for exact station ID match first
+        const exactMatch = data.stations.find((s: Station) => s.station_id === station);
+        if (exactMatch) {
+          return {
+            props: {
+              stationId: station,
+              stationName: exactMatch.station_name
+            }
+          };
+        } else if (data.stations[0]) {
+          return {
+            props: {
+              stationId: station,
+              stationName: data.stations[0].station_name
+            }
+          };
+        }
+      }
+    }
+    
+    // Fallback to extracted name
+    return {
+      props: {
+        stationId: station,
+        stationName: fallbackName
+      }
+    };
+
+  } catch (error) {
+    console.error('Error fetching station data:', error);
+    
+    // Fallback to extracted name
+    const fallbackName = station
+      .replace('stn-', '')
+      .replace(/-/g, ' ')
+      .replace(/\b\w/g, l => l.toUpperCase());
+      
+    return {
+      props: {
+        stationId: station,
+        stationName: fallbackName
+      }
+    };
+  }
+};
 
 export default Index;
