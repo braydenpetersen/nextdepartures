@@ -193,14 +193,25 @@ function Index({ stationId: serverStationId, stationName: serverStationName }: P
             : 'Live Departure Board - Real-time Transit Departures'
           }
         </title>
-        {(serverStationId || router.query.station) && (
+        {(serverStationId || router.query.station) ? (
           <>
+            {/* Station-specific meta tags */}
             <meta property="og:title" content={stationName ? `${stationName} - Live Departures` : 'Live Departure Board'} />
             <meta property="og:description" content={`Real-time transit departures ${stationName ? `for ${stationName}` : 'for University of Waterloo and surrounding areas'}`} />
             <meta property="og:image" content={generateOGImageUrl((serverStationId || router.query.station) as string)} />
             <meta property="twitter:title" content={stationName ? `${stationName} - Live Departures` : 'Live Departure Board'} />
             <meta property="twitter:description" content={`Real-time transit departures ${stationName ? `for ${stationName}` : 'for University of Waterloo and surrounding areas'}`} />
             <meta property="twitter:image" content={generateOGImageUrl((serverStationId || router.query.station) as string)} />
+          </>
+        ) : (
+          <>
+            {/* Homepage meta tags */}
+            <meta property="og:title" content="Live Departure Board" />
+            <meta property="og:description" content="Real-time transit departures for University of Waterloo and surrounding areas" />
+            <meta property="og:image" content="https://transit.braydenpetersen.com/og-image.png" />
+            <meta property="twitter:title" content="Live Departure Board" />
+            <meta property="twitter:description" content="Real-time transit departures for University of Waterloo and surrounding areas" />
+            <meta property="twitter:image" content="https://transit.braydenpetersen.com/og-image.png" />
           </>
         )}
       </Head>

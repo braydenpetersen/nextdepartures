@@ -70,7 +70,7 @@ class OGImageGenerator:
     
     def generate_station_image(self, station_name: str) -> bytes:
         """
-        Generate an OpenGraph image for a specific station.
+        Generate an OpenGraph image for a specific station matching the Figma design.
         
         Args:
             station_name: Name of the station to display
@@ -83,64 +83,68 @@ class OGImageGenerator:
         draw = ImageDraw.Draw(img)
         
         # Load fonts
-        title_font = self._get_font(self.TITLE_FONT_SIZE, bold=True)
-        subtitle_font = self._get_font(self.SUBTITLE_FONT_SIZE)
-        small_font = self._get_font(self.SMALL_FONT_SIZE)
+        station_font = self._get_font(80, bold=True)  # Large station name
+        subtitle_font = self._get_font(42, bold=True)  # Subtitle text
         
-        # Draw main title "Live Departures"
-        main_title = "Live Departures"
-        title_bbox = draw.textbbox((0, 0), main_title, font=title_font)
-        title_width = title_bbox[2] - title_bbox[0]
-        title_x = (self.OG_WIDTH - title_width) // 2
-        title_y = 80
+        # Define layout dimensions
+        black_section_height = 480  # Top black section (increased to fit logo + text)
         
-        draw.text((title_x, title_y), main_title, fill=self.WHITE, font=title_font)
+        # Draw light gray bottom section (smaller now)
+        draw.rectangle([(0, black_section_height), (self.OG_WIDTH, self.OG_HEIGHT)], fill='#F5F5F5')
         
-        # Draw station name (wrapped if necessary)
-        max_station_width = self.OG_WIDTH - 100  # 50px margin on each side
-        station_lines = self._wrap_text(station_name, subtitle_font, max_station_width)
+        # Define left margin for alignment
+        left_margin = 60
         
-        # Calculate total height of station name text
-        line_height = subtitle_font.getbbox('Ay')[3] - subtitle_font.getbbox('Ay')[1] + 10
-        total_station_height = len(station_lines) * line_height
+        # Load and place the T logo PNG
+        logo_size = 120
+        logo_x = left_margin
+        logo_y = 80  # Top margin
         
-        # Position station name in the center area
-        station_start_y = title_y + title_font.getbbox('A')[3] + 60
+        try:
+            logo_path = os.path.join(os.path.dirname(__file__), 'resources', 'T logo.png')
+            print(f"Looking for logo at: {logo_path}")  # Debug log
+            print(f"Logo exists: {os.path.exists(logo_path)}")  # Debug log
+            
+            if os.path.exists(logo_path):
+                logo_img = Image.open(logo_path)
+                print(f"Loaded logo: {logo_img.size}, mode: {logo_img.mode}")  # Debug log
+                
+                # Resize logo to fit the desired size while maintaining aspect ratio
+                logo_img = logo_img.resize((logo_size, logo_size), Image.Resampling.LANCZOS)
+                
+                # Convert to RGBA if not already (for transparency support)
+                if logo_img.mode != 'RGBA':
+                    logo_img = logo_img.convert('RGBA')
+                
+                # Paste the logo onto the main image
+                img.paste(logo_img, (logo_x, logo_y), logo_img)
+                print("Logo pasted successfully")  # Debug log
+            else:
+                print("Logo file not found!")  # Debug log
+                
+        except Exception as e:
+            print(f"Error loading logo: {e}")  # Debug log
+        
+        # Draw station name below the logo, left-aligned
+        max_station_width = self.OG_WIDTH - (left_margin * 2)  # Full width minus margins
+        station_lines = self._wrap_text(station_name, station_font, max_station_width)
+        
+        # Position station name below logo with same left alignment
+        station_x = left_margin  # Same x position as logo
+        station_start_y = logo_y + logo_size + 40  # Below logo with spacing
+        
+        line_height = station_font.getbbox('Ay')[3] - station_font.getbbox('Ay')[1]
         
         for i, line in enumerate(station_lines):
-            line_bbox = draw.textbbox((0, 0), line, font=subtitle_font)
-            line_width = line_bbox[2] - line_bbox[0]
-            line_x = (self.OG_WIDTH - line_width) // 2
             line_y = station_start_y + (i * line_height)
-            
-            draw.text((line_x, line_y), line, fill=self.LIGHT_GREEN, font=subtitle_font)
+            draw.text((station_x, line_y), line, fill=self.WHITE, font=station_font)
         
-        # Draw subtitle
-        subtitle = "Real-time transit departures"
-        subtitle_bbox = draw.textbbox((0, 0), subtitle, font=small_font)
-        subtitle_width = subtitle_bbox[2] - subtitle_bbox[0]
-        subtitle_x = (self.OG_WIDTH - subtitle_width) // 2
-        subtitle_y = station_start_y + total_station_height + 40
+        # Draw subtitle in the light section
+        subtitle = "Real-time Departure Board"
+        subtitle_x = left_margin  # Same left alignment
+        subtitle_y = black_section_height + 40  # Top margin in light section
         
-        draw.text((subtitle_x, subtitle_y), subtitle, fill=self.LIGHT_GREY, font=small_font)
-        
-        # Draw decorative elements to match departure board aesthetic
-        # Top border line
-        draw.rectangle([(50, 50), (self.OG_WIDTH - 50, 52)], fill=self.LIGHT_GREEN)
-        
-        # Bottom border line  
-        draw.rectangle([(50, self.OG_HEIGHT - 52), (self.OG_WIDTH - 50, self.OG_HEIGHT - 50)], fill=self.LIGHT_GREEN)
-        
-        # Side accent lines
-        draw.rectangle([(48, 50), (50, self.OG_HEIGHT - 50)], fill=self.LIGHT_GREY)
-        draw.rectangle([(self.OG_WIDTH - 50, 50), (self.OG_WIDTH - 48, self.OG_HEIGHT - 50)], fill=self.LIGHT_GREY)
-        
-        # Add small dots to mimic departure board look
-        dot_size = 4
-        for i in range(0, self.OG_WIDTH, 40):
-            if i > 100 and i < self.OG_WIDTH - 100:  # Don't overlap with borders
-                draw.ellipse([(i, 25), (i + dot_size, 25 + dot_size)], fill=self.DARK_GREY)
-                draw.ellipse([(i, self.OG_HEIGHT - 25 - dot_size), (i + dot_size, self.OG_HEIGHT - 25)], fill=self.DARK_GREY)
+        draw.text((subtitle_x, subtitle_y), subtitle, fill='#333333', font=subtitle_font)
         
         # Convert to bytes
         img_buffer = io.BytesIO()
