@@ -311,12 +311,32 @@ def main():
     # Consolidate each cluster by name similarity
     print("Consolidating stops within clusters by name similarity...")
     all_stations = []
+    used_station_ids = set()
     
     for cluster in proximity_clusters:
         stations = consolidate_cluster(cluster)
+        # Ensure station IDs are unique
+        for station in stations:
+            original_id = station['station_id']
+            unique_id = original_id
+            counter = 1
+            while unique_id in used_station_ids:
+                unique_id = f"{original_id}-{counter}"
+                counter += 1
+            station['station_id'] = unique_id
+            used_station_ids.add(unique_id)
         all_stations.extend(stations)
     
     print(f"Created {len(all_stations)} consolidated stations")
+    
+    # Validate all station IDs are unique
+    station_ids = [s['station_id'] for s in all_stations]
+    unique_ids = set(station_ids)
+    if len(station_ids) == len(unique_ids):
+        print("✓ All station IDs are unique")
+    else:
+        print(f"ERROR: Found {len(station_ids) - len(unique_ids)} duplicate station IDs!")
+        return
     
     # Save consolidated stations
     output_file = 'backend/static/consolidated_stations.json'

@@ -45,13 +45,31 @@ def test_endpoint():
 @app.route('/api/departures', methods=['GET'])
 @requires_api_key
 def get_departures():
-    # Get comma-separated stops with agency prefixes: GRT_1078,GO_02799,GO_02800
+    # Accept either station ID or legacy stops format
+    station_param = request.args.get('station', '')
     stops_param = request.args.get('stops', '')
     
-    if not stops_param:
-        return jsonify({'error': 'stops parameter is required (e.g., ?stops=GRT_1078,GO_02799)'}), 400
+    stop_ids = []
     
-    stop_ids = [stop.strip() for stop in stops_param.split(',') if stop.strip()]
+    if station_param:
+        # Look up station and get all its stop IDs
+        stations = load_consolidated_stations()
+        station = next((s for s in stations if s['station_id'] == station_param), None)
+        
+        if not station:
+            return jsonify({'error': f'Station not found: {station_param}'}), 404
+        
+        # Extract all stop IDs from the station
+        stop_ids = [stop['stop_id'] for stop in station['stops'] if stop.get('stop_id')]
+        
+        if not stop_ids:
+            return jsonify({'error': f'No valid stops found for station: {station_param}'}), 400
+            
+    elif stops_param:
+        # Legacy stops format
+        stop_ids = [stop.strip() for stop in stops_param.split(',') if stop.strip()]
+    else:
+        return jsonify({'error': 'station or stops parameter is required (e.g., ?station=stn-highland-trussler or ?stops=GRT_1078,GO_02799)'}), 400
     
     # Use plugin manager to get departures
     departures_list = plugin_manager.get_departures_for_stops(stop_ids)
@@ -132,10 +150,11 @@ def load_consolidated_stations():
     except FileNotFoundError:
         return []
 
-def station_name_similarity(query: str, station_name: str) -> float:
+def station_name_similarity(query: str, station_name: str, stop_count: int = 1) -> float:
     """Calculate similarity between search query and station name."""
     query_lower = query.lower().strip()
     station_lower = station_name.lower().strip()
+    is_major_hub = stop_count >= 2
     
     # Exact match
     if query_lower == station_lower:
@@ -143,6 +162,9 @@ def station_name_similarity(query: str, station_name: str) -> float:
     
     # Check if query matches the start of station name (high priority)
     if station_lower.startswith(query_lower):
+        # Major hubs get extra priority when query matches beginning
+        if is_major_hub:
+            return 0.98  # Higher than regular prefix match
         return 0.95
     
     # Check if query is contained in station name
@@ -153,6 +175,9 @@ def station_name_similarity(query: str, station_name: str) -> float:
     station_words = station_lower.split()
     for word in station_words:
         if word.startswith(query_lower):
+            # Major hubs get boost for word prefix matches too
+            if is_major_hub:
+                return 0.88
             return 0.85
     
     # Fuzzy matching
@@ -185,13 +210,6 @@ def search_stations():
     # Filter and score stations
     scored_stations = []
     for station in stations:
-        # Calculate similarity score
-        score = station_name_similarity(query, station['station_name'])
-        
-        # Skip if score is too low
-        if score < 0.3:
-            continue
-        
         # Filter by agencies if specified
         if wanted_agencies:
             station_agencies = set(stop['agency'] for stop in station['stops'])
@@ -203,9 +221,49 @@ def search_stations():
         if wanted_agencies:
             filtered_stops = [stop for stop in station['stops'] if stop['agency'] in wanted_agencies]
         
+        # Calculate similarity score with stop count for major hub prioritization
+        score = station_name_similarity(query, station['station_name'], len(filtered_stops))
+        
+        # Skip if score is too low
+        if score < 0.3:
+            continue
+        
         # Add a small bonus for stations with more stops (major hubs)
         stop_count_bonus = min(len(filtered_stops) * 0.05, 0.2)  # Max 0.2 bonus
-        final_score = score + stop_count_bonus
+        
+        # Give priority to GO Transit stations (regional transit)
+        go_bonus = 0.0
+        station_agencies = set(stop['agency'] for stop in filtered_stops)
+        if 'GO' in station_agencies:
+            go_bonus = 0.25  # Significant boost for GO stations
+        
+        # Check if user mentioned specific agency in search query (as standalone words)
+        agency_query_bonus = 0.0
+        query_words = set(query.lower().split())
+        
+        # Map agency mentions to actual agency codes (exact word matches only)
+        agency_mentions = {
+            'go': 'GO',
+            'grt': 'GRT',
+            'ion': 'GRT'  # ION is part of GRT
+        }
+        
+        # Check for multi-word agency names
+        query_lower = query.lower()
+        if 'go transit' in query_lower and 'GO' in station_agencies:
+            agency_query_bonus = 0.3
+        elif 'grand river transit' in query_lower and 'GRT' in station_agencies:
+            agency_query_bonus = 0.3
+        elif 'grand river' in query_lower and 'GRT' in station_agencies:
+            agency_query_bonus = 0.3
+        else:
+            # Check single word mentions
+            for mention, agency_code in agency_mentions.items():
+                if mention in query_words and agency_code in station_agencies:
+                    agency_query_bonus = 0.3  # Higher than GO bonus to respect user intent
+                    break
+        
+        final_score = score + stop_count_bonus + go_bonus + agency_query_bonus
         
         scored_stations.append({
             'station_id': station['station_id'],

@@ -37,15 +37,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
-    const { stops } = req.query;
+    const { station, stops } = req.query;
 
-    // Only accept new stops format: ?stops=GO_02799,GRT_1078
-    if (!stops || typeof stops !== 'string') {
-        return res.status(400).json({ error: 'stops parameter is required (e.g., ?stops=GO_02799,GRT_1078)' });
+    // Accept both station ID and legacy stops format for backwards compatibility
+    let queryParam = '';
+    if (station && typeof station === 'string') {
+        queryParam = `station=${encodeURIComponent(station)}`;
+    } else if (stops && typeof stops === 'string') {
+        queryParam = `stops=${encodeURIComponent(stops)}`;
+    } else {
+        return res.status(400).json({ error: 'station parameter is required (e.g., ?station=stn-highland-trussler) or legacy stops format' });
     }
 
     try {
-        const response = await fetch(`${BACKEND_API_URL}/api/departures?stops=${encodeURIComponent(stops)}`, {
+        const response = await fetch(`${BACKEND_API_URL}/api/departures?${queryParam}`, {
             method: 'GET',
             headers: {
                 'X-API-Key': API_KEY,

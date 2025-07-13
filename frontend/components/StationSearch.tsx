@@ -64,15 +64,10 @@ export function StationSearch({ onStationSelect }: StationSearchProps) {
   };
 
   const handleStationSelect = (station: Station) => {
-    const stopCodes = station.stops
-      .filter(stop => stop.stop_id && stop.stop_id.trim() !== '')
-      .map(stop => stop.stop_id)
-      .join(',');
-    
-    if (stopCodes) {
+    if (station.station_id) {
       // Clear current URL first to trigger departure clearing, then navigate to new station
       router.push('/').then(() => {
-        router.push(`/?stops=${stopCodes}`);
+        router.push(`/?station=${station.station_id}`);
       });
     }
     

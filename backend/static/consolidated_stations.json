@@ -2907,7 +2907,7 @@
     ]
   },
   {
-    "station_id": "stn-fischer-hallman-columbia",
+    "station_id": "stn-fischer-hallman-columbia-1",
     "station_name": "Fischer-Hallman / Columbia",
     "station_lat": 43.467377,
     "station_lon": -80.565649,
@@ -2983,7 +2983,7 @@
     ]
   },
   {
-    "station_id": "stn-uwaterloo",
+    "station_id": "stn-uwaterloo-1",
     "station_name": "University Of Waterloo Station",
     "station_lat": 43.473361,
     "station_lon": -80.541405,
@@ -4249,7 +4249,7 @@
     ]
   },
   {
-    "station_id": "stn-hazel-columbia",
+    "station_id": "stn-hazel-columbia-1",
     "station_name": "Hazel / Columbia",
     "station_lat": 43.479577,
     "station_lon": -80.531347,
@@ -8673,7 +8673,7 @@
     ]
   },
   {
-    "station_id": "stn-hespeler-rd.-dunbar",
+    "station_id": "stn-hespeler-rd.-dunbar-1",
     "station_name": "Hespeler Rd. / Dunbar",
     "station_lat": 43.390422,
     "station_lon": -80.322283,
@@ -12821,7 +12821,7 @@
     ]
   },
   {
-    "station_id": "stn-morrison-grand-river-blvd.",
+    "station_id": "stn-morrison-grand-river-blvd.-1",
     "station_name": "Morrison / Grand River Blvd.",
     "station_lat": 43.4321,
     "station_lon": -80.414608,
@@ -16622,7 +16622,7 @@
     ]
   },
   {
-    "station_id": "stn-king-ottawa",
+    "station_id": "stn-king-ottawa-1",
     "station_name": "King / Ottawa",
     "station_lat": 43.44195,
     "station_lon": -80.471889,
@@ -16664,7 +16664,7 @@
     ]
   },
   {
-    "station_id": "stn-charles-cameron-heights-collegiate-institute",
+    "station_id": "stn-charles-cameron-heights-collegiate-institute-1",
     "station_name": "Charles / Cameron Heights Collegiate Institute",
     "station_lat": 43.445257,
     "station_lon": -80.481212,
@@ -16996,7 +16996,7 @@
     ]
   },
   {
-    "station_id": "stn-grand-river-hospital",
+    "station_id": "stn-grand-river-hospital-1",
     "station_name": "Grand River Hospital Station",
     "station_lat": 43.4570495,
     "station_lon": -80.5111265,
@@ -19235,7 +19235,7 @@
     ]
   },
   {
-    "station_id": "stn-strasburg-block-line",
+    "station_id": "stn-strasburg-block-line-1",
     "station_name": "Strasburg / Block Line",
     "station_lat": 43.416217,
     "station_lon": -80.480117,
@@ -21203,7 +21203,7 @@
     ]
   },
   {
-    "station_id": "stn-elgin-bronson",
+    "station_id": "stn-elgin-bronson-1",
     "station_name": "Elgin / Bronson",
     "station_lat": 43.372074,
     "station_lon": -80.302746,
@@ -22465,7 +22465,7 @@
     ]
   },
   {
-    "station_id": "stn-dundas-franklin",
+    "station_id": "stn-dundas-franklin-1",
     "station_name": "Dundas / Franklin",
     "station_lat": 43.354572,
     "station_lon": -80.28696,
@@ -23329,7 +23329,7 @@
     ]
   },
   {
-    "station_id": "stn-rittenhouse-erinbrook",
+    "station_id": "stn-rittenhouse-erinbrook-1",
     "station_name": "Rittenhouse / Erinbrook",
     "station_lat": 43.407858,
     "station_lon": -80.496186,
@@ -29385,7 +29385,7 @@
     ]
   },
   {
-    "station_id": "stn-alpine-ottawa",
+    "station_id": "stn-alpine-ottawa-1",
     "station_name": "Alpine / Ottawa",
     "station_lat": 43.425303,
     "station_lon": -80.482968,
@@ -29610,7 +29610,7 @@
     ]
   },
   {
-    "station_id": "stn-stirling-courtland",
+    "station_id": "stn-stirling-courtland-1",
     "station_name": "Stirling / Courtland",
     "station_lat": 43.4418405,
     "station_lon": -80.48299399999999,
@@ -32027,7 +32027,7 @@
     ]
   },
   {
-    "station_id": "stn-highland-westmount",
+    "station_id": "stn-highland-westmount-1",
     "station_name": "Highland / Westmount",
     "station_lat": 43.435579,
     "station_lon": -80.515513,
@@ -34050,7 +34050,7 @@
     ]
   },
   {
-    "station_id": "stn-fairway",
+    "station_id": "stn-fairway-1",
     "station_name": "Fairway Station",
     "station_lat": 43.42243371428572,
     "station_lon": -80.441623,
@@ -35829,7 +35829,7 @@
     ]
   },
   {
-    "station_id": "stn-parkvale-woodbine",
+    "station_id": "stn-parkvale-woodbine-1",
     "station_name": "Parkvale / Woodbine",
     "station_lat": 43.389351500000004,
     "station_lon": -80.479012,
@@ -42926,7 +42926,7 @@
     ]
   },
   {
-    "station_id": "stn-bramalea",
+    "station_id": "stn-bramalea-1",
     "station_name": "Bramalea Bus Terminal",
     "station_lat": 43.7186356,
     "station_lon": -79.7205734,
@@ -54271,7 +54271,7 @@
     ]
   },
   {
-    "station_id": "stn-derry-rd.-miller-way",
+    "station_id": "stn-derry-rd.-miller-way-1",
     "station_name": "Derry Rd. @ Miller Way",
     "station_lat": 43.51844349874375,
     "station_lon": -79.84858885037096,
@@ -56405,7 +56405,7 @@
     ]
   },
   {
-    "station_id": "stn-yonge-st.-hwy.-407",
+    "station_id": "stn-yonge-st.-hwy.-407-1",
     "station_name": "Yonge St. @ Hwy. 407",
     "station_lat": 43.8319817,
     "station_lon": -79.4283829,
@@ -56730,7 +56730,7 @@
     ]
   },
   {
-    "station_id": "stn-yonge-st.-baif-blvd.-(hillcrest-mall)",
+    "station_id": "stn-yonge-st.-baif-blvd.-(hillcrest-mall)-1",
     "station_name": "Yonge St. @ Baif Blvd. (Hillcrest Mall)",
     "station_lat": 43.8557549,
     "station_lon": -79.433876,
