@@ -1,6 +1,6 @@
 # nextdepartures
 
-**nextdepartures** is a realtime, live transit departure board for the University of Waterloo Terminal. This can be put on any display to turn it into a departure board, so that students and other folks that use the terminal don't miss their:
+**nextdepartures** is a realtime, live transit departure board that works for ALL [GO Transit]([url](https://www.gotransit.com/en)) and [Grand River Transit]([url](https://www.grt.ca/en/index.aspx)) stops. This can be put on any display to turn it into a departure board, so that students and other folks that use the terminal don't miss their:
 * **ION Light Rail** Trains
 * Local **GRT** Buses
 * Intercity **GO Transit** Buses
