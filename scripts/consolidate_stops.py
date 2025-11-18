@@ -136,34 +136,46 @@ def load_stops_from_gtfs(file_path: str, agency_prefix: str) -> List[Dict]:
     return stops
 
 def cluster_stops_by_proximity(stops: List[Dict], max_distance: float = 100) -> List[List[Dict]]:
-    """Group stops that are within max_distance meters of each other."""
+    """
+    Group stops that are within max_distance meters of each other.
+    Uses expanding radius: each new stop added to cluster expands the search area.
+    """
     clusters = []
     used_stops = set()
-    
+
     for i, stop in enumerate(stops):
         if i in used_stops:
             continue
-        
+
         # Start a new cluster with this stop
         cluster = [stop]
         used_stops.add(i)
-        
-        # Find all stops within max_distance
-        for j, other_stop in enumerate(stops):
-            if j in used_stops:
-                continue
-            
-            distance = haversine_distance(
-                stop['stop_lat'], stop['stop_lon'],
-                other_stop['stop_lat'], other_stop['stop_lon']
-            )
-            
-            if distance <= max_distance:
-                cluster.append(other_stop)
-                used_stops.add(j)
-        
+
+        # Keep expanding the cluster by checking proximity to ALL stops in cluster
+        # This creates a "growing radius" effect
+        cluster_changed = True
+        while cluster_changed:
+            cluster_changed = False
+
+            for j, other_stop in enumerate(stops):
+                if j in used_stops:
+                    continue
+
+                # Check if this stop is within max_distance of ANY stop in the cluster
+                for cluster_stop in cluster:
+                    distance = haversine_distance(
+                        cluster_stop['stop_lat'], cluster_stop['stop_lon'],
+                        other_stop['stop_lat'], other_stop['stop_lon']
+                    )
+
+                    if distance <= max_distance:
+                        cluster.append(other_stop)
+                        used_stops.add(j)
+                        cluster_changed = True
+                        break  # Stop checking other cluster stops for this candidate
+
         clusters.append(cluster)
-    
+
     return clusters
 
 def consolidate_cluster(cluster: List[Dict], min_name_similarity: float = 0.6) -> List[Dict]:

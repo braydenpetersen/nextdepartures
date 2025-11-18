@@ -64,17 +64,20 @@ export function StationSearch({ onStationSelect }: StationSearchProps) {
   };
 
   const handleStationSelect = (station: Station) => {
-    if (station.station_id) {
+    if (station.stops && station.stops.length > 0) {
+      // Generate stops parameter from all stop IDs in the station cluster
+      const stopIds = station.stops.map(stop => stop.stop_id).join(',');
+
       // Clear current URL first to trigger departure clearing, then navigate to new station
       router.push('/').then(() => {
-        router.push(`/?station=${station.station_id}`);
+        router.push(`/?stops=${stopIds}`);
       });
     }
-    
+
     setQuery(station.station_name);
     setIsDropdownOpen(false);
     setSelectedIndex(-1);
-    
+
     if (onStationSelect) {
       onStationSelect(station);
     }

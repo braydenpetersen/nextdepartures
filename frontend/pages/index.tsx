@@ -10,11 +10,10 @@ import GoTransitLogo from '../components/svg/gotransit_logo.svg';
 import GrtLogo from '../components/svg/grt_logo_white.svg';
 
 interface PageProps {
-  stationId?: string;
   stationName?: string;
 }
 
-function Index({ stationId: serverStationId, stationName: serverStationName }: PageProps) {
+function Index({ stationName: serverStationName }: PageProps) {
   const router = useRouter();
   const isInitialLoad = useRef(true);
 
@@ -25,16 +24,16 @@ function Index({ stationId: serverStationId, stationName: serverStationName }: P
   useEffect(() => {
     if (!router.isReady) return;
 
-    // Only fetch departures if station is provided in the URL
-    if (!router.query.station || router.query.station === '') {
+    // Only fetch departures if stops are provided in the URL
+    if (!router.query.stops || router.query.stops === '') {
       setIsLoading(false);
       setDepartures([]);
       return;
     }
 
     const fetchDepartures = () => {
-      const station = router.query.station;
-      const apiQuery = `/api/departures?station=${station}`;
+      const stops = router.query.stops;
+      const apiQuery = `/api/departures?stops=${stops}`;
 
       if (isInitialLoad.current) {
         setIsLoading(true);
@@ -62,48 +61,47 @@ function Index({ stationId: serverStationId, stationName: serverStationName }: P
     const interval = setInterval(fetchDepartures, 30000);
 
     return () => clearInterval(interval);
-  }, [router.isReady, router.query.station]);
+  }, [router.isReady, router.query.stops]);
 
-  // Fetch station name when station ID changes
+  // Fetch station name based on stops
   useEffect(() => {
-    if (!router.isReady || !router.query.station) {
+    if (!router.isReady || !router.query.stops) {
       setStationName('');
       return;
     }
 
-    const stationId = router.query.station as string;
-    
-    // Try to extract readable name from station ID as immediate fallback
-    const fallbackName = stationId
-      .replace('stn-', '')
-      .replace(/-/g, ' ')
-      .replace(/\b\w/g, l => l.toUpperCase());
-    setStationName(fallbackName);
+    const stops = router.query.stops as string;
+    const stopIds = stops.split(',');
 
-    // Fetch station info to get the proper station name
-    fetch(`/api/stations?q=${encodeURIComponent(fallbackName)}&limit=10`)
-      .then(response => response.json())
-      .then(data => {
-        if (data.stations && data.stations.length > 0) {
-          // Look for exact station ID match first
-          const exactMatch = data.stations.find((station: Station) => station.station_id === stationId);
-          if (exactMatch) {
-            setStationName(exactMatch.station_name);
-          } else if (data.stations[0]) {
-            setStationName(data.stations[0].station_name);
+    // Extract first stop's agency and code for search
+    if (stopIds.length > 0) {
+      const firstStop = stopIds[0];
+      const agency = firstStop.split('_')[0];
+
+      // Search for stations containing this stop
+      fetch(`/api/stations?q=${agency}&limit=20`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.stations && data.stations.length > 0) {
+            // Find station that contains all our stops
+            const matchingStation = data.stations.find((station: Station) => {
+              const stationStopIds = station.stops.map(s => s.stop_id);
+              return stopIds.every(id => stationStopIds.includes(id));
+            });
+
+            if (matchingStation) {
+              setStationName(matchingStation.station_name);
+            } else {
+              setStationName('Departures');
+            }
           }
-        }
-      })
-      .catch(error => {
-        console.error('Error fetching station name:', error);
-        // Fallback name
-        const fallbackName = (router.query.station as string)
-          .replace('stn-', '')
-          .replace(/-/g, ' ')
-          .replace(/\b\w/g, l => l.toUpperCase());
-        setStationName(fallbackName);
-      });
-  }, [router.isReady, router.query.station]);
+        })
+        .catch(error => {
+          console.error('Error fetching station name:', error);
+          setStationName('Departures');
+        });
+    }
+  }, [router.isReady, router.query.stops]);
 
   const [ctime, setCtime] = useState('');
 
@@ -148,8 +146,8 @@ function Index({ stationId: serverStationId, stationName: serverStationName }: P
     }
   };
 
-  // Show search page if no station in URL
-  if (!router.query.station || router.query.station === '') {
+  // Show search page if no stops in URL
+  if (!router.query.stops || router.query.stops === '') {
     return (
       <>
         <Head>
@@ -173,12 +171,12 @@ function Index({ stationId: serverStationId, stationName: serverStationName }: P
     );
   }
 
-  // Generate dynamic OG image URL for station
-  const generateOGImageUrl = (stationId: string) => {
-    const baseUrl = process.env.NODE_ENV === 'production' 
-      ? 'https://transit.braydenpetersen.com' 
+  // Generate dynamic OG image URL for stops
+  const generateOGImageUrl = (stops: string, name?: string) => {
+    const baseUrl = process.env.NODE_ENV === 'production'
+      ? 'https://transit.braydenpetersen.com'
       : 'http://localhost:3000';
-    const url = `${baseUrl}/api/og-image?station=${encodeURIComponent(stationId)}`;
+    const url = `${baseUrl}/api/og-image?stops=${encodeURIComponent(stops)}${name ? `&name=${encodeURIComponent(name)}` : ''}`;
     console.log('Generated OG image URL:', url); // Debug log
     return url;
   };
@@ -193,15 +191,15 @@ function Index({ stationId: serverStationId, stationName: serverStationName }: P
             : 'Live Departure Board - Real-time Transit Departures'
           }
         </title>
-        {(serverStationId || router.query.station) ? (
+        {router.query.stops ? (
           <>
             {/* Station-specific meta tags */}
             <meta property="og:title" content={stationName ? `${stationName} - Live Departures` : 'Live Departure Board'} />
             <meta property="og:description" content={`Real-time transit departures ${stationName ? `for ${stationName}` : 'for University of Waterloo and surrounding areas'}`} />
-            <meta property="og:image" content={generateOGImageUrl((serverStationId || router.query.station) as string)} />
+            <meta property="og:image" content={generateOGImageUrl(router.query.stops as string, stationName)} />
             <meta property="twitter:title" content={stationName ? `${stationName} - Live Departures` : 'Live Departure Board'} />
             <meta property="twitter:description" content={`Real-time transit departures ${stationName ? `for ${stationName}` : 'for University of Waterloo and surrounding areas'}`} />
-            <meta property="twitter:image" content={generateOGImageUrl((serverStationId || router.query.station) as string)} />
+            <meta property="twitter:image" content={generateOGImageUrl(router.query.stops as string, stationName)} />
           </>
         ) : (
           <>
@@ -283,71 +281,63 @@ function Index({ stationId: serverStationId, stationName: serverStationName }: P
 }
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async (context) => {
-  const { station } = context.query;
-  
-  if (!station || typeof station !== 'string') {
+  const { stops } = context.query;
+
+  if (!stops || typeof stops !== 'string') {
     return {
       props: {}
     };
   }
 
   try {
-    // Extract fallback name from station ID
-    const fallbackName = station
-      .replace('stn-', '')
-      .replace(/-/g, ' ')
-      .replace(/\b\w/g, l => l.toUpperCase());
+    const stopIds = stops.split(',');
+    if (stopIds.length === 0) {
+      return { props: {} };
+    }
+
+    // Extract first stop's agency for search
+    const firstStop = stopIds[0];
+    const agency = firstStop.split('_')[0];
 
     // Try to fetch proper station name from API
     const apiUrl = process.env.BACKEND_API_URL || 'http://localhost:8080';
-    const response = await fetch(`${apiUrl}/api/stations/search?q=${encodeURIComponent(fallbackName)}&limit=10`);
-    
+    const apiKey = process.env.API_KEY;
+
+    if (!apiKey) {
+      console.error('API_KEY not configured');
+      return { props: {} };
+    }
+
+    const response = await fetch(`${apiUrl}/api/stations/search?q=${encodeURIComponent(agency)}&limit=20`, {
+      headers: {
+        'X-API-Key': apiKey
+      }
+    });
+
     if (response.ok) {
       const data = await response.json();
       if (data.stations && data.stations.length > 0) {
-        // Look for exact station ID match first
-        const exactMatch = data.stations.find((s: Station) => s.station_id === station);
-        if (exactMatch) {
+        // Find station that contains all our stops
+        const matchingStation = data.stations.find((station: Station) => {
+          const stationStopIds = station.stops.map((s: { stop_id: string }) => s.stop_id);
+          return stopIds.every((id: string) => stationStopIds.includes(id));
+        });
+
+        if (matchingStation) {
           return {
             props: {
-              stationId: station,
-              stationName: exactMatch.station_name
-            }
-          };
-        } else if (data.stations[0]) {
-          return {
-            props: {
-              stationId: station,
-              stationName: data.stations[0].station_name
+              stationName: matchingStation.station_name
             }
           };
         }
       }
     }
-    
-    // Fallback to extracted name
-    return {
-      props: {
-        stationId: station,
-        stationName: fallbackName
-      }
-    };
+
+    return { props: {} };
 
   } catch (error) {
     console.error('Error fetching station data:', error);
-    
-    // Fallback to extracted name
-    const fallbackName = station
-      .replace('stn-', '')
-      .replace(/-/g, ' ')
-      .replace(/\b\w/g, l => l.toUpperCase());
-      
-    return {
-      props: {
-        stationId: station,
-        stationName: fallbackName
-      }
-    };
+    return { props: {} };
   }
 };
 

@@ -49,31 +49,30 @@ def test_endpoint():
 @app.route('/api/departures', methods=['GET'])
 @requires_api_key
 def get_departures():
-    # Accept either station ID or legacy stops format
-    station_param = request.args.get('station', '')
+    # Accept stops parameter (primary) or station ID (legacy support)
     stops_param = request.args.get('stops', '')
-    
+    station_param = request.args.get('station', '')
+
     stop_ids = []
-    
-    if station_param:
-        # Look up station and get all its stop IDs
+
+    if stops_param:
+        # Primary method: direct stop IDs
+        stop_ids = [stop.strip() for stop in stops_param.split(',') if stop.strip()]
+    elif station_param:
+        # Legacy support: station ID lookup
         stations = load_consolidated_stations()
         station = next((s for s in stations if s['station_id'] == station_param), None)
-        
+
         if not station:
             return jsonify({'error': f'Station not found: {station_param}'}), 404
-        
+
         # Extract all stop IDs from the station
         stop_ids = [stop['stop_id'] for stop in station['stops'] if stop.get('stop_id')]
-        
+
         if not stop_ids:
             return jsonify({'error': f'No valid stops found for station: {station_param}'}), 400
-            
-    elif stops_param:
-        # Legacy stops format
-        stop_ids = [stop.strip() for stop in stops_param.split(',') if stop.strip()]
     else:
-        return jsonify({'error': 'station or stops parameter is required (e.g., ?station=stn-highland-trussler or ?stops=GRT_1078,GO_02799)'}), 400
+        return jsonify({'error': 'stops parameter is required (e.g., ?stops=GRT_1078,GO_02799)'}), 400
     
     # Use plugin manager to get departures
     departures_list = plugin_manager.get_departures_for_stops(stop_ids)
@@ -307,21 +306,35 @@ def generate_og_image():
     """
     Generate OpenGraph image for a station.
     Query params:
-    - station: station ID to generate image for (optional)
-    - name: station name to display (optional, will lookup from station ID if not provided)
+    - stops: comma-separated stop IDs to generate image for (optional)
+    - name: station name to display (optional, will lookup from stops if not provided)
+    - station: (legacy) station ID to generate image for (optional)
     """
+    stops_param = request.args.get('stops', '')
     station_id = request.args.get('station', '')
     station_name = request.args.get('name', '')
-    
-    # If station ID provided, look up the station name
-    if station_id and not station_name:
+
+    # If stops provided, look up the station name
+    if stops_param and not station_name:
+        stop_ids = [stop.strip() for stop in stops_param.split(',') if stop.strip()]
+        if stop_ids:
+            stations = load_consolidated_stations()
+            # Find station that contains these stops
+            for station in stations:
+                station_stop_ids = [stop['stop_id'] for stop in station['stops']]
+                if all(stop_id in station_stop_ids for stop_id in stop_ids):
+                    station_name = station['station_name']
+                    break
+
+    # Legacy: If station ID provided, look up the station name
+    elif station_id and not station_name:
         stations = load_consolidated_stations()
         station = next((s for s in stations if s['station_id'] == station_id), None)
         if station:
             station_name = station['station_name']
         else:
             return jsonify({'error': f'Station not found: {station_id}'}), 404
-    
+
     # Generate image
     try:
         if station_name:
@@ -329,7 +342,7 @@ def generate_og_image():
         else:
             # Default image for homepage
             image_bytes = og_generator.generate_default_image()
-        
+
         # Return image with proper headers
         response = app.response_class(
             image_bytes,
@@ -340,7 +353,7 @@ def generate_og_image():
             }
         )
         return response
-        
+
     except Exception as e:
         print(f"Error generating OG image: {e}")
         return jsonify({'error': 'Failed to generate image'}), 500
