@@ -94,7 +94,7 @@ class GRTPlugin(TransitPlugin):
                     current_time_est = datetime.now(est_tz)
                     current_time_unix = int(current_time_est.timestamp())
                     countdown = (departure_time_unix - current_time_unix) // 60
-                    
+
                     if countdown < -1:
                         continue  # Skip if the trip has already left
                 except Exception as e:

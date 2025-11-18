@@ -133,6 +133,8 @@ def get_departures():
     # Sort departures within each route group by countdown
     for network in network_groups.values():
         for route in network['routes'].values():
+            # Filter out any departures that left more than 1 minute ago (safety check)
+            route['departures'] = [d for d in route['departures'] if d['countdown'] >= -1]
             route['departures'].sort(key=lambda x: x['countdown'])
             # Only keep the first two departures
             route['departures'] = route['departures'][:2]
@@ -141,9 +143,13 @@ def get_departures():
     result = []
     for network in network_groups.values():
         routes_list = list(network['routes'].values())
+        # Filter out routes with no departures
+        routes_list = [route for route in routes_list if route['departures']]
         routes_list.sort(key=lambda x: x['departures'][0]['countdown'] if x['departures'] else float('inf'))
         network['routes'] = routes_list
-        result.append(network)
+        # Only add network if it has routes with departures
+        if routes_list:
+            result.append(network)
 
     # Sort networks alphabetically
     result.sort(key=lambda x: x['network'])

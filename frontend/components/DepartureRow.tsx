@@ -53,9 +53,8 @@ export const DepartureRow: React.FC<DepartureRowProps> = ({
             {formattedDepartures.map((departure, i) => (
               <span key={i}>
                 {i > 0 && ', '}
-                <span 
-                  className={`${departure.isNow ? 'animate-[blink_1s_ease-in-out_infinite] text-[var(--light-green)]' : ''} ${i === 1 ? 'font-normal opacity-60' : ''}`}
-                  style={departure.isNow ? { animationDelay: '0s' } : undefined}
+                <span
+                  className={`${departure.isNow ? 'blink-synced text-[var(--light-green)]' : ''} ${i === 1 ? 'font-normal opacity-60' : ''}`}
                 >
                   {departure.text}
                 </span>

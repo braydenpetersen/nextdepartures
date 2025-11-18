@@ -39,3 +39,17 @@ body {
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background-color: #9ca3af;
 }
+
+/* Synchronized blink animation for "Due" departures */
+@keyframes syncedBlink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.blink-synced {
+  animation: syncedBlink 1s ease-in-out infinite;
+}

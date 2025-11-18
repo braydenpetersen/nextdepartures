@@ -216,11 +216,6 @@ function Index({ stationId: serverStationId, stationName: serverStationName }: P
         )}
       </Head>
       <div className="mx-3 font-bold tracking-tight">
-      {/* Search bar at top when showing departures */}
-      <div className="mb-6 pt-4">
-        <StationSearch />
-      </div>
-
       {isLoading && isInitialLoad.current ? (
         <div className="h-32 sm:h-40 flex items-center justify-center text-[var(--light-grey)] text-xl sm:text-2xl">
           Loading departures...
@@ -229,6 +224,17 @@ function Index({ stationId: serverStationId, stationName: serverStationName }: P
         <>
           {departures.map((networkGroup, networkIndex) => {
             const Logo = getNetworkLogo(networkGroup.network);
+            // Filter out routes with old departures (countdown < -1) as a safety measure
+            const validRoutes = networkGroup.routes
+              .map(route => ({
+                ...route,
+                departures: route.departures.filter(d => d.countdown >= -1)
+              }))
+              .filter(route => route.departures.length > 0);
+
+            // Skip this network if no valid routes remain
+            if (validRoutes.length === 0) return null;
+
             return (
               <div key={networkGroup.network} className="mb-8">
                 <div
@@ -258,7 +264,7 @@ function Index({ stationId: serverStationId, stationName: serverStationName }: P
                   </div>
                 </div>
                 {networkIndex === 0 && <DepartureHeader />}
-                {networkGroup.routes.map((routeGroup, routeIndex) => (
+                {validRoutes.map((routeGroup, routeIndex) => (
                   <DepartureRow
                     key={`${networkGroup.network}-${routeGroup.routeNumber}-${routeGroup.headsign}`}
                     routeGroup={routeGroup}
