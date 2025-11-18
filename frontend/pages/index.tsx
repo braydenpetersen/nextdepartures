@@ -151,19 +151,19 @@ function Index({ stationName: serverStationName }: PageProps) {
     return (
       <>
         <Head>
-          <title>Live Departure Board - Real-time Transit Departures</title>
+          <title>nextdepartures - Real-time Transit Departures</title>
         </Head>
         <div className="min-h-screen flex flex-col items-center justify-center px-4">
           <div className="w-full max-w-2xl text-center">
             <h1 className="text-4xl sm:text-6xl font-bold mb-4 text-white">
-              UW Departures
+              nextdepartures
             </h1>
             <p className="text-xl text-[var(--light-grey)] mb-8">
-              Real-time transit departures for University of Waterloo
+              Real-time transit departures for GO Transit and Grand River Transit
             </p>
             <StationSearch />
             <p className="text-sm text-[var(--light-grey)] mt-6">
-              Search for any GO Transit or Grand River Transit station
+              Search for any station or stop
             </p>
           </div>
         </div>
@@ -195,20 +195,20 @@ function Index({ stationName: serverStationName }: PageProps) {
           <>
             {/* Station-specific meta tags */}
             <meta property="og:title" content={stationName ? `${stationName} - Live Departures` : 'Live Departure Board'} />
-            <meta property="og:description" content={`Real-time transit departures ${stationName ? `for ${stationName}` : 'for University of Waterloo and surrounding areas'}`} />
+            <meta property="og:description" content={`Real-time transit departures ${stationName ? `for ${stationName}` : 'for GO Transit and Grand River Transit'}`} />
             <meta property="og:image" content={generateOGImageUrl(router.query.stops as string, stationName)} />
             <meta property="twitter:title" content={stationName ? `${stationName} - Live Departures` : 'Live Departure Board'} />
-            <meta property="twitter:description" content={`Real-time transit departures ${stationName ? `for ${stationName}` : 'for University of Waterloo and surrounding areas'}`} />
+            <meta property="twitter:description" content={`Real-time transit departures ${stationName ? `for ${stationName}` : 'for GO Transit and Grand River Transit'}`} />
             <meta property="twitter:image" content={generateOGImageUrl(router.query.stops as string, stationName)} />
           </>
         ) : (
           <>
             {/* Homepage meta tags */}
-            <meta property="og:title" content="Live Departure Board" />
-            <meta property="og:description" content="Real-time transit departures for University of Waterloo and surrounding areas" />
+            <meta property="og:title" content="nextdepartures" />
+            <meta property="og:description" content="Real-time transit departures for GO Transit and Grand River Transit" />
             <meta property="og:image" content="https://transit.braydenpetersen.com/og-image.png" />
-            <meta property="twitter:title" content="Live Departure Board" />
-            <meta property="twitter:description" content="Real-time transit departures for University of Waterloo and surrounding areas" />
+            <meta property="twitter:title" content="nextdepartures" />
+            <meta property="twitter:description" content="Real-time transit departures for GO Transit and Grand River Transit" />
             <meta property="twitter:image" content="https://transit.braydenpetersen.com/og-image.png" />
           </>
         )}
