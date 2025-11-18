@@ -3,7 +3,12 @@ import React from 'react';
 export const DepartureHeader: React.FC = () => {
   return (
     <div
-      className="py-4 items-center tracking-tight bg-[var(--dark-grey)] grid gap-2 departure-grid"
+      className="items-center tracking-tight bg-[var(--dark-grey)] grid departure-grid"
+      style={{
+        gap: 'clamp(10px, 1.2vw, 24px)',
+        paddingTop: 'clamp(16px, 2vw, 40px)',
+        paddingBottom: 'clamp(16px, 2vw, 40px)'
+      }}
     >
       <div className="text-left leading-none my-0 text-header">
         <div>Pltfm.</div>

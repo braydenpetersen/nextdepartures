@@ -52,4 +52,6 @@ body {
 
 .blink-synced {
   animation: syncedBlink 1s ease-in-out infinite;
+  /* Sync animation to page load time - calculated via JS in _app.tsx */
+  animation-delay: var(--blink-sync-delay, 0s);
 }

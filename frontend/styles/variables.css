@@ -1,19 +1,20 @@
 :root {
-  /* Font sizes */
-  --text-xs: 16px;
-  --text-sm: 18px;
-  --text-base: 20px;
-  --text-md: 22px;
-  --text-lg: 25px;
-  --text-xl: 28px;
-  --text-2xl: 32px;
-  --text-3xl: 38px;
+  /* Responsive font sizes using viewport width with min/max constraints */
+  /* At 1920px: 2.5vw = 48px, at 1280px: 2.5vw = 32px, at 768px: 2.5vw = 19.2px */
+  --text-xs: clamp(10px, 2vw, 40px);
+  --text-sm: clamp(11px, 2.2vw, 44px);
+  --text-base: clamp(12px, 2.4vw, 48px);
+  --text-md: clamp(14px, 2.8vw, 56px);
+  --text-lg: clamp(16px, 3vw, 60px);
+  --text-xl: clamp(18px, 3.2vw, 64px);
+  --text-2xl: clamp(20px, 3.6vw, 72px);
+  --text-3xl: clamp(24px, 4vw, 80px);
 
-  /* Column widths */
-  --col-platform-width: 50px;
-  --col-route-width: 60px;
+  /* Responsive column widths */
+  --col-platform-width: clamp(35px, 5.5vw, 110px);
+  --col-route-width: clamp(55px, 9vw, 180px);
   --col-direction-width: minmax(0, 1fr);
-  --col-scheduled-width: 90px;
+  --col-scheduled-width: clamp(85px, 12vw, 240px);
 }
 
 .departure-grid {

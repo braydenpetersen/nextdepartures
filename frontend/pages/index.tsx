@@ -63,45 +63,22 @@ function Index({ stationName: serverStationName }: PageProps) {
     return () => clearInterval(interval);
   }, [router.isReady, router.query.stops]);
 
-  // Fetch station name based on stops
+  // Only fetch station name if not provided by SSR
   useEffect(() => {
+    // If we already have a server-provided station name, use it
+    if (serverStationName) {
+      setStationName(serverStationName);
+      return;
+    }
+
+    // Otherwise, station name will be empty
     if (!router.isReady || !router.query.stops) {
       setStationName('');
       return;
     }
 
-    const stops = router.query.stops as string;
-    const stopIds = stops.split(',');
-
-    // Extract first stop's agency and code for search
-    if (stopIds.length > 0) {
-      const firstStop = stopIds[0];
-      const agency = firstStop.split('_')[0];
-
-      // Search for stations containing this stop
-      fetch(`/api/stations?q=${agency}&limit=20`)
-        .then(response => response.json())
-        .then(data => {
-          if (data.stations && data.stations.length > 0) {
-            // Find station that contains all our stops
-            const matchingStation = data.stations.find((station: Station) => {
-              const stationStopIds = station.stops.map(s => s.stop_id);
-              return stopIds.every(id => stationStopIds.includes(id));
-            });
-
-            if (matchingStation) {
-              setStationName(matchingStation.station_name);
-            } else {
-              setStationName('Departures');
-            }
-          }
-        })
-        .catch(error => {
-          console.error('Error fetching station name:', error);
-          setStationName('Departures');
-        });
-    }
-  }, [router.isReady, router.query.stops]);
+    setStationName('');
+  }, [router.isReady, router.query.stops, serverStationName]);
 
   const [ctime, setCtime] = useState('');
 
@@ -146,8 +123,21 @@ function Index({ stationName: serverStationName }: PageProps) {
     }
   };
 
-  // Show search page if no stops in URL
-  if (!router.query.stops || router.query.stops === '') {
+  // Memoize OG image URL to prevent constant regeneration
+  const ogImageUrl = React.useMemo(() => {
+    if (!router.query.stops) return 'https://transit.braydenpetersen.com/og-image.png';
+
+    const baseUrl = process.env.NODE_ENV === 'production'
+      ? 'https://transit.braydenpetersen.com'
+      : 'http://localhost:3000';
+    return `${baseUrl}/api/og-image?stops=${encodeURIComponent(router.query.stops as string)}${stationName ? `&name=${encodeURIComponent(stationName)}` : ''}`;
+  }, [router.query.stops, stationName]);
+
+  // Determine if we should show search page or departure board
+  const showSearchPage = !router.query.stops || router.query.stops === '';
+
+  // Render search page
+  if (showSearchPage) {
     return (
       <>
         <Head>
@@ -155,14 +145,23 @@ function Index({ stationName: serverStationName }: PageProps) {
         </Head>
         <div className="min-h-screen flex flex-col items-center justify-center px-4">
           <div className="w-full max-w-2xl text-center">
-            <h1 className="text-4xl sm:text-6xl font-bold mb-4 text-white">
+            <h1
+              className="font-bold mb-4 text-white"
+              style={{ fontSize: 'clamp(32px, 5vw, 80px)' }}
+            >
               nextdepartures
             </h1>
-            <p className="text-xl text-[var(--light-grey)] mb-8">
+            <p
+              className="text-[var(--light-grey)] mb-8"
+              style={{ fontSize: 'clamp(18px, 2vw, 32px)' }}
+            >
               Real-time transit departures for GO Transit and Grand River Transit
             </p>
             <StationSearch />
-            <p className="text-sm text-[var(--light-grey)] mt-6">
+            <p
+              className="text-[var(--light-grey)] mt-6"
+              style={{ fontSize: 'clamp(14px, 1.4vw, 20px)' }}
+            >
               Search for any station or stop
             </p>
           </div>
@@ -171,17 +170,7 @@ function Index({ stationName: serverStationName }: PageProps) {
     );
   }
 
-  // Generate dynamic OG image URL for stops
-  const generateOGImageUrl = (stops: string, name?: string) => {
-    const baseUrl = process.env.NODE_ENV === 'production'
-      ? 'https://transit.braydenpetersen.com'
-      : 'http://localhost:3000';
-    const url = `${baseUrl}/api/og-image?stops=${encodeURIComponent(stops)}${name ? `&name=${encodeURIComponent(name)}` : ''}`;
-    console.log('Generated OG image URL:', url); // Debug log
-    return url;
-  };
-
-  // Show departure board if station is provided
+  // Render departure board
   return (
     <>
       <Head>
@@ -196,10 +185,10 @@ function Index({ stationName: serverStationName }: PageProps) {
             {/* Station-specific meta tags */}
             <meta property="og:title" content={stationName ? `${stationName} - Live Departures` : 'Live Departure Board'} />
             <meta property="og:description" content={`Real-time transit departures ${stationName ? `for ${stationName}` : 'for GO Transit and Grand River Transit'}`} />
-            <meta property="og:image" content={generateOGImageUrl(router.query.stops as string, stationName)} />
+            <meta property="og:image" content={ogImageUrl} />
             <meta property="twitter:title" content={stationName ? `${stationName} - Live Departures` : 'Live Departure Board'} />
             <meta property="twitter:description" content={`Real-time transit departures ${stationName ? `for ${stationName}` : 'for GO Transit and Grand River Transit'}`} />
-            <meta property="twitter:image" content={generateOGImageUrl(router.query.stops as string, stationName)} />
+            <meta property="twitter:image" content={ogImageUrl} />
           </>
         ) : (
           <>
@@ -213,9 +202,21 @@ function Index({ stationName: serverStationName }: PageProps) {
           </>
         )}
       </Head>
-      <div className="mx-3 font-bold tracking-tight">
+      <div
+        className="font-bold tracking-tight"
+        style={{
+          marginLeft: 'clamp(12px, 1.2vw, 24px)',
+          marginRight: 'clamp(12px, 1.2vw, 24px)'
+        }}
+      >
       {isLoading && isInitialLoad.current ? (
-        <div className="h-32 sm:h-40 flex items-center justify-center text-[var(--light-grey)] text-xl sm:text-2xl">
+        <div
+          className="flex items-center justify-center text-[var(--light-grey)]"
+          style={{
+            height: 'clamp(120px, 15vh, 200px)',
+            fontSize: 'var(--text-xl)'
+          }}
+        >
           Loading departures...
         </div>
       ) : (
@@ -234,28 +235,50 @@ function Index({ stationName: serverStationName }: PageProps) {
             if (validRoutes.length === 0) return null;
 
             return (
-              <div key={networkGroup.network} className="mb-8">
+              <div
+                key={networkGroup.network}
+                style={{
+                  marginBottom: 'clamp(24px, 2.4vw, 48px)',
+                  marginTop: networkIndex === 0 ? 'clamp(20px, 2.5vw, 50px)' : 0
+                }}
+              >
                 <div
-                  className="flex justify-between items-center w-full h-[52px]"
-                  style={{ lineHeight: '100%' }}
+                  className="flex justify-between items-center w-full"
+                  style={{
+                    lineHeight: '100%',
+                    height: 'clamp(50px, 5.5vw, 110px)'
+                  }}
                 >
                   <div className="flex items-center gap-4">
                     {Logo && (
-                      <div className="flex items-center justify-center w-[45px] h-[52px]">
-                        <Logo className="w-[45px] h-full -mt-1" />
+                      <div
+                        className="flex items-center justify-center -mt-1"
+                        style={{
+                          width: 'clamp(50px, 5vw, 100px)',
+                          height: 'clamp(50px, 5.5vw, 110px)'
+                        }}
+                      >
+                        <Logo
+                          style={{
+                            width: 'clamp(50px, 5vw, 100px)',
+                            height: '100%'
+                          }}
+                        />
                       </div>
                     )}
                     <div className="flex items-center h-full">
-                      <h2 className="text-xl tracking-tight">
-                        Departures
-                        <span className="font-normal"> | Départs</span>
+                      <h2 className="tracking-tight" style={{ fontSize: 'var(--text-xl)' }}>
+                        {stationName || 'Departures'}
                       </h2>
                     </div>
                   </div>
                   <div className="flex items-center h-full text-[var(--light-grey)]">
                     <h2
-                      className="text-xl tracking-tight"
-                      style={{ fontVariantNumeric: 'tabular-nums' }}
+                      className="tracking-tight"
+                      style={{
+                        fontVariantNumeric: 'tabular-nums',
+                        fontSize: 'var(--text-xl)'
+                      }}
                     >
                       {ctime}
                     </h2>
@@ -295,10 +318,6 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (context)
       return { props: {} };
     }
 
-    // Extract first stop's agency for search
-    const firstStop = stopIds[0];
-    const agency = firstStop.split('_')[0];
-
     // Try to fetch proper station name from API
     const apiUrl = process.env.BACKEND_API_URL || 'http://localhost:8080';
     const apiKey = process.env.API_KEY;
@@ -308,19 +327,27 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (context)
       return { props: {} };
     }
 
-    const response = await fetch(`${apiUrl}/api/stations/search?q=${encodeURIComponent(agency)}&limit=20`, {
+    // Fetch all consolidated stations and reverse-search for matching station
+    // This approach works better for joint-agency stations
+    const response = await fetch(`${apiUrl}/api/consolidated-stations`, {
       headers: {
         'X-API-Key': apiKey
       }
     });
 
     if (response.ok) {
-      const data = await response.json();
-      if (data.stations && data.stations.length > 0) {
-        // Find station that contains all our stops
-        const matchingStation = data.stations.find((station: Station) => {
+      const stations = await response.json();
+      console.log('SSR: Loaded consolidated stations:', stations?.length || 0);
+
+      if (stations && stations.length > 0) {
+        // Find station that contains ALL our stop IDs
+        const matchingStation = stations.find((station: Station) => {
           const stationStopIds = station.stops.map((s: { stop_id: string }) => s.stop_id);
-          return stopIds.every((id: string) => stationStopIds.includes(id));
+          const allMatch = stopIds.every((id: string) => stationStopIds.includes(id));
+          if (allMatch) {
+            console.log('SSR: Found matching station:', station.station_name);
+          }
+          return allMatch;
         });
 
         if (matchingStation) {
@@ -329,14 +356,18 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (context)
               stationName: matchingStation.station_name
             }
           };
+        } else {
+          console.log('SSR: No station contained all stops:', stopIds);
         }
       }
+    } else {
+      console.log('SSR: API request failed:', response.status);
     }
 
     return { props: {} };
 
   } catch (error) {
-    console.error('Error fetching station data:', error);
+    console.error('SSR: Error fetching station data:', error);
     return { props: {} };
   }
 };

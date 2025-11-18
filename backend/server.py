@@ -301,6 +301,16 @@ def search_stations():
         'stations': results
     })
 
+@app.route('/api/consolidated-stations', methods=['GET'])
+@requires_api_key
+def get_consolidated_stations():
+    """
+    Return all consolidated stations for client-side lookup.
+    This is useful for reverse-searching station names from stop IDs.
+    """
+    stations = load_consolidated_stations()
+    return jsonify(stations)
+
 @app.route('/api/og-image', methods=['GET'])
 def generate_og_image():
     """

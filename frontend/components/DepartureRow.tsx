@@ -29,13 +29,25 @@ export const DepartureRow: React.FC<DepartureRowProps> = ({
 
   return (
     <div
-      className="grid gap-2 py-4 border-t-[4px] border-[var(--light-grey)] border-dotted border-collapse border-spacing-0 items-center animate-[fadeIn_0.4s_ease-in-out] overflow-hidden [animation-fill-mode:backwards] departure-grid"
-      style={{ animationDelay: `${index * 500}ms` }}
+      className="grid border-[var(--light-grey)] border-dotted border-collapse border-spacing-0 items-center animate-[fadeIn_0.4s_ease-in-out] overflow-hidden [animation-fill-mode:backwards] departure-grid"
+      style={{
+        animationDelay: `${index * 500}ms`,
+        gap: 'clamp(10px, 1.2vw, 24px)',
+        paddingTop: 'clamp(16px, 2vw, 40px)',
+        paddingBottom: 'clamp(16px, 2vw, 40px)',
+        borderTopWidth: 'clamp(4px, 0.4vw, 8px)'
+      }}
     >
       <div className="text-[var(--light-green)] flex items-center text-departure tabular-nums">
         <span className="min-w-[1.5ch]">{routeGroup.platform}</span>
         {isGrtIon(routeGroup) && (
-          <TrainIcon className="w-[20px] h-[28px] text-[var(--light-green)]" />
+          <TrainIcon
+            className="text-[var(--light-green)]"
+            style={{
+              width: 'clamp(20px, 2vw, 40px)',
+              height: 'clamp(28px, 2.8vw, 56px)'
+            }}
+          />
         )}
       </div>
 
@@ -47,9 +59,12 @@ export const DepartureRow: React.FC<DepartureRowProps> = ({
         <span className="[overflow-wrap:normal] [word-break:normal] [line-break:strict] whitespace-pre-wrap">{routeGroup.headsign.replace(/([/&])/g, `$1\u200B`)}</span>
       </div>
 
-      <div className="flex items-center">
-        <div className="flex items-baseline text-[var(--yellow)] w-full justify-end text-departure pr-2">
-          <span>
+      <div className="flex items-center justify-end text-right">
+        <div
+          className="flex items-baseline text-[var(--yellow)] w-full justify-end text-departure text-right"
+          style={{ paddingRight: 'clamp(10px, 1.2vw, 24px)' }}
+        >
+          <span className="text-right">
             {formattedDepartures.map((departure, i) => (
               <span key={i}>
                 {i > 0 && ', '}

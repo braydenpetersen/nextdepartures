@@ -10,10 +10,13 @@ export const RouteNumber: React.FC<RouteNumberProps> = ({
 }) => {
   return (
     <div
-      className="text-center font-lining rounded-[10px] flex-shrink-0 justify-center w-fit px-[8px] min-w-[50px] text-departure"
+      className="text-center font-lining flex-shrink-0 justify-center w-fit text-departure"
       style={{
         color: routeGroup.routeTextColor,
         backgroundColor: routeGroup.routeColor,
+        borderRadius: 'clamp(6px, 1vw, 20px)',
+        padding: 'clamp(1px, 0.3vw, 6px) clamp(6px, 1.2vw, 24px) clamp(0.5px, 0.2vw, 4px)',
+        minWidth: 'clamp(30px, 5vw, 100px)',
       }}
     >
       {routeGroup.routeNumber}
