@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app';
 import { Overpass } from 'next/font/google';
 import { useEffect } from 'react';
 import '../styles/variables.css';
+import { Analytics } from '@vercel/analytics/react';
 
 const overpass = Overpass({
   subsets: ['latin'],
@@ -20,6 +21,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <main className={overpass.className}>
       <Component {...pageProps} />
+      <Analytics />
     </main>
   );
 }
