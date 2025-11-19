@@ -287,7 +287,7 @@ function Index({ stationName: serverStationName }: PageProps) {
                 {networkIndex === 0 && <DepartureHeader />}
                 {validRoutes.map((routeGroup, routeIndex) => (
                   <DepartureRow
-                    key={`${networkGroup.network}-${routeGroup.routeNumber}-${routeGroup.headsign}`}
+                    key={`${networkGroup.network}-${routeGroup.routeNumber}-${routeGroup.headsign}-${routeGroup.branchCode}`}
                     routeGroup={routeGroup}
                     index={networkIndex * 100 + routeIndex}
                     isGrtIon={isGrtIon}

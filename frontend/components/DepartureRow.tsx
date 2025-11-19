@@ -33,8 +33,8 @@ export const DepartureRow: React.FC<DepartureRowProps> = ({
       style={{
         animationDelay: `${index * 500}ms`,
         gap: 'clamp(10px, 1.2vw, 24px)',
-        paddingTop: 'clamp(16px, 2vw, 40px)',
-        paddingBottom: 'clamp(16px, 2vw, 40px)',
+        paddingTop: 'clamp(10px, 1.2vw, 24px)',
+        paddingBottom: 'clamp(10px, 1.2vw, 24px)',
         borderTopWidth: 'clamp(4px, 0.4vw, 8px)'
       }}
     >
